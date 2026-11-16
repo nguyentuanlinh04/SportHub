@@ -27,6 +27,9 @@ public class SplashActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Khởi tạo sẵn tài khoản Admin mặc định trên Firebase
+        fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.initDefaultAdminAccount(this);
+
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);

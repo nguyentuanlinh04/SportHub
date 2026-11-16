@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "719606123753",
+    "project_id": "sporthub-731f8",
+    "storage_bucket": "sporthub-731f8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719606123753:android:92fa63abd68e4b1eb6b478",
+        "android_client_info": {
+          "package_name": "fpoly.duan1.sporthub_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAH_kdWsmv7sx7Cj5kR7HYDmMDp_6Z3Sj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,12 +41,16 @@ public class FirebaseUserHelper {
 
     private static DatabaseReference getUsersRef() {
         try {
-            return FirebaseDatabase.getInstance("https://sporthub-731f8-default-rtdb.firebaseio.com").getReference("users");
+            return FirebaseDatabase.getInstance("https://sporthub-4293d-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("users");
         } catch (Exception e) {
             try {
                 return FirebaseDatabase.getInstance().getReference("users");
             } catch (Exception ex) {
-                return null;
+                try {
+                    return FirebaseDatabase.getInstance("https://sporthub-4293d-default-rtdb.firebaseio.com").getReference("users");
+                } catch (Exception e2) {
+                    return null;
+                }
             }
         }
     }
@@ -73,6 +78,11 @@ public class FirebaseUserHelper {
                 ref.child(admin.getUserId()).setValue(admin);
             } catch (Exception ignored) {
             }
+        }
+
+        try {
+            FirebaseFirestore.getInstance().collection("users").document(admin.getUserId()).set(admin);
+        } catch (Exception ignored) {
         }
 
         isAdminInitialized = true;
@@ -130,7 +140,13 @@ public class FirebaseUserHelper {
         user.setUserId(userId);
         user.setCreatedAt(System.currentTimeMillis());
 
-        // Đẩy dữ liệu trực tiếp lên node /users/{userId}
+        // Đẩy dữ liệu đồng thời lên Cloud Firestore
+        try {
+            FirebaseFirestore.getInstance().collection("users").document(userId).set(user);
+        } catch (Exception ignored) {
+        }
+
+        // Đẩy dữ liệu trực tiếp lên node /users/{userId} của Realtime Database
         ref.child(userId).setValue(user)
                 .addOnSuccessListener(aVoid -> {
                     localUsersMemory.put(cleanPhone, user);

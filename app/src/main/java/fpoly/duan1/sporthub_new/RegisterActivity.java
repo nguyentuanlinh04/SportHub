@@ -18,7 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private boolean isOwnerRole = false;
+    // 0: Khách hàng, 1: Chủ sân
+    private int selectedRoleIndex = 0;
 
     private TextView tvRegisterSubtitle, tvRoleSelected, tvNameLabel;
     private EditText edtFullName, edtPhoneNumber, edtCccd, edtAddress, edtBusinessName, edtTaxCode, edtPassword, edtConfirmPassword;
@@ -41,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         initViews();
         setupListeners();
-        updateRoleUI(false);
+        updateRoleUI(0);
     }
 
     private void initViews() {
@@ -65,6 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
         layoutConfirmPassword = findViewById(R.id.layoutConfirmPassword);
 
         cbTerms = findViewById(R.id.cbTerms);
+        if (cbTerms != null) {
+            cbTerms.setChecked(true);
+        }
         btnSubmitRegister = findViewById(R.id.btnSubmitRegister);
         tvNoticeTitle = findViewById(R.id.tvNoticeTitle);
         tvNoticeContent = findViewById(R.id.tvNoticeContent);
@@ -95,14 +99,15 @@ public class RegisterActivity extends AppCompatActivity {
         String[] roles = {"Khách hàng", "Chủ sân"};
         new AlertDialog.Builder(this)
                 .setTitle("Chọn vai trò tài khoản")
-                .setItems(roles, (dialog, which) -> updateRoleUI(which == 1))
+                .setItems(roles, (dialog, which) -> updateRoleUI(which))
                 .show();
     }
 
-    private void updateRoleUI(boolean isOwner) {
-        this.isOwnerRole = isOwner;
+    private void updateRoleUI(int roleIndex) {
+        this.selectedRoleIndex = roleIndex;
 
-        if (isOwner) {
+        if (roleIndex == 1) {
+            // Chủ sân
             tvRoleSelected.setText("Chủ sân");
             tvRegisterSubtitle.setText("Cung cấp thông tin cá nhân, doanh nghiệp để đăng ký.");
             tvNameLabel.setText("Họ và tên (theo giấy tờ)");
@@ -117,6 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
             tvNoticeTitle.setText("Lưu ý:");
             tvNoticeContent.setText("Tài khoản cần được quản trị viên duyệt (khoảng 24 giờ) trước khi đăng sản. Thông tin cụm sân được bổ sung sau khi duyệt.");
         } else {
+            // Khách hàng
             tvRoleSelected.setText("Khách hàng");
             tvRegisterSubtitle.setText("Gia nhập Sports Hub, đặt sân bóng cùng đội của bạn.");
             tvNameLabel.setText("Họ và tên");
@@ -134,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void handleSubmitRegister() {
-        if (!cbTerms.isChecked()) {
+        if (cbTerms != null && !cbTerms.isChecked()) {
             Toast.makeText(this, "Vui lòng đồng ý Điều khoản sử dụng và Chính sách bảo mật.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -148,7 +154,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (isOwnerRole) {
+        if (selectedRoleIndex == 1) {
+            // Chủ sân
             String cccd = edtCccd.getText().toString().trim();
             String address = edtAddress.getText().toString().trim();
             String business = edtBusinessName.getText().toString().trim();
@@ -179,6 +186,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         } else {
+            // Khách hàng
             String confirmPass = edtConfirmPassword.getText().toString().trim();
             if (!password.equals(confirmPass)) {
                 Toast.makeText(this, "Mật khẩu xác nhận không khớp.", Toast.LENGTH_SHORT).show();

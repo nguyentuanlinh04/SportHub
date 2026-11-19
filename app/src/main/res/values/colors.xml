@@ -2,4 +2,24 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Customer Theme Colors -->
+    <color name="bg_app">#F6F8F5</color>
+    <color name="primary_green">#0A8B4D</color>
+    <color name="primary_green_dark">#066A3A</color>
+    <color name="chip_selected">#182A1D</color>
+    <color name="chip_unselected_bg">#FFFFFF</color>
+    <color name="chip_unselected_stroke">#E2E7E1</color>
+    <color name="tag_bg">#EDF1EC</color>
+    <color name="tag_text">#4A5568</color>
+    <color name="badge_available_bg">#C8F27D</color>
+    <color name="badge_available_text">#224606</color>
+    <color name="badge_busy_bg">#FEECAC</color>
+    <color name="badge_busy_text">#6E4E00</color>
+    <color name="text_title">#111827</color>
+    <color name="text_sub">#6B7280</color>
+    <color name="yellow_star">#FFB800</color>
+    <color name="nav_active">#0A8B4D</color>
+    <color name="nav_inactive">#8E9BAE</color>
+    <color name="red_dot">#FF3B30</color>
 </resources>

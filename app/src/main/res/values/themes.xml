@@ -3,8 +3,8 @@
     <style name="Base.Theme.Sporthubnew" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">#124E2A</item>
-        <item name="colorSecondaryContainer">#124E2A</item>
-        <item name="colorOnSecondaryContainer">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#E8F5E9</item>
+        <item name="colorOnSecondaryContainer">#124E2A</item>
     </style>
 
     <style name="Theme.Sporthubnew" parent="Base.Theme.Sporthubnew" />

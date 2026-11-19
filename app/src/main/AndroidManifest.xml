@@ -47,6 +47,27 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".IncidentalServicesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HandoverHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangeTimeCourtActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CourtChangeSuccessActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

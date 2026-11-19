@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_card_pitch"
+    android:padding="16dp">
+
+    <!-- Header Row (Title, Subtitle & Status Badge) -->
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/tvStatusBadge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvPitchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cụm sân Thắng Long"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Cụm sân Thắng Long" />
+
+        <TextView
+            android:id="@+id/tvSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Sân 5-A · SH-1109-0187"
+            android:textColor="@color/text_sub"
+            android:textSize="12sp"
+            tools:text="Sân 5-A · SH-1109-0187" />
+    </LinearLayout>
+
+    <!-- Status Badge -->
+    <TextView
+        android:id="@+id/tvStatusBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_level_badge_green"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="Sắp tới"
+        android:textColor="#0A6A3A"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sắp tới" />
+
+    <!-- SECTION A: SẮP TỚI (CODE = 0) -->
+    <LinearLayout
+        android:id="@+id/llUpcomingSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llHeader">
+
+        <!-- Date & Time Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="Date Icon"
+                    android:src="@drawable/ic_calendar_small" />
+
+                <TextView
+                    android:id="@+id/tvDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Thứ 2, 09/11"
+                    android:textColor="@color/text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="Thứ 2, 09/11" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="Time Icon"
+                    android:src="@drawable/ic_clock_small" />
+
+                <TextView
+                    android:id="@+id/tvTimeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="18:00 – 20:00"
+                    android:textColor="@color/text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="18:00 – 20:00" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Deposit & Remaining Fee Row -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvDepositText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Đã cọc 255.000đ"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Đã cọc 255.000đ" />
+
+            <TextView
+                android:id="@+id/tvRemainingFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Còn thu 595.000đ"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                tools:text="Còn thu 595.000đ" />
+        </RelativeLayout>
+
+        <!-- Action Buttons Row (Xem mã QR / Hủy) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnViewQR"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_qr"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Xem mã QR"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Xem mã QR" />
+
+            <TextView
+                android:id="@+id/btnCancelBooking"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_cancel"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Hủy đặt sân"
+                android:textColor="#C0392B"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Hủy đặt sân" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- SECTION B: ĐÃ HOÀN THÀNH (CODE = 1) -->
+    <LinearLayout
+        android:id="@+id/llCompletedSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llHeader"
+        tools:visibility="gone">
+
+        <!-- Date & Time Row -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tvCompletedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Chủ nhật, 01/11"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                tools:text="Chủ nhật, 01/11" />
+
+            <TextView
+                android:id="@+id/tvCompletedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="18:00 – 20:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="18:00 – 20:00" />
+        </RelativeLayout>
+
+        <!-- Payment Status & Total Price Row -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Đã thanh toán"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Đã thanh toán" />
+
+            <TextView
+                android:id="@+id/tvCompletedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="850.000đ"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="850.000đ" />
+        </RelativeLayout>
+
+        <!-- Actions Row for Completed (Chưa đánh giá vs Đã đánh giá) -->
+        <LinearLayout
+            android:id="@+id/llCompletedActionUnreviewed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnReviewCompleted"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_action_green"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Đánh giá"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Đánh giá" />
+
+            <TextView
+                android:id="@+id/btnRebookUnreviewed"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_rebook"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Đặt lại"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Đặt lại" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlCompletedActionReviewed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvReviewedTag"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_tag_reviewed"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:text="Đã đánh giá 5 sao"
+                android:textColor="#374151"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Đã đánh giá 5 sao" />
+
+            <TextView
+                android:id="@+id/btnRebookReviewed"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_btn_rebook"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="24dp"
+                android:text="Đặt lại"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Đặt lại" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- SECTION C: ĐÃ HỦY (CODE = 2 - LAYOUT GIỐNG ẢNH MẪU 3) -->
+    <LinearLayout
+        android:id="@+id/llCancelledSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llHeader"
+        tools:visibility="gone">
+
+        <!-- Date & Time Row -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tvCancelledDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Thứ 6, 30/10"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                tools:text="Thứ 6, 30/10" />
+
+            <TextView
+                android:id="@+id/tvCancelledTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="20:00 – 21:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="20:00 – 21:00" />
+        </RelativeLayout>
+
+        <!-- Cancel Reason & Refund Status Row -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/tvCancelReason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Hủy trước 12 giờ"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Hủy trước 12 giờ" />
+
+            <TextView
+                android:id="@+id/tvRefundStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="Đã hoàn cọc 75.000đ"
+                android:textColor="@color/primary_green"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Đã hoàn cọc 75.000đ" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

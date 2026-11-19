@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="36dp"
+        android:paddingBottom="20dp">
+
+        <!-- Top Bar Header (Lịch đặt sân) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Lịch đặt sân"
+            android:textColor="@color/text_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Lịch đặt sân" />
+
+        <!-- 3-Tab Segmented Control (Sắp tới / Đã hoàn thành / Đã hủy) -->
+        <LinearLayout
+            android:id="@+id/llTabContainer"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/bg_tab_container"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvTabUpcoming"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Sắp tới"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Sắp tới" />
+
+            <TextView
+                android:id="@+id/tvTabCompleted"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Đã hoàn thành"
+                android:textColor="@color/text_sub"
+                android:textSize="14sp"
+                tools:text="Đã hoàn thành" />
+
+            <TextView
+                android:id="@+id/tvTabCancelled"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Đã hủy"
+                android:textColor="@color/text_sub"
+                android:textSize="14sp"
+                tools:text="Đã hủy" />
+        </LinearLayout>
+
+        <!-- Booking List RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBookings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_booking" />
+
+        <!-- Policy Disclaimer Note (Visible on Cancelled tab) -->
+        <TextView
+            android:id="@+id/tvPolicyFooterNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Cọc được hoàn theo mốc thời gian quy định của từng sân."
+            android:textColor="#718096"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="Cọc được hoàn theo mốc thời gian quy định của từng sân."
+            tools:visibility="visible" />
+
+        <!-- Review Prompt Banner Card (Visible on Upcoming tab) -->
+        <RelativeLayout
+            android:id="@+id/rlReviewBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_banner_review"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivStarIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="Star Icon"
+                android:src="@drawable/ic_star_outline" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_toEndOf="@id/ivStarIcon"
+                android:layout_toStartOf="@id/btnReview"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trận ngày 01/11 đã xong."
+                    android:textColor="#2E4A0C"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="Trận ngày 01/11 đã xong." />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="Đánh giá mặt cỏ, ánh sáng và thái độ phục vụ để giúp đội khác chọn sân."
+                    android:textColor="#4A6020"
+                    android:textSize="12sp"
+                    tools:text="Đánh giá mặt cỏ, ánh sáng và thái độ phục vụ để giúp đội khác chọn sân." />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_btn_review"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp"
+                android:text="Đánh giá"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Đánh giá" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

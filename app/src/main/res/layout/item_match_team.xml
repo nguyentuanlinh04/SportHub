@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_card_pitch"
+    android:padding="16dp">
+
+    <!-- Team Avatar Badge -->
+    <TextView
+        android:id="@+id/tvTeamAvatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_team_avatar_green"
+        android:gravity="center"
+        android:text="FC"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="FC" />
+
+    <!-- Team Name & Subtitle -->
+    <LinearLayout
+        android:id="@+id/llHeaderTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/tvTeamAvatar"
+        app:layout_constraintEnd_toStartOf="@id/tvLevelBadge"
+        app:layout_constraintStart_toEndOf="@id/tvTeamAvatar"
+        app:layout_constraintTop_toTopOf="@id/tvTeamAvatar">
+
+        <TextView
+            android:id="@+id/tvTeamName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FC Cầu Giấy United"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="FC Cầu Giấy United" />
+
+        <TextView
+            android:id="@+id/tvCaptainDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Đội trưởng: Hoàng Nam · 1,2 km"
+            android:textColor="@color/text_sub"
+            android:textSize="12sp"
+            tools:text="Đội trưởng: Hoàng Nam · 1,2 km" />
+    </LinearLayout>
+
+    <!-- Level Badge -->
+    <TextView
+        android:id="@+id/tvLevelBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_level_badge_orange"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:text="Khá"
+        android:textColor="#8F5300"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTeamAvatar"
+        tools:text="Khá" />
+
+    <!-- 3-Column Match Details Box -->
+    <LinearLayout
+        android:id="@+id/llMatchDetailsBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_match_info_box"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTeamAvatar">
+
+        <!-- Column 1: Thời gian -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời gian"
+                android:textColor="@color/text_sub"
+                android:textSize="11sp"
+                tools:text="Thời gian" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="T4 · 19:00"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="T4 · 19:00" />
+        </LinearLayout>
+
+        <!-- Column 2: Loại sân -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loại sân"
+                android:textColor="@color/text_sub"
+                android:textSize="11sp"
+                tools:text="Loại sân" />
+
+            <TextView
+                android:id="@+id/tvPitchType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Sân 7"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Sân 7" />
+        </LinearLayout>
+
+        <!-- Column 3: Chia sân -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chia sân"
+                android:textColor="@color/text_sub"
+                android:textSize="11sp"
+                tools:text="Chia sân" />
+
+            <TextView
+                android:id="@+id/tvSplitFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="50 / 50"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="50 / 50" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Action Buttons Row -->
+    <LinearLayout
+        android:id="@+id/llActionRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llMatchDetailsBox">
+
+        <!-- Send Request Main Action Button -->
+        <TextView
+            android:id="@+id/btnSendRequest"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Gửi yêu cầu giao lưu"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Gửi yêu cầu giao lưu" />
+
+        <!-- Chat Icon Button -->
+        <ImageButton
+            android:id="@+id/btnChat"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_btn_chat"
+            android:contentDescription="Chat Button"
+            android:src="@drawable/ic_chat_bubble" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Bar Header (Bộ lọc & Xóa lọc) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Bộ lọc"
+                android:textColor="@color/text_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Bộ lọc" />
+
+            <TextView
+                android:id="@+id/btnResetFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_tag_reviewed"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                android:text="Xóa lọc"
+                android:textColor="@color/primary_green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Xóa lọc" />
+        </RelativeLayout>
+
+        <!-- Section 1: Bán kính -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Bán kính"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Bán kính" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvRadius1km"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="1 km"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="1 km" />
+
+            <TextView
+                android:id="@+id/tvRadius3km"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="3 km"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="3 km" />
+
+            <TextView
+                android:id="@+id/tvRadius5km"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="5 km"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="5 km" />
+
+            <TextView
+                android:id="@+id/tvRadius10km"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="10 km"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="10 km" />
+        </LinearLayout>
+
+        <!-- Section 2: Quy mô sân -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Quy mô sân"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Quy mô sân" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvSizeSan5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Sân 5"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Sân 5" />
+
+            <TextView
+                android:id="@+id/tvSizeSan7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Sân 7"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Sân 7" />
+
+            <TextView
+                android:id="@+id/tvSizeSan11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Sân 11"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Sân 11" />
+        </LinearLayout>
+
+        <!-- Section 3: Chất lượng mặt cỏ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Chất lượng mặt cỏ"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Chất lượng mặt cỏ" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvTurfStandard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Tiêu chuẩn"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Tiêu chuẩn" />
+
+            <TextView
+                android:id="@+id/tvTurfHigh"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Cao cấp"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Cao cấp" />
+        </LinearLayout>
+
+        <!-- Section 4: Có đèn chiếu sáng (Card with Switch) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Có đèn chiếu sáng"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Có đèn chiếu sáng" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Phù hợp đá buổi tối"
+                    android:textColor="@color/text_sub"
+                    android:textSize="12sp"
+                    tools:text="Phù hợp đá buổi tối" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchLighting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:checked="true"
+                app:thumbTint="@color/primary_green"
+                app:trackTint="#A3E2C4" />
+        </RelativeLayout>
+
+        <!-- Section 5: Khung giá / giờ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Khung giá / giờ"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Khung giá / giờ" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvPriceUnder200"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Dưới 200k"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Dưới 200k" />
+
+            <TextView
+                android:id="@+id/tvPrice200to300"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="200k–300k"
+                android:textColor="@color/text_title"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="200k–300k" />
+
+            <TextView
+                android:id="@+id/tvPrice300to400"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="300k–400k"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="300k–400k" />
+
+            <TextView
+                android:id="@+id/tvPriceOver400"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Trên 400k"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Trên 400k" />
+        </LinearLayout>
+
+        <!-- Section 6: Tiện ích khác -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Tiện ích khác"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Tiện ích khác" />
+
+        <!-- Bãi đỗ xe -->
+        <LinearLayout
+            android:id="@+id/llParking"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_checkbox_unchecked"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/ivCheckParking"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="Checkbox Parking"
+                android:src="@drawable/ic_checkbox_unchecked" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Bãi đỗ xe"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                tools:text="Bãi đỗ xe" />
+        </LinearLayout>
+
+        <!-- Phòng thay đồ -->
+        <LinearLayout
+            android:id="@+id/llDressingRoom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_checkbox_unchecked"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/ivCheckDressingRoom"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="Checkbox Dressing Room"
+                android:src="@drawable/ic_checkbox_unchecked" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Phòng thay đồ"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                tools:text="Phòng thay đồ" />
+        </LinearLayout>
+
+        <!-- Căn tin -->
+        <LinearLayout
+            android:id="@+id/llCanteen"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_checkbox_unchecked"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/ivCheckCanteen"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="Checkbox Canteen"
+                android:src="@drawable/ic_checkbox_unchecked" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Căn tin"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                tools:text="Căn tin" />
+        </LinearLayout>
+
+        <!-- Bottom Apply Button -->
+        <TextView
+            android:id="@+id/btnApplyFilter"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Áp dụng / Xem kết quả"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Áp dụng / Xem kết quả" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

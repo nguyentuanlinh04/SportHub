@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainAddComplex"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/owner_bg_screen"
+    android:orientation="vertical"
+    tools:context=".AddComplexActivity">
+
+    <!-- TOP BAR -->
+    <LinearLayout
+        android:id="@+id/topBarAddComplex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/owner_topbar_bg"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
+
+        <ImageButton
+            android:id="@+id/btnBackAddComplex"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Quay lại"
+            android:src="@drawable/ic_back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SportHub"
+                android:textColor="@color/owner_text_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Cơ sở / Thêm cụm sân"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_chu_san"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            android:text="Chủ sân"
+            android:textColor="@color/owner_lime_badge_text"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- SCROLLABLE FORM -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp">
+
+            <!-- Title Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm cụm sân"
+                android:textColor="@color/owner_text_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Tất cả cơ sở và thông tin chung của cụm sân."
+                android:textColor="@color/owner_text_sub"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="* Thông tin bắt buộc"
+                android:textColor="#16A34A"
+                android:textSize="11sp" />
+
+            <!-- Green Notice Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_owner_notice_box"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_info_circle" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tạo cụm sân trước, thiết lập sân con sau"
+                        android:textColor="#15803D"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Cụm sân là cơ sở chứa các sân thành phần. Bạn sẽ tạo thêm sân con và bảng giá sau khi lưu."
+                        android:textColor="#166534"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- CARD 1: THÔNG TIN CƠ BẢN -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thông tin cơ bản"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tên cụm sân *"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtComplexName"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_owner_search_input"
+                    android:hint="VD: Cụm sân Bình An"
+                    android:inputType="textCapWords"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="@color/owner_text_title"
+                    android:textColorHint="@color/owner_text_sub"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Hotline *"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_owner_search_input"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_phone_outline" />
+
+                    <EditText
+                        android:id="@+id/edtComplexHotline"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:background="@null"
+                        android:hint="VD: 0909 123 456"
+                        android:inputType="phone"
+                        android:textColor="@color/owner_text_title"
+                        android:textColorHint="@color/owner_text_sub"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Mô tả ngắn (không bắt buộc)"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtComplexDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_owner_search_input"
+                    android:gravity="top|start"
+                    android:hint="Giới thiệu cơ sở, loại hình thể thao..."
+                    android:inputType="textMultiLine"
+                    android:padding="12dp"
+                    android:textColor="@color/owner_text_title"
+                    android:textColorHint="@color/owner_text_sub"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- CARD 2: ĐỊA CHỈ & VỊ TRÍ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ &amp; vị trí"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Địa chỉ thực tế của bạn để tìm cụm sân."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Tỉnh / Thành phố *"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_owner_search_input"
+                    android:paddingHorizontal="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Quận / Huyện *"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_owner_search_input"
+                            android:paddingHorizontal="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phường / Xã *"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spWard"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_owner_search_input"
+                            android:paddingHorizontal="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Số nhà, tên đường *"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtComplexAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_owner_search_input"
+                    android:hint="VD: 28 Đường số 2"
+                    android:inputType="textPostalAddress"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="@color/owner_text_title"
+                    android:textColorHint="@color/owner_text_sub"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnSelectMapLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_owner_btn_manage"
+                    android:text="📍 Chọn vị trí trên bản đồ"
+                    android:textAllCaps="false"
+                    android:textColor="@color/owner_btn_manage_text"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- CARD 3: GIỜ HOẠT ĐỘNG -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giờ hoạt động"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Khung giờ mở cửa chung, áp dụng hàng ngày."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Giờ mở cửa *"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvOpenTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_owner_search_input"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="12dp"
+                            android:text="🕒 05:30"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Giờ đóng cửa *"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCloseTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_owner_search_input"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="12dp"
+                            android:text="🕒 23:30"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- CARD 4: TIỆN ÍCH TẠI CƠ SỞ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tiện ích tại cơ sở"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Tiện ích Switch Items -->
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchLed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Đèn LED thi đấu ban đêm"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchParking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Bãi đỗ xe có bảo vệ"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchCanteen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Căng tin giải khát"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchShower"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phòng tắm / thay đồ"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchWifi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Wifi miễn phí"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchTribune"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Khán đài"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- CARD 5: TRẠNG THÁI CƠ SỞ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái cơ sở"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <RadioButton
+                        android:id="@+id/rbStatusActive"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/bg_radio_option_active"
+                        android:checked="true"
+                        android:padding="10dp"
+                        android:text="Hoạt động\nCho phép đặt sân con ngay"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/rbStatusPaused"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_radio_option_inactive"
+                        android:padding="10dp"
+                        android:text="Tạm ngừng\nChưa nhận lịch, có thể mở lại sau"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- SUBMIT BUTTON -->
+            <Button
+                android:id="@+id/btnSubmitCreateComplex"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_owner_add_btn"
+                android:text="+ Tạo cụm sân"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <TextView
+                android:id="@+id/btnCancelAddComplex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:padding="8dp"
+                android:text="Hủy, quay lại danh sách"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnDialogCancelPitchIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm sân"
+                android:textColor="@color/owner_text_title"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Cụm Sân Thăng Long · Thêm sân con mới"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Tên sân -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tên sân *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtDialogPitchName"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:hint="VD: Sân 5-C"
+        android:paddingHorizontal="12dp"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Loại sân -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Loại sân *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_owner_chip_selected"
+            android:gravity="center"
+            android:text="Sân 5"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_owner_chip_unselected"
+            android:gravity="center"
+            android:text="Sân 7"
+            android:textColor="@color/owner_chip_unselected_text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_owner_chip_unselected"
+            android:gravity="center"
+            android:text="Sân 11"
+            android:textColor="@color/owner_chip_unselected_text"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Kích thước (Dài x Rộng) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chiều dài (m)"
+                android:textColor="@color/owner_text_title"
+                android:textSize="12sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_owner_search_input"
+                android:inputType="number"
+                android:paddingHorizontal="12dp"
+                android:text="40"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chiều rộng (m)"
+                android:textColor="@color/owner_text_title"
+                android:textSize="12sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_owner_search_input"
+                android:inputType="number"
+                android:paddingHorizontal="12dp"
+                android:text="20"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Mặt sân -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Mặt sân"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:hint="VD: Cỏ nhân tạo Monofilament 5.5 cm"
+        android:paddingHorizontal="12dp"
+        android:text="Cỏ nhân tạo Monofilament 5.5 cm"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Giá thuê -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Giá thuê *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtDialogPitchPrice"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:inputType="number"
+        android:paddingHorizontal="12dp"
+        android:text="250000"
+        android:textColor="@color/owner_green_btn"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- Switch Sân ghép -->
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Sân ghép\n(Ghép từ các sân con như Sân 5-A + 5-B)"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDialogCancelPitch"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_owner_btn_manage"
+            android:text="Hủy"
+            android:textAllCaps="false"
+            android:textColor="@color/owner_btn_manage_text"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnDialogSavePitch"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1.6"
+            android:background="@drawable/bg_owner_add_btn"
+            android:text="Lưu sân"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+</LinearLayout>

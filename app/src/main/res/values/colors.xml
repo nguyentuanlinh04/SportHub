@@ -2,4 +2,50 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Customer Theme Colors -->
+    <color name="bg_app">#F6F8F5</color>
+    <color name="primary_green">#0A8B4D</color>
+    <color name="primary_green_dark">#066A3A</color>
+    <color name="chip_selected">#182A1D</color>
+    <color name="chip_unselected_bg">#FFFFFF</color>
+    <color name="chip_unselected_stroke">#E2E7E1</color>
+    <color name="tag_bg">#EDF1EC</color>
+    <color name="tag_text">#4A5568</color>
+    <color name="badge_available_bg">#C8F27D</color>
+    <color name="badge_available_text">#224606</color>
+    <color name="badge_busy_bg">#FEECAC</color>
+    <color name="badge_busy_text">#6E4E00</color>
+    <color name="text_title">#111827</color>
+    <color name="text_sub">#6B7280</color>
+    <color name="yellow_star">#FFB800</color>
+    <color name="nav_active">#0A8B4D</color>
+    <color name="nav_inactive">#8E9BAE</color>
+    <color name="red_dot">#FF3B30</color>
+
+    <!-- Stadium Owner Theme Colors -->
+    <color name="owner_bg_screen">#F3F5F2</color>
+    <color name="owner_topbar_bg">#FFFFFF</color>
+    <color name="owner_lime_badge_bg">#D8F55C</color>
+    <color name="owner_lime_badge_text">#244B05</color>
+    <color name="owner_dark_card">#0F3D2E</color>
+    <color name="owner_dark_card_stats_text">#A8D5B8</color>
+    <color name="owner_green_btn">#0A8B4D</color>
+    <color name="owner_chip_selected_bg">#143823</color>
+    <color name="owner_chip_unselected_bg">#E8ECE6</color>
+    <color name="owner_chip_unselected_text">#4A5568</color>
+    <color name="owner_card_bg">#FFFFFF</color>
+    <color name="owner_card_stroke">#E5E7EB</color>
+    <color name="owner_status_active_bg">#E6F8EE</color>
+    <color name="owner_status_active_text">#0E7A43</color>
+    <color name="owner_status_paused_bg">#FEF3C7</color>
+    <color name="owner_status_paused_text">#B45309</color>
+    <color name="owner_btn_manage_bg">#EDF2EE</color>
+    <color name="owner_btn_manage_text">#1F432B</color>
+    <color name="owner_notice_bg">#E9F3EC</color>
+    <color name="owner_text_title">#111827</color>
+    <color name="owner_text_sub">#6B7280</color>
+    <color name="owner_nav_bg">#FFFFFF</color>
+    <color name="owner_nav_active">#0A8B4D</color>
+    <color name="owner_nav_inactive">#8E9BAE</color>
 </resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvStaffPermName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phân quyền: Nguyễn Văn Hùng"
+                android:textColor="@color/owner_text_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Quản lý cơ sở · Cụm sân Thăng Long"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnCloseStaffPerm"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="@color/owner_text_sub"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="12dp"
+        android:background="#E2E8F0" />
+
+    <!-- Switch 1 -->
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Duyệt đặt sân online\nKiểm tra và xác nhận lịch đặt từ ứng dụng"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Switch 2 -->
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:text="Thu tiền trực tiếp\nTạo hóa đơn ngày, nhận tiền mặt"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Switch 3 -->
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:text="Đóng, mở hoặc đổi sân con\nThay đổi trạng thái sân con và ghép sân"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Switch 4 -->
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        android:text="Xem báo cáo doanh thu\nSố liệu tài chính của cụm sân"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Nút Lưu -->
+    <Button
+        android:id="@+id/btnSaveStaffPerm"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_owner_add_btn"
+        android:text="Lưu phân quyền"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null" />
+
+</LinearLayout>

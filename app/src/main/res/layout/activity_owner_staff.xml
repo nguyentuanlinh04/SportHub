@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainOwnerStaff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/owner_bg_screen"
+    android:orientation="vertical"
+    tools:context=".OwnerStaffActivity">
+
+    <!-- TOP BAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/owner_topbar_bg"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_owner_logo">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nav_staff"
+                app:tint="@color/white" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SportHub"
+                android:textColor="@color/owner_text_title"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvStaffHeaderSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Cụm Sân Thăng Long · 3 nhân viên"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_chu_san"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            android:text="Chủ sân"
+            android:textColor="@color/owner_lime_badge_text"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- Title & Button Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tài khoản &amp; Phân quyền"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Quản lý và cấp quyền nhân sự theo từng cụm sân"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnAddStaff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_owner_add_btn"
+                    android:paddingHorizontal="14dp"
+                    android:text="+ Thêm"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- 3 TABS / CHIPS CỤM SÂN -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Tab 1: Cụm Thăng Long -->
+                    <TextView
+                        android:id="@+id/chipStaffThangLong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_owner_chip_selected"
+                        android:gravity="center"
+                        android:paddingHorizontal="16dp"
+                        android:text="Cụm Thăng Long (3)"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <!-- Tab 2: Cụm Mai Dịch -->
+                    <TextView
+                        android:id="@+id/chipStaffMaiDich"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_owner_chip_unselected"
+                        android:gravity="center"
+                        android:paddingHorizontal="16dp"
+                        android:text="Cụm Mai Dịch (2)"
+                        android:textColor="@color/owner_chip_unselected_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <!-- Tab 3: Cụm Riverside -->
+                    <TextView
+                        android:id="@+id/chipStaffRiverside"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_owner_chip_unselected"
+                        android:gravity="center"
+                        android:paddingHorizontal="16dp"
+                        android:text="Cụm Riverside (2)"
+                        android:textColor="@color/owner_chip_unselected_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ================= DANH SÁCH 1: CỤM SÂN THĂNG LONG ================= -->
+            <LinearLayout
+                android:id="@+id/layoutStaffListThangLong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Staff 1: Nguyễn Văn Hùng -->
+                <LinearLayout
+                    android:id="@+id/cardStaffHung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_level_badge_mint"
+                            android:gravity="center"
+                            android:text="NVH"
+                            android:textColor="#065F46"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nguyễn Văn Hùng"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Quản lý cơ sở · Ca sáng"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Hoạt động"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0912.123.567"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermHung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_btn_manage"
+                            android:paddingHorizontal="12dp"
+                            android:text="Phân quyền"
+                            android:textAllCaps="false"
+                            android:textColor="@color/owner_btn_manage_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteHung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Staff 2: Trần Thị Thu Thảo -->
+                <LinearLayout
+                    android:id="@+id/cardStaffThao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_team_avatar_green"
+                            android:gravity="center"
+                            android:text="TTT"
+                            android:textColor="#065F46"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Trần Thị Thu Thảo"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Thu ngân &amp; CSKH · Ca chiều tối"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Hoạt động"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0977.888.999"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermThao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_btn_manage"
+                            android:paddingHorizontal="12dp"
+                            android:text="Phân quyền"
+                            android:textAllCaps="false"
+                            android:textColor="@color/owner_btn_manage_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteThao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Staff 3: Phạm Đức Lộc -->
+                <LinearLayout
+                    android:id="@+id/cardStaffLoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_tag_pill"
+                            android:gravity="center"
+                            android:text="PĐL"
+                            android:textColor="#374151"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phạm Đức Lộc"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Nhân viên kỹ thuật &amp; bảo trì sân"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_paused"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Tạm khóa"
+                            android:textColor="@color/owner_status_paused_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0908.666.777"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermLoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_add_btn"
+                            android:paddingHorizontal="12dp"
+                            android:text="Mở khóa"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteLoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ================= DANH SÁCH 2: CỤM SÂN MAI DỊCH ================= -->
+            <LinearLayout
+                android:id="@+id/layoutStaffListMaiDich"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Staff 1: Hoàng Văn Nam -->
+                <LinearLayout
+                    android:id="@+id/cardStaffNam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_level_badge_mint"
+                            android:gravity="center"
+                            android:text="HVN"
+                            android:textColor="#065F46"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hoàng Văn Nam"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Giám sát ca trực &amp; Đặt sân"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Hoạt động"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0934.555.888"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermNam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_btn_manage"
+                            android:paddingHorizontal="12dp"
+                            android:text="Phân quyền"
+                            android:textAllCaps="false"
+                            android:textColor="@color/owner_btn_manage_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteNam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Staff 2: Lê Thị Mai -->
+                <LinearLayout
+                    android:id="@+id/cardStaffMai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_team_avatar_green"
+                            android:gravity="center"
+                            android:text="LTM"
+                            android:textColor="#065F46"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lê Thị Mai"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Thu ngân &amp; Chăm sóc khách hàng"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Hoạt động"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0918.222.333"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermMai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_btn_manage"
+                            android:paddingHorizontal="12dp"
+                            android:text="Phân quyền"
+                            android:textAllCaps="false"
+                            android:textColor="@color/owner_btn_manage_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteMai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ================= DANH SÁCH 3: CỤM SÂN RIVERSIDE ================= -->
+            <LinearLayout
+                android:id="@+id/layoutStaffListRiverside"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Staff 1: Vũ Đình Trọng -->
+                <LinearLayout
+                    android:id="@+id/cardStaffTrong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_level_badge_mint"
+                            android:gravity="center"
+                            android:text="VĐT"
+                            android:textColor="#065F46"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Vũ Đình Trọng"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Quản lý ca trực · Cụm Riverside"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Hoạt động"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0945.777.111"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermTrong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_btn_manage"
+                            android:paddingHorizontal="12dp"
+                            android:text="Phân quyền"
+                            android:textAllCaps="false"
+                            android:textColor="@color/owner_btn_manage_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteTrong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Staff 2: Đặng Minh Tuấn -->
+                <LinearLayout
+                    android:id="@+id/cardStaffTuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_owner_white_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_team_avatar_green"
+                            android:gravity="center"
+                            android:text="ĐMT"
+                            android:textColor="#065F46"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đặng Minh Tuấn"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:text="Kỹ thuật &amp; Hỗ trợ sân bóng"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Hoạt động"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📞 0962.333.444"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnPermTuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_owner_btn_manage"
+                            android:paddingHorizontal="12dp"
+                            android:text="Phân quyền"
+                            android:textAllCaps="false"
+                            android:textColor="@color/owner_btn_manage_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/btnDeleteTuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_owner_btn_delete"
+                            android:paddingHorizontal="14dp"
+                            android:text="Xóa"
+                            android:textAllCaps="false"
+                            android:textColor="#DC2626"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BOTTOM NAVIGATION (Active Tab 3: Nhân sự) -->
+    <LinearLayout
+        android:id="@+id/bottomNavStaff"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/owner_nav_bg"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Tab 1: Cơ sở -->
+        <LinearLayout
+            android:id="@+id/navStaffFacilities"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_facility"
+                app:tint="@color/owner_nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Cơ sở"
+                android:textColor="@color/owner_nav_inactive"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Tab 2: Lịch sân -->
+        <LinearLayout
+            android:id="@+id/navStaffSchedule"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_calendar"
+                app:tint="@color/owner_nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Lịch sân"
+                android:textColor="@color/owner_nav_inactive"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Tab 3: Nhân sự (ACTIVE) -->
+        <LinearLayout
+            android:id="@+id/navStaffTab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="38dp"
+                android:layout_height="26dp"
+                android:background="@drawable/bg_owner_nav_active_indicator">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_staff"
+                    app:tint="@color/owner_lime_badge_text" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Nhân sự"
+                android:textColor="@color/owner_lime_badge_text"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tab 4: Thu chi -->
+        <LinearLayout
+            android:id="@+id/navStaffFinance"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_finance"
+                app:tint="@color/owner_nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Thu chi"
+                android:textColor="@color/owner_nav_inactive"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Tab 5: Đánh giá -->
+        <LinearLayout
+            android:id="@+id/navStaffReviews"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_nav_review"
+                app:tint="@color/owner_nav_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Đánh giá"
+                android:textColor="@color/owner_nav_inactive"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

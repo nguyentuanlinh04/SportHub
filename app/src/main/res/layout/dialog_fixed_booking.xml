@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đặt lịch cố định"
+                android:textColor="@color/owner_text_title"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Giữ khung giờ định kỳ cho đội bóng dài hạn"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnCloseFixedBooking"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="@color/owner_text_sub"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Chọn Cụm Sân -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Cụm sân *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvFixedBookingComplex"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:text="Cụm Sân Thăng Long"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Tên đội bóng -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Tên đội bóng / Khách hàng *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtFixedBookingTeam"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:hint="VD: FC All Star Cup"
+        android:paddingHorizontal="12dp"
+        android:text="FC All Star Cup"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- SĐT -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Số điện thoại liên hệ *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtFixedBookingPhone"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:inputType="phone"
+        android:paddingHorizontal="12dp"
+        android:text="0912.123.567"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Sân & Khung giờ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <!-- Chọn Sân con -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sân con *"
+                android:textColor="@color/owner_text_title"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvFixedBookingPitch"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_owner_search_input"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp"
+                android:text="TL · Sân 5-A"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Chọn Khung giờ -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khung giờ *"
+                android:textColor="@color/owner_text_title"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvFixedBookingTime"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_owner_search_input"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp"
+                android:text="19:00 - 20:30"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Thứ trong tuần -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Ngày cố định trong tuần *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvFixedBookingDays"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:text="🗓️ Thứ Hai &amp; Thứ Sáu hàng tuần"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Nút Xác nhận -->
+    <Button
+        android:id="@+id/btnSubmitFixedBooking"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_owner_add_btn"
+        android:text="Xác nhận giữ lịch"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null" />
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvReplyCustomerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trả lời Nguyễn Hoàng Khang"
+                android:textColor="@color/owner_text_title"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Khách hàng đánh giá 5 sao · Cụm sân Thăng Long"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnCloseReplyReview"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="@color/owner_text_sub"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Review trích dẫn -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="#F8FAFC"
+        android:padding="10dp"
+        android:text="&quot;Mặt sân mới đá rất êm, hệ thống đèn chiếu sáng cực chuẩn không bị chói mắt. Chủ sân và nhân viên hỗ trợ nhiệt tình.&quot;"
+        android:textColor="@color/owner_text_sub"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
+    <!-- Nội dung phản hồi -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Nội dung phản hồi của ban quản lý *"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtReplyReviewContent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:gravity="top|start"
+        android:padding="10dp"
+        android:text="Chào anh Khang, SportHub xin chân thành cảm ơn anh và đội đã tin tưởng ủng hộ sân. Ban quản lý sẽ tiếp tục duy trì mặt cỏ tốt nhất phục vụ anh em!"
+        android:textColor="@color/owner_text_title"
+        android:textSize="13sp" />
+
+    <!-- Nút Gửi phản hồi -->
+    <Button
+        android:id="@+id/btnSubmitReplyReview"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_owner_add_btn"
+        android:text="Gửi phản hồi"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null" />
+
+</LinearLayout>

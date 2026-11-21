@@ -95,7 +95,12 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         Toast.makeText(LoginActivity.this, welcomeMessage, Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent;
+                        if (fpoly.duan1.sporthub_new.model.User.ROLE_CHU_SAN.equals(role)) {
+                            intent = new Intent(LoginActivity.this, OwnerMainActivity.class);
+                        } else {
+                            intent = new Intent(LoginActivity.this, MainActivity.class);
+                        }
                         intent.putExtra("LOGGED_IN_USER", user);
                         startActivity(intent);
                         finish();

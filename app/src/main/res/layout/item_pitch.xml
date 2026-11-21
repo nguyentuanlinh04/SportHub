@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_card_pitch"
+    android:padding="12dp">
+
+    <!-- Soccer Field Thumbnail Image / Pattern -->
+    <FrameLayout
+        android:id="@+id/flImageContainer"
+        android:layout_width="120dp"
+        android:layout_height="135dp"
+        android:background="@drawable/bg_pitch_field"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Status Badge overlay top-left -->
+        <TextView
+            android:id="@+id/tvStatusBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_badge_available"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="Còn trống"
+            android:textColor="@color/badge_available_text"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            tools:text="Còn trống" />
+
+    </FrameLayout>
+
+    <!-- Content details section -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/flImageContainer"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Pitch Title -->
+        <TextView
+            android:id="@+id/tvPitchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cụm sân Thắng Long"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Cụm sân Thắng Long" />
+
+        <!-- Location & Distance -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:contentDescription="Location"
+                android:src="@drawable/ic_location_pin_gray" />
+
+            <TextView
+                android:id="@+id/tvDistanceAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="0,8 km · 12 Trần Thái Tông"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="0,8 km · 12 Trần Thái Tông" />
+        </LinearLayout>
+
+        <!-- Rating Row -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:contentDescription="Star Rating"
+                android:src="@drawable/ic_star" />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="4,8 (126 đánh giá)"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="4,8 (126 đánh giá)" />
+        </LinearLayout>
+
+        <!-- Tags Container -->
+        <LinearLayout
+            android:id="@+id/llTagsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <!-- Preview tags for layout editor -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_tag_pill"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="Sân 5"
+                android:textColor="@color/tag_text"
+                android:textSize="11sp"
+                tools:text="Sân 5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_tag_pill"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="Sân 7"
+                android:textColor="@color/tag_text"
+                android:textSize="11sp"
+                tools:text="Sân 7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tag_pill"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="Đèn LED"
+                android:textColor="@color/tag_text"
+                android:textSize="11sp"
+                tools:text="Đèn LED" />
+        </LinearLayout>
+
+        <!-- Price per Hour -->
+        <TextView
+            android:id="@+id/tvPriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="từ 250.000đ / giờ"
+            android:textSize="14sp"
+            tools:text="từ 250.000đ / giờ" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="140dp"
+    android:viewportWidth="120"
+    android:viewportHeight="140">
+
+    <!-- Base green turf -->
+    <path
+        android:fillColor="#118B50"
+        android:pathData="M16,0 L104,0 A16,16 0 0,1 120,16 L120,124 A16,16 0 0,1 104,140 L16,140 A16,16 0 0,1 0,124 L0,16 A16,16 0 0,1 16,0 Z" />
+
+    <!-- Vertical lawn stripes -->
+    <path
+        android:fillColor="#159959"
+        android:pathData="M24,0 H40 V140 H24 Z M56,0 H72 V140 H56 Z M88,0 H104 V140 H88 Z" />
+
+</vector>

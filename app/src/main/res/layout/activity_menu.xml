@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    tools:context=".MenuActivity">
+
+    <!-- Fragment Container for Home, Ghép kèo, Lịch đặt, Cá nhân -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Fixed Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Tab 1: Trang chủ -->
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="Trang chủ"
+                android:src="@drawable/ic_nav_home" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Trang chủ"
+                android:textColor="@color/primary_green"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Trang chủ" />
+        </LinearLayout>
+
+        <!-- Tab 2: Ghép kèo -->
+        <LinearLayout
+            android:id="@+id/navMatch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="Ghép kèo"
+                android:src="@drawable/ic_nav_match" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ghép kèo"
+                android:textColor="@color/nav_inactive"
+                android:textSize="12sp"
+                tools:text="Ghép kèo" />
+        </LinearLayout>
+
+        <!-- Tab 3: Lịch đặt -->
+        <LinearLayout
+            android:id="@+id/navCalendar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="Lịch đặt"
+                android:src="@drawable/ic_nav_calendar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Lịch đặt"
+                android:textColor="@color/nav_inactive"
+                android:textSize="12sp"
+                tools:text="Lịch đặt" />
+        </LinearLayout>
+
+        <!-- Tab 4: Cá nhân -->
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="Cá nhân"
+                android:src="@drawable/ic_nav_profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Cá nhân"
+                android:textColor="@color/nav_inactive"
+                android:textSize="12sp"
+                tools:text="Cá nhân" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

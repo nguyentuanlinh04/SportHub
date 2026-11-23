@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainBookingTime"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    tools:context=".BookingTimeActivity">
+
+    <!-- Scrollable Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="52dp"
+            android:paddingBottom="24dp">
+
+            <!-- Top Bar Header (Back, Title & Subtitle) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Back Button"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_back" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chọn giờ đặt sân"
+                        android:textColor="@color/text_title"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="Chọn giờ đặt sân" />
+
+                    <TextView
+                        android:id="@+id/tvSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Cụm sân Thắng Long"
+                        android:textColor="@color/text_sub"
+                        android:textSize="13sp"
+                        tools:text="Cụm sân Thắng Long" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Month-Year Navigation Header & Calendar Button Row -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Left: Prev Month < Month-Year > Next Month -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnPrevMonth"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Previous Month"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_chevron_left" />
+
+                    <TextView
+                        android:id="@+id/tvMonthYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="6dp"
+                        android:text="Tháng 11, 2026"
+                        android:textColor="@color/text_title"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="Tháng 11, 2026" />
+
+                    <ImageButton
+                        android:id="@+id/btnNextMonth"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Next Month"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_chevron_right" />
+                </LinearLayout>
+
+                <!-- Right: Lịch Button -->
+                <LinearLayout
+                    android:id="@+id/btnOpenCalendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:contentDescription="Calendar Icon"
+                        android:src="@drawable/ic_calendar_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="Lịch"
+                        android:textColor="@color/primary_green"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="Lịch" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!-- Dates Horizontal Selector -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_date" />
+
+            <!-- Sub-pitch Filter Chips -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSubPitches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_filter_chip" />
+
+            <!-- Section: Khung giờ & Legend -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Khung giờ"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Khung giờ" />
+
+                <!-- Status Legend -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Trống Legend -->
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/bg_time_slot_available" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="Trống"
+                        android:textColor="@color/text_sub"
+                        android:textSize="11sp"
+                        tools:text="Trống" />
+
+                    <!-- Đã đặt Legend -->
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_time_slot_booked" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="Đã đặt"
+                        android:textColor="@color/text_sub"
+                        android:textSize="11sp"
+                        tools:text="Đã đặt" />
+
+                    <!-- Bạn chọn Legend -->
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_time_slot_selected" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:text="Bạn chọn"
+                        android:textColor="@color/text_sub"
+                        android:textSize="11sp"
+                        tools:text="Bạn chọn" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!-- Time Slots Grid RecyclerView (4 columns) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTimeSlots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
+                tools:itemCount="8"
+                tools:listitem="@layout/item_time_slot" />
+
+            <!-- Section: Dịch vụ đi kèm -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="12dp"
+                android:text="Dịch vụ đi kèm"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Dịch vụ đi kèm" />
+
+            <!-- Addon Services List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAddons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_addon_service" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Fixed Bottom Action Bar (Summary & Continue Button) -->
+    <LinearLayout
+        android:id="@+id/bottomActionBar"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSummaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sân 5-A · 18:00 – 20:00"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Sân 5-A · 18:00 – 20:00" />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="850.000đ"
+                android:textColor="@color/primary_green"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="850.000đ" />
+        </LinearLayout>
+
+        <!-- Main Action Button: Tiếp tục -->
+        <TextView
+            android:id="@+id/btnContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingHorizontal="32dp"
+            android:text="Tiếp tục"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Tiếp tục" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

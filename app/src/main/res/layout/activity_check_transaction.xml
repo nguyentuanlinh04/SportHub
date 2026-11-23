@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainCheckTransaction"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".CheckTransactionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Bar Header (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Kiểm tra giao dịch"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Kiểm tra giao dịch" />
+        </LinearLayout>
+
+        <!-- Loading Spinner / Success Checkmark Container -->
+        <FrameLayout
+            android:id="@+id/flLoadingContainer"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_loading_circle">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="#8F5300" />
+
+            <ImageView
+                android:id="@+id/ivSuccessCheck"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:contentDescription="Success Checkmark"
+                android:src="@drawable/ic_checkmark_green"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <!-- Status Header Text -->
+        <TextView
+            android:id="@+id/tvStatusTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Thanh toán đang xử lý"
+            android:textColor="@color/text_title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Thanh toán đang xử lý" />
+
+        <TextView
+            android:id="@+id/tvStatusSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Sports Hub đang kiểm tra giao dịch cọc của bạn.\nĐơn chưa được xác nhận."
+            android:textColor="@color/text_sub"
+            android:textSize="14sp"
+            tools:text="Sports Hub đang kiểm tra giao dịch cọc của bạn.\nĐơn chưa được xác nhận." />
+
+        <!-- Order Summary Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPitchSubPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long · Sân 5-A"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 5-A" />
+
+            <TextView
+                android:id="@+id/tvOrderCodeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SH-1109-0187 · Minh"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="SH-1109-0187 · Minh" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="#EAEFE9" />
+
+            <TextView
+                android:id="@+id/tvFullDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thứ 2, 09/11/2026 · 18:00–20:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Thứ 2, 09/11/2026 · 18:00–20:00" />
+        </LinearLayout>
+
+        <!-- Transaction Amounts Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Số tiền cần kiểm tra"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Số tiền cần kiểm tra" />
+
+                <TextView
+                    android:id="@+id/tvDepositAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="255.000đ"
+                    android:textColor="@color/primary_green"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="255.000đ" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Mã tham chiếu"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Mã tham chiếu" />
+
+                <TextView
+                    android:id="@+id/tvRefCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="DEMO-SH-0187"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="DEMO-SH-0187" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Warning Notice Box -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_notice_warning"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Không thanh toán lại"
+                android:textColor="#8F5300"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Không thanh toán lại" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Vui lòng chờ kết quả để tránh giao dịch trùng. Bạn có thể xem trạng thái trong chi tiết đơn."
+                android:textColor="#A06200"
+                android:textSize="12sp"
+                tools:text="Vui lòng chờ kết quả để tránh giao dịch trùng. Bạn có thể xem trạng thái trong chi tiết đơn." />
+        </LinearLayout>
+
+        <!-- Main Action Button 1: Xem vé đặt sân -->
+        <TextView
+            android:id="@+id/btnViewTicket"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Xem vé đặt sân"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Xem vé đặt sân" />
+
+        <!-- Secondary Action Button 2: Kiểm tra lại trạng thái -->
+        <TextView
+            android:id="@+id/btnRecheckStatus"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Kiểm tra lại trạng thái"
+            android:textColor="@color/primary_green"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Kiểm tra lại trạng thái" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

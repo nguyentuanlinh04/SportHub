@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainPaymentDeposit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".PaymentDepositActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Bar Header (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Thanh toán cọc"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Thanh toán cọc" />
+        </LinearLayout>
+
+        <!-- Order Info Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPitchSubPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long · Sân 5-A"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 5-A" />
+
+            <TextView
+                android:id="@+id/tvOrderCodeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SH-1109-0187 · Minh"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="SH-1109-0187 · Minh" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="#EAEFE9" />
+
+            <TextView
+                android:id="@+id/tvFullDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thứ 2, 09/11/2026 · 18:00–20:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Thứ 2, 09/11/2026 · 18:00–20:00" />
+        </LinearLayout>
+
+        <!-- Deposit Amounts Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDepositNoteLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Cọc 30% · Tổng 850.000đ"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Cọc 30% · Tổng 850.000đ" />
+
+                <TextView
+                    android:id="@+id/tvDepositAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="255.000đ"
+                    android:textColor="@color/primary_green"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="255.000đ" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Còn lại tại sân"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Còn lại tại sân" />
+
+                <TextView
+                    android:id="@+id/tvRemainingAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="595.000đ"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="595.000đ" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Segmented Method Tabs (Ngân hàng / Ví điện tử / QR) -->
+        <LinearLayout
+            android:id="@+id/llMethodTabs"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_tab_container"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvTabBank"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Ngân hàng"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Ngân hàng" />
+
+            <TextView
+                android:id="@+id/tvTabEWallet"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Ví điện tử"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Ví điện tử" />
+
+            <TextView
+                android:id="@+id/tvTabQR"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="QR"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="QR" />
+        </LinearLayout>
+
+        <!-- QR Payment Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Card Header: Title & Countdown Timer -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="QR thanh toán minh họa"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="QR thanh toán minh họa" />
+
+                <TextView
+                    android:id="@+id/tvTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_timer_badge"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="04:32"
+                    android:textColor="#8F5300"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="04:32" />
+            </RelativeLayout>
+
+            <!-- Center QR Code Image -->
+            <ImageView
+                android:id="@+id/ivQRCode"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="QR Code"
+                android:src="@drawable/ic_qr_code_demo" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="12dp"
+                android:background="#EAEFE9" />
+
+            <!-- Reference Code Row -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Mã tham chiếu mẫu"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Mã tham chiếu mẫu" />
+
+                <TextView
+                    android:id="@+id/tvRefCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="DEMO-SH-0187"
+                    android:textColor="@color/text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="DEMO-SH-0187" />
+            </RelativeLayout>
+
+            <!-- Disclaimer note -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Không chứa tài khoản hay thông tin ngân hàng thật. Chỗ chỉ được xác nhận khi hệ thống ghi nhận giao dịch."
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Không chứa tài khoản hay thông tin ngân hàng thật. Chỗ chỉ được xác nhận khi hệ thống ghi nhận giao dịch." />
+        </LinearLayout>
+
+        <!-- Main Action Button 1: Tôi đã thanh toán -->
+        <TextView
+            android:id="@+id/btnIHavePaid"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Tôi đã thanh toán"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Tôi đã thanh toán" />
+
+        <!-- Secondary Button 2: Hủy thanh toán -->
+        <TextView
+            android:id="@+id/btnCancelPayment"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_edit_profile"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Hủy thanh toán"
+            android:textColor="@color/primary_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Hủy thanh toán" />
+
+        <!-- Footer Disclaimer Text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="Mã hết hiệu lực khi hết thời gian giữ chỗ. Chỉ thanh toán một lần cho mỗi đơn."
+            android:textColor="#718096"
+            android:textSize="12sp"
+            tools:text="Mã hết hiệu lực khi hết thời gian giữ chỗ. Chỉ thanh toán một lần cho mỗi đơn." />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

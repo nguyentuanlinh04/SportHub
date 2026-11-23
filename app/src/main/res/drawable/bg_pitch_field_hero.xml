@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="240dp"
+    android:viewportWidth="360"
+    android:viewportHeight="240">
+
+    <!-- Base green lawn -->
+    <path
+        android:fillColor="#0E8B4C"
+        android:pathData="M0,0 H360 V240 H0 Z" />
+
+    <!-- Vertical lawn stripes -->
+    <path
+        android:fillColor="#129A55"
+        android:pathData="M45,0 H90 V240 H45 Z M135,0 H180 V240 H135 Z M225,0 H270 V240 H225 Z M315,0 H360 V240 H315 Z" />
+
+    <!-- White Soccer Field Line Markings -->
+    <!-- Outer boundary line -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M20,20 H340 V220 H20 Z"
+        android:strokeWidth="2"
+        android:strokeColor="#80FFFFFF" />
+
+    <!-- Half-way line -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M180,20 V220"
+        android:strokeWidth="2"
+        android:strokeColor="#80FFFFFF" />
+
+    <!-- Center circle -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M180,120m-35,0a35,35 0 1,0 70,0a35,35 0 1,0 -70,0"
+        android:strokeWidth="2"
+        android:strokeColor="#80FFFFFF" />
+
+    <!-- Left penalty box -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M20,60 H70 V180 H20"
+        android:strokeWidth="2"
+        android:strokeColor="#80FFFFFF" />
+
+    <!-- Right penalty box -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M340,60 H290 V180 H340"
+        android:strokeWidth="2"
+        android:strokeColor="#80FFFFFF" />
+
+</vector>

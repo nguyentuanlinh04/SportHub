@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fpoly.duan1.sporthub_new.NotificationActivity;
+import fpoly.duan1.sporthub_new.PitchDetailActivity;
 import fpoly.duan1.sporthub_new.R;
 import fpoly.duan1.sporthub_new.SelectLocationActivity;
 import fpoly.duan1.sporthub_new.adapter.FilterChipAdapter;
@@ -161,9 +162,16 @@ public class HomeFragment extends Fragment {
         displayPitchList.clear();
         displayPitchList.addAll(fullPitchList);
 
-        pitchAdapter = new PitchAdapter(requireContext(), displayPitchList, pitch ->
-                Toast.makeText(requireContext(), "Đã chọn: " + pitch.getName(), Toast.LENGTH_SHORT).show()
-        );
+        pitchAdapter = new PitchAdapter(requireContext(), displayPitchList, pitch -> {
+            Intent intent = new Intent(requireContext(), PitchDetailActivity.class);
+            intent.putExtra("pitch_id", pitch.getId());
+            intent.putExtra("pitch_name", pitch.getName());
+            intent.putExtra("pitch_address", pitch.getDistanceAndAddress());
+            intent.putExtra("pitch_rating", pitch.getRating());
+            intent.putExtra("pitch_review_count", pitch.getReviewCount());
+            intent.putExtra("pitch_price", pitch.getPriceText());
+            startActivity(intent);
+        });
 
         rvPitches.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPitches.setAdapter(pitchAdapter);

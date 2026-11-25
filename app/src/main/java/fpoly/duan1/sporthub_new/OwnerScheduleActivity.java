@@ -56,6 +56,14 @@ public class OwnerScheduleActivity extends AppCompatActivity {
 
         findViewById(R.id.btnBackSchedule).setOnClickListener(v -> finish());
         findViewById(R.id.btnFixedBooking).setOnClickListener(v -> showFixedBookingDialog());
+
+        View badgeRoleSchedule = findViewById(R.id.badgeRoleSchedule);
+        if (badgeRoleSchedule != null) {
+            badgeRoleSchedule.setOnClickListener(v -> {
+                Intent intent = new Intent(OwnerScheduleActivity.this, OwnerProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     private void setupFilters() {

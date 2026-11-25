@@ -88,6 +88,14 @@ public class OwnerStaffActivity extends AppCompatActivity {
 
         cardStaffTrong = findViewById(R.id.cardStaffTrong);
         cardStaffTuan = findViewById(R.id.cardStaffTuan);
+
+        View badgeRoleStaff = findViewById(R.id.badgeRoleStaff);
+        if (badgeRoleStaff != null) {
+            badgeRoleStaff.setOnClickListener(v -> {
+                Intent intent = new Intent(OwnerStaffActivity.this, OwnerProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     private void setupComplexTabs() {

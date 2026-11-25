@@ -212,6 +212,15 @@ public class OwnerMainActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+
+        // Badge "Chủ sân" trên Top Bar -> Mở OwnerProfileActivity
+        View badgeRoleOwner = findViewById(R.id.badgeRoleOwner);
+        if (badgeRoleOwner != null) {
+            badgeRoleOwner.setOnClickListener(v -> {
+                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     private void openComplexDetail(String complexName) {

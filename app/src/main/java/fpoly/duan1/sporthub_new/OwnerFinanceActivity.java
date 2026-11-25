@@ -83,6 +83,14 @@ public class OwnerFinanceActivity extends AppCompatActivity {
         tvPitch5Stat = findViewById(R.id.tvPitch5Stat);
         tvPitch7Stat = findViewById(R.id.tvPitch7Stat);
         tvPitch11Stat = findViewById(R.id.tvPitch11Stat);
+
+        View badgeRoleFinance = findViewById(R.id.badgeRoleFinance);
+        if (badgeRoleFinance != null) {
+            badgeRoleFinance.setOnClickListener(v -> {
+                Intent intent = new Intent(OwnerFinanceActivity.this, OwnerProfileActivity.class);
+                startActivity(intent);
+            });
+        }
     }
 
     private void setupFilterChips() {

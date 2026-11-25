@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="100dp"
+    android:viewportWidth="200"
+    android:viewportHeight="100">
+
+    <!-- Base dark emerald grass -->
+    <path
+        android:fillColor="#0D3B26"
+        android:pathData="M0,0 H200 V100 H0 Z" />
+
+    <!-- Subtle darker grass stripes -->
+    <path
+        android:fillColor="#0A301F"
+        android:pathData="M25,0 H50 V100 H25 Z M75,0 H100 V100 H75 Z M125,0 H150 V100 H125 Z M175,0 H200 V100 H175 Z" />
+
+    <!-- Pitch boundary line -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M10,10 H190 V90 H10 Z" />
+
+    <!-- Half-way line -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M100,10 V90" />
+
+    <!-- Center circle (radius 22) -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M100,28 A22,22 0 1,0 100,72 A22,22 0 1,0 100,28 Z" />
+
+    <!-- Left penalty box -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M10,25 H40 V75 H10" />
+
+    <!-- Left goal area -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M10,38 H24 V62 H10" />
+
+    <!-- Left penalty arc -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M40,41 A12,12 0 0,1 40,59" />
+
+    <!-- Right penalty box -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M190,25 H160 V75 H190" />
+
+    <!-- Right goal area -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M190,38 H176 V62 H190" />
+
+    <!-- Right penalty arc -->
+    <path
+        android:strokeColor="#4086EFAC"
+        android:strokeWidth="1"
+        android:pathData="M160,41 A12,12 0 0,0 160,59" />
+
+</vector>

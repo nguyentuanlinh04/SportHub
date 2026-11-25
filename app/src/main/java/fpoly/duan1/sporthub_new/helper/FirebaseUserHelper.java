@@ -85,6 +85,36 @@ public class FirebaseUserHelper {
         } catch (Exception ignored) {
         }
 
+        // Khởi tạo tài khoản Chủ Sân Demo mặc định (Trạng thái: Hoạt động ngay)
+        User chuSan = new User(
+                "chusan_default",
+                "0888888888",
+                "Chủ sân SportHub Demo",
+                "Chusan@123",
+                User.ROLE_CHU_SAN,
+                User.STATUS_ACTIVE,
+                "001202009999",
+                "Hà Nội",
+                "Hệ thống Sân bóng SportHub",
+                "0109999999",
+                System.currentTimeMillis()
+        );
+
+        localUsersMemory.put(chuSan.getPhoneNumber(), chuSan);
+        saveUserToPreferences(context, chuSan);
+
+        if (ref != null) {
+            try {
+                ref.child(chuSan.getUserId()).setValue(chuSan);
+            } catch (Exception ignored) {
+            }
+        }
+
+        try {
+            FirebaseFirestore.getInstance().collection("users").document(chuSan.getUserId()).set(chuSan);
+        } catch (Exception ignored) {
+        }
+
         isAdminInitialized = true;
     }
 

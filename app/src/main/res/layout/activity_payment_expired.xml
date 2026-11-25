@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainPaymentExpired"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".PaymentExpiredActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Bar Header (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Thanh toán hết hạn"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Thanh toán hết hạn" />
+        </LinearLayout>
+
+        <!-- Expired Icon Container -->
+        <FrameLayout
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_loading_circle">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:contentDescription="Timer Expired Icon"
+                android:src="@drawable/ic_timer_expired" />
+        </FrameLayout>
+
+        <!-- Status Header Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Đã hết thời gian giữ chỗ"
+            android:textColor="@color/text_title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Đã hết thời gian giữ chỗ" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Khung giờ đã được mở lại. Bạn cần kiểm tra sân trống và chọn lại giờ để tạo lượt thanh toán mới."
+            android:textColor="@color/text_sub"
+            android:textSize="14sp"
+            tools:text="Khung giờ đã được mở lại. Bạn cần kiểm tra sân trống và chọn lại giờ để tạo lượt thanh toán mới." />
+
+        <!-- Order Summary Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPitchSubPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long · Sân 5-A"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 5-A" />
+
+            <TextView
+                android:id="@+id/tvOrderCodeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SH-1109-0187 · Minh"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="SH-1109-0187 · Minh" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="#EAEFE9" />
+
+            <TextView
+                android:id="@+id/tvFullDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thứ 2, 09/11/2026 · 18:00–20:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Thứ 2, 09/11/2026 · 18:00–20:00" />
+        </LinearLayout>
+
+        <!-- Expired Code Warning Box -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_notice_expired"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã cũ không còn hiệu lực"
+                android:textColor="#C0392B"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Mã cũ không còn hiệu lực" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="DEMO-SH-0187 đã hết hạn. Không tiếp tục thanh toán bằng mã QR hoặc tham chiếu cũ."
+                android:textColor="#A93226"
+                android:textSize="12sp"
+                tools:text="DEMO-SH-0187 đã hết hạn. Không tiếp tục thanh toán bằng mã QR hoặc tham chiếu cũ." />
+        </LinearLayout>
+
+        <!-- Main Button 1: Chọn lại giờ đặt sân -->
+        <TextView
+            android:id="@+id/btnReselectTime"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Chọn lại giờ đặt sân"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Chọn lại giờ đặt sân" />
+
+        <!-- Help Section Box -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_checkbox_checked"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bạn đã thanh toán trước khi hết hạn?"
+                android:textColor="@color/primary_green"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Bạn đã thanh toán trước khi hết hạn?" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Kiểm tra giao dịch hoặc liên hệ hỗ trợ kèm mã SH-1109-0187 trước khi thanh toán lại."
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Kiểm tra giao dịch hoặc liên hệ hỗ trợ kèm mã SH-1109-0187 trước khi thanh toán lại." />
+        </LinearLayout>
+
+        <!-- Secondary Button 2: Kiểm tra giao dịch -->
+        <TextView
+            android:id="@+id/btnCheckTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_btn_edit_profile"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Kiểm tra giao dịch"
+            android:textColor="@color/primary_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Kiểm tra giao dịch" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,5 +1,6 @@
 package fpoly.duan1.sporthub_new;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,9 +39,21 @@ public class MenuActivity extends AppCompatActivity {
         initViews();
         setupBottomNavigation();
 
-        // Load HomeFragment by default
+        int targetTab = getIntent().getIntExtra("OPEN_TAB", 0);
+
+        // Load target tab or HomeFragment by default
         if (savedInstanceState == null) {
-            loadFragment(new HomeFragment());
+            selectBottomTab(targetTab);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        int targetTab = intent.getIntExtra("OPEN_TAB", -1);
+        if (targetTab != -1) {
+            selectBottomTab(targetTab);
         }
     }
 

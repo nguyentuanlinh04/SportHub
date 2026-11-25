@@ -91,8 +91,8 @@ public class PaymentDepositActivity extends AppCompatActivity {
     }
 
     private void startCountdownTimer() {
-        // 4 minutes 32 seconds (272,000 ms) matching screenshot
-        countDownTimer = new CountDownTimer(272000, 1000) {
+        // 2 phút (120,000 ms)
+        countDownTimer = new CountDownTimer(120000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 int minutes = (int) (millisUntilFinished / 1000) / 60;
@@ -103,7 +103,9 @@ public class PaymentDepositActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 tvTimer.setText("00:00");
-                Toast.makeText(PaymentDepositActivity.this, "Mã hết thời gian giữ chỗ! Vui lòng thao tác lại.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(PaymentDepositActivity.this, PaymentExpiredActivity.class);
+                startActivity(intent);
+                finish();
             }
         }.start();
     }

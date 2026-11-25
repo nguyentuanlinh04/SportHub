@@ -239,11 +239,11 @@
                     android:background="@drawable/bg_timer_badge"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="4dp"
-                    android:text="04:32"
+                    android:text="02:00"
                     android:textColor="#8F5300"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    tools:text="04:32" />
+                    tools:text="02:00" />
             </RelativeLayout>
 
             <!-- Center QR Code Image -->

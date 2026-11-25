@@ -102,10 +102,8 @@ public class CheckTransactionActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         btnViewTicket.setOnClickListener(v -> {
-            Intent intent = new Intent(CheckTransactionActivity.this, MenuActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(CheckTransactionActivity.this, BookingTicketActivity.class);
             startActivity(intent);
-            finish();
         });
 
         btnRecheckStatus.setOnClickListener(v -> {

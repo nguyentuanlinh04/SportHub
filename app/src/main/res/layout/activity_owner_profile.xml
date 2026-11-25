@@ -156,42 +156,6 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <!-- Two Action Buttons (Chỉnh sửa hồ sơ & Nhắn tin) -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnEditOwnerProfile"
-                        android:layout_width="0dp"
-                        android:layout_height="44dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_profile_btn_green"
-                        android:text="Chỉnh sửa hồ sơ"
-                        android:textAllCaps="false"
-                        android:textColor="#08140E"
-                        android:textSize="13.5sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="@null" />
-
-                    <Button
-                        android:id="@+id/btnMessageOwner"
-                        android:layout_width="0dp"
-                        android:layout_height="44dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_profile_btn_dark"
-                        android:text="Nhắn tin"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="13.5sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="@null" />
-                </LinearLayout>
-
                 <!-- 4 KPI Metrics Card -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -318,32 +282,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- ================= CARD: GIỚI THIỆU ================= -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/bg_profile_dark_card"
-                    android:orientation="vertical"
-                    android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Giới thiệu"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:lineSpacingExtra="3dp"
-                        android:text="Mình bắt đầu với một sân 5 người năm 2022 và nay vận hành 3 cụm sân tại TP.HCM. Mục tiêu là mặt cỏ tốt, giờ giấc minh bạch và đội nào cũng được đối xử công bằng. Cần đặt sân dài hạn cho giải hoặc công ty, cứ nhắn mình."
-                        android:textColor="#D1D5DB"
-                        android:textSize="13sp" />
-                </LinearLayout>
 
                 <!-- ================= CARD: CỤM SÂN CỦA TÔI ================= -->
                 <LinearLayout
@@ -517,107 +456,6 @@
                             android:textColor="#60A5FA"
                             android:textSize="11sp"
                             android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- ================= CARD: KHÁCH NÓI GÌ VỀ CHỦ SÂN ================= -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/bg_profile_dark_card"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Khách nói gì về chủ sân"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <!-- Review 1 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Trần Minh Đức"
-                                android:textColor="@color/white"
-                                android:textSize="13.5sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="★★★★★"
-                                android:textColor="#F59E0B"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="“Đèn sáng, cỏ êm, bãi xe rộng. Chủ sân trả lời tin nhắn rất nhanh.”"
-                            android:textColor="#D1D5DB"
-                            android:textSize="12.5sp" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginVertical="12dp"
-                        android:background="#1A382A" />
-
-                    <!-- Review 2 -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Nguyễn Hoàng Khang"
-                                android:textColor="@color/white"
-                                android:textSize="13.5sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="★★★★☆"
-                                android:textColor="#F59E0B"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="“Sân sạch, đặt lịch cố định tiện. Mong sớm thay lưới khung thành.”"
-                            android:textColor="#D1D5DB"
-                            android:textSize="12.5sp" />
                     </LinearLayout>
                 </LinearLayout>
 

@@ -21,8 +21,6 @@ public class OwnerProfileActivity extends AppCompatActivity {
 
     private View btnBackProfile;
     private View btnShareProfile;
-    private Button btnEditOwnerProfile;
-    private Button btnMessageOwner;
 
     // Billing Cycle Switcher
     private TextView tabCycleMonthly;
@@ -61,8 +59,6 @@ public class OwnerProfileActivity extends AppCompatActivity {
     private void initViews() {
         btnBackProfile = findViewById(R.id.btnBackProfile);
         btnShareProfile = findViewById(R.id.btnShareProfile);
-        btnEditOwnerProfile = findViewById(R.id.btnEditOwnerProfile);
-        btnMessageOwner = findViewById(R.id.btnMessageOwner);
 
         tabCycleMonthly = findViewById(R.id.tabCycleMonthly);
         tabCycleYearly = findViewById(R.id.tabCycleYearly);
@@ -89,14 +85,6 @@ public class OwnerProfileActivity extends AppCompatActivity {
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent, "Chia sẻ hồ sơ chủ sân"));
         });
-
-        btnEditOwnerProfile.setOnClickListener(v ->
-                Toast.makeText(this, "Chức năng chỉnh sửa thông tin hồ sơ chủ sân", Toast.LENGTH_SHORT).show()
-        );
-
-        btnMessageOwner.setOnClickListener(v ->
-                Toast.makeText(this, "Mở hộp thoại gửi tin nhắn trực tiếp cho chủ sân", Toast.LENGTH_SHORT).show()
-        );
 
         btnRenewPro.setOnClickListener(v ->
                 new AlertDialog.Builder(this)

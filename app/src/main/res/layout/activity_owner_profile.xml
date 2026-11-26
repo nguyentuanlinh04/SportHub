@@ -78,6 +78,7 @@
 
                 <!-- Avatar Circle overlapping bottom edge of pitch -->
                 <FrameLayout
+                    android:id="@+id/btnProfileAvatar"
                     android:layout_width="76dp"
                     android:layout_height="76dp"
                     android:layout_gravity="bottom|start"
@@ -86,6 +87,7 @@
                     android:background="@drawable/bg_profile_avatar_circle">
 
                     <TextView
+                        android:id="@+id/tvAvatarInitials"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -104,14 +106,34 @@
                 android:paddingHorizontal="16dp"
                 android:paddingTop="12dp">
 
-                <TextView
-                    android:id="@+id/tvOwnerProfileName"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lê Văn Quang"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvOwnerProfileName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Lê Văn Quang"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnEditOwnerProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_profile_btn_dark"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="5dp"
+                        android:text="✎ Chỉnh sửa"
+                        android:textColor="#86EFAC"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvOwnerProfileSubtitle"
@@ -303,6 +325,7 @@
 
                     <!-- Item 1: Star Arena Quận 7 -->
                     <LinearLayout
+                        android:id="@+id/itemComplexQ7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
@@ -358,6 +381,7 @@
 
                     <!-- Item 2: Star Arena Thủ Đức -->
                     <LinearLayout
+                        android:id="@+id/itemComplexThuDuc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -412,6 +436,7 @@
 
                     <!-- Item 3: Star Arena Bình Thạnh -->
                     <LinearLayout
+                        android:id="@+id/itemComplexBinhThanh"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -484,6 +509,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/btnVerifyCccd"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="6dp"
@@ -497,6 +523,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/btnVerifyGpkd"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_marginStart="6dp"
@@ -518,6 +545,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/btnVerifyPhone"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="6dp"
@@ -531,6 +559,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/btnVerifyEmail"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_marginStart="6dp"
@@ -641,6 +670,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/tvOwnerCallHours"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="07:00 – 22:00"
@@ -1329,6 +1359,7 @@
 
                     <!-- Payment 1 -->
                     <LinearLayout
+                        android:id="@+id/itemPaymentInvoice1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -1394,6 +1425,7 @@
 
                     <!-- Payment 2 -->
                     <LinearLayout
+                        android:id="@+id/itemPaymentInvoice2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -1470,6 +1502,7 @@
 
                     <!-- Nhận tiền về -->
                     <LinearLayout
+                        android:id="@+id/itemOwnerBankAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
@@ -1485,6 +1518,7 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/tvOwnerBankAccount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Vietcombank ••••6789"
@@ -1515,6 +1549,7 @@
                             android:textSize="13.5sp" />
 
                         <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchNotifyNewBooking"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -1544,6 +1579,7 @@
                             android:textSize="13.5sp" />
 
                         <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchNotifyCancelBooking"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -1573,6 +1609,7 @@
                             android:textSize="13.5sp" />
 
                         <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchNotifyReview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -1602,6 +1639,7 @@
                             android:textSize="13.5sp" />
 
                         <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchTwoFactorAuth"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"

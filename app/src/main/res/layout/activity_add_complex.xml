@@ -48,12 +48,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Cơ sở / Thêm cụm sân"
+                android:text="CƠ SỞ / THÊM CỤM SÂN"
                 android:textColor="@color/owner_text_sub"
                 android:textSize="11sp" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/badgeRoleAddComplex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_badge_chu_san"
@@ -77,7 +78,7 @@
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingTop="16dp"
-            android:paddingBottom="32dp">
+            android:paddingBottom="36dp">
 
             <!-- Title Section -->
             <TextView
@@ -91,8 +92,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Tất cả cơ sở và thông tin chung của cụm sân."
+                android:layout_marginTop="3dp"
+                android:text="Tạo cơ sở mới và thông tin chung của cụm sân."
                 android:textColor="@color/owner_text_sub"
                 android:textSize="12sp" />
 
@@ -104,7 +105,7 @@
                 android:textColor="#16A34A"
                 android:textSize="11sp" />
 
-            <!-- Green Notice Header -->
+            <!-- Notice Box 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Cụm sân là cơ sở chứa các sân thành phần. Bạn sẽ tạo thêm sân con và bảng giá sau khi lưu."
+                        android:text="Cụm sân là cơ sở chứa các sân thành phần. Bạn có thể thêm sân con và bảng giá sau khi tạo."
                         android:textColor="#166534"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -164,7 +165,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="Tên cụm sân *"
                     android:textColor="@color/owner_text_title"
                     android:textSize="12sp"
@@ -186,7 +187,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="Hotline *"
                     android:textColor="@color/owner_text_title"
                     android:textSize="12sp"
@@ -212,7 +213,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="8dp"
                         android:background="@null"
-                        android:hint="VD: 0909 123 456"
+                        android:hint="VD: 0908 123 456"
                         android:inputType="phone"
                         android:textColor="@color/owner_text_title"
                         android:textColorHint="@color/owner_text_sub"
@@ -222,7 +223,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="Mô tả ngắn (không bắt buộc)"
                     android:textColor="@color/owner_text_title"
                     android:textSize="12sp"
@@ -264,14 +265,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Địa chỉ thực tế của bạn để tìm cụm sân."
+                    android:text="Địa chỉ chung của toàn bộ cụm sân."
                     android:textColor="@color/owner_text_sub"
                     android:textSize="11sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="Tỉnh / Thành phố *"
                     android:textColor="@color/owner_text_title"
                     android:textSize="12sp"
@@ -282,13 +283,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_owner_search_input"
+                    android:background="@drawable/bg_spinner_dropdown"
                     android:paddingHorizontal="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -310,7 +311,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
                             android:layout_marginTop="6dp"
-                            android:background="@drawable/bg_owner_search_input"
+                            android:background="@drawable/bg_spinner_dropdown"
                             android:paddingHorizontal="10dp" />
                     </LinearLayout>
 
@@ -334,7 +335,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
                             android:layout_marginTop="6dp"
-                            android:background="@drawable/bg_owner_search_input"
+                            android:background="@drawable/bg_spinner_dropdown"
                             android:paddingHorizontal="10dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -342,7 +343,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="Số nhà, tên đường *"
                     android:textColor="@color/owner_text_title"
                     android:textSize="12sp"
@@ -361,11 +362,120 @@
                     android:textColorHint="@color/owner_text_sub"
                     android:textSize="13sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Vị trí trên bản đồ *"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- Map Preview Container -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_map_preview">
+
+                    <!-- Road Blocks Simulation -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:background="#DEEAE0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.4"
+                                android:background="#DEEAE0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:background="#DEEAE0" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:background="#DEEAE0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.4"
+                                android:background="#DEEAE0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:background="#DEEAE0" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Center Pin & Pill Badge -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_pin_circle"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_location_pin"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_pill_unpinned"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="3dp"
+                            android:text="Chưa ghim vị trí"
+                            android:textColor="#334155"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </FrameLayout>
+
                 <Button
                     android:id="@+id/btnSelectMapLocation"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_owner_btn_manage"
                     android:text="📍 Chọn vị trí trên bản đồ"
                     android:textAllCaps="false"
@@ -373,6 +483,14 @@
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:backgroundTint="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Tìm địa chỉ hoặc kéo ghim đến đúng sân của bạn."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <!-- CARD 3: GIỜ HOẠT ĐỘNG -->
@@ -403,7 +521,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -425,10 +543,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
                             android:layout_marginTop="6dp"
-                            android:background="@drawable/bg_owner_search_input"
+                            android:background="@drawable/bg_spinner_dropdown"
                             android:gravity="center_vertical"
                             android:paddingHorizontal="12dp"
-                            android:text="🕒 05:30"
+                            android:text="🕒  05:30"
                             android:textColor="@color/owner_text_title"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -453,17 +571,152 @@
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
                             android:layout_marginTop="6dp"
-                            android:background="@drawable/bg_owner_search_input"
+                            android:background="@drawable/bg_spinner_dropdown"
                             android:gravity="center_vertical"
                             android:paddingHorizontal="12dp"
-                            android:text="🕒 23:30"
+                            android:text="🕒  23:30"
                             android:textColor="@color/owner_text_title"
                             android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Lịch đặt và khung giá từng được thiết lập ở từng sân con."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- CARD 4: TIỆN ÍCH TẠI CƠ SỞ -->
+            <!-- CARD 4: HÌNH ẢNH -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hình ảnh"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Giúp người chơi nhận diện cơ sở của bạn."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Ảnh đại diện cụm sân"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- Upload Avatar Box -->
+                <LinearLayout
+                    android:id="@+id/layoutUploadAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_upload_photo_box"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="18dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_image_upload" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Tải ảnh đại diện"
+                        android:textColor="#15803D"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="JPG, PNG · Tối đa 5 MB · Nên dùng ảnh ngang"
+                        android:textColor="#64748B"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Add Facility Photos Box -->
+                <LinearLayout
+                    android:id="@+id/layoutUploadFacility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_add_photo_box"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <FrameLayout
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_icon_square_add">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="+"
+                            android:textColor="#0A8B4D"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thêm hình ảnh cơ sở"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Chỗ đậu xe, biển hiệu, quầy nước... Tối đa 5 ảnh"
+                            android:textColor="#64748B"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- CARD 5: TIỆN ÍCH TẠI CƠ SỞ -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -480,11 +733,20 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <!-- Tiện ích Switch Items -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Bật các tiện ích hiện có tại cụm sân."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
+
+                <!-- Switches -->
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switchLed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:checked="true"
                     android:text="Đèn LED thi đấu ban đêm"
                     android:textColor="@color/owner_text_title"
@@ -503,6 +765,7 @@
                     android:id="@+id/switchCanteen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="false"
                     android:text="Căng tin giải khát"
                     android:textColor="@color/owner_text_title"
                     android:textSize="13sp" />
@@ -511,6 +774,7 @@
                     android:id="@+id/switchShower"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="false"
                     android:text="Phòng tắm / thay đồ"
                     android:textColor="@color/owner_text_title"
                     android:textSize="13sp" />
@@ -528,12 +792,13 @@
                     android:id="@+id/switchTribune"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checked="false"
                     android:text="Khán đài"
                     android:textColor="@color/owner_text_title"
                     android:textSize="13sp" />
             </LinearLayout>
 
-            <!-- CARD 5: TRẠNG THÁI CƠ SỞ -->
+            <!-- CARD 6: TRẠNG THÁI CƠ SỞ -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -554,17 +819,18 @@
                     android:id="@+id/rgStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="10dp">
 
                     <RadioButton
                         android:id="@+id/rbStatusActive"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="6dp"
-                        android:background="@drawable/bg_radio_option_active"
-                        android:checked="true"
-                        android:padding="10dp"
-                        android:text="Hoạt động\nCho phép đặt sân con ngay"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_radio_option_inactive"
+                        android:buttonTint="#168A48"
+                        android:checked="false"
+                        android:padding="12dp"
+                        android:text="Hoạt động\nCơ sở sẵn sàng vận hành."
                         android:textColor="@color/owner_text_title"
                         android:textSize="12sp" />
 
@@ -572,12 +838,62 @@
                         android:id="@+id/rbStatusPaused"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_radio_option_inactive"
-                        android:padding="10dp"
-                        android:text="Tạm ngừng\nChưa nhận lịch, có thể mở lại sau"
+                        android:background="@drawable/bg_radio_option_active"
+                        android:buttonTint="#168A48"
+                        android:checked="true"
+                        android:padding="12dp"
+                        android:text="Tạm ngưng\nChưa nhận lịch, có thể mở lại sau."
                         android:textColor="@color/owner_text_title"
                         android:textSize="12sp" />
                 </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Chỉ nhận đặt sân khi đã có sân con hoạt động và bảng giá."
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Notice Box 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_owner_notice_box"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_info_circle" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sau khi tạo cụm sân"
+                        android:textColor="#15803D"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Bạn sẽ được chuyển đến chi tiết cơ sở để thêm sân con và thiết lập bảng giá. Chưa nên nhận khách ở bước này."
+                        android:textColor="#166534"
+                        android:textSize="11sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- SUBMIT BUTTON -->

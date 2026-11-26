@@ -7,6 +7,14 @@
     android:orientation="vertical"
     android:padding="20dp">
 
+    <!-- Drag Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,28 +22,14 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thêm nhân viên"
-                android:textColor="@color/owner_text_title"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="Cấp tài khoản vận hành cụm sân"
-                android:textColor="@color/owner_text_sub"
-                android:textSize="11sp" />
-        </LinearLayout>
+            android:text="Thêm nhân viên"
+            android:textColor="@color/owner_text_title"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btnCloseAddStaff"
@@ -47,36 +41,12 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Chọn Cụm sân phân công -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="Cụm sân làm việc *"
-        android:textColor="@color/owner_text_title"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvAddStaffComplex"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/bg_owner_search_input"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="12dp"
-        android:text="Cụm Sân Thăng Long"
-        android:textColor="@color/owner_text_title"
-        android:textSize="13sp" />
-
     <!-- Họ và tên -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Họ và tên *"
+        android:layout_marginTop="14dp"
+        android:text="Họ và tên"
         android:textColor="@color/owner_text_title"
         android:textSize="12sp"
         android:textStyle="bold" />
@@ -84,110 +54,160 @@
     <EditText
         android:id="@+id/edtAddStaffName"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="44dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/bg_owner_search_input"
-        android:hint="VD: Đỗ Hoàng Nam"
+        android:hint="VD: Lê Hoàng Nam"
         android:paddingHorizontal="12dp"
         android:textColor="@color/owner_text_title"
         android:textSize="13sp" />
 
-    <!-- SĐT -->
+    <!-- Mật khẩu -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Số điện thoại đăng nhập *"
+        android:text="Mật khẩu"
         android:textColor="@color/owner_text_title"
         android:textSize="12sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edtAddStaffPhone"
+        android:id="@+id/edtAddStaffPassword"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="44dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/bg_owner_search_input"
-        android:hint="VD: 0912345678"
-        android:inputType="phone"
+        android:hint="VD: Anh2009"
         android:paddingHorizontal="12dp"
         android:textColor="@color/owner_text_title"
         android:textSize="13sp" />
 
-    <!-- Vị trí & Ca trực -->
+    <!-- Nhánh hoạt động -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Nhánh hoạt động"
+        android:textColor="@color/owner_text_title"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/layoutAddStaffBranch"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_owner_search_input"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp">
+
+        <TextView
+            android:id="@+id/tvAddStaffBranch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="VD: chi nhánh A"
+            android:textColor="@color/owner_text_title"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_chevron_down"
+            app:tint="@color/owner_text_sub" />
+    </LinearLayout>
+
+    <!-- Hai cột: SĐT đăng nhập & Vai trò -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
-        <!-- Vị trí / Vai trò -->
+        <!-- Cột 1: SĐT đăng nhập -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vị trí / Vai trò"
+                android:text="SĐT đăng nhập"
                 android:textColor="@color/owner_text_title"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvAddStaffRole"
+            <EditText
+                android:id="@+id/edtAddStaffPhone"
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
+                android:layout_height="44dp"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/bg_owner_search_input"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
+                android:hint="09xx xxx xxx"
+                android:inputType="phone"
                 android:paddingHorizontal="12dp"
-                android:text="Thu ngân &amp; CSKH"
                 android:textColor="@color/owner_text_title"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
-        <!-- Ca làm việc -->
+        <!-- Cột 2: Vai trò -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ca làm việc"
+                android:text="Vai trò"
                 android:textColor="@color/owner_text_title"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvAddStaffShift"
+            <LinearLayout
+                android:id="@+id/layoutAddStaffRole"
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
+                android:layout_height="44dp"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/bg_owner_search_input"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
-                android:paddingHorizontal="12dp"
-                android:text="Ca sáng (06:00 - 14:00)"
-                android:textColor="@color/owner_text_title"
-                android:textSize="12sp" />
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/tvAddStaffRole"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quản lý ca tối"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/owner_text_sub" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Nút Cấp quyền -->
+    <!-- Nút Cấp quyền đăng nhập -->
     <Button
         android:id="@+id/btnSubmitAddStaff"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bg_owner_add_btn"
         android:text="Cấp quyền đăng nhập"
         android:textAllCaps="false"

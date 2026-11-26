@@ -3,7 +3,6 @@ package fpoly.duan1.sporthub_new;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +21,6 @@ public class OwnerMainActivity extends AppCompatActivity {
     private TextView chipFilterAll;
     private TextView chipFilterActive;
     private TextView chipFilterPaused;
-    private EditText edtSearchComplex;
 
     private View cardThangLong;
     private View cardMaiDich;
@@ -45,7 +43,6 @@ public class OwnerMainActivity extends AppCompatActivity {
 
         initViews();
         setupFilters();
-        setupSearch();
         setupActionButtons();
         setupBottomNav();
     }
@@ -54,7 +51,6 @@ public class OwnerMainActivity extends AppCompatActivity {
         chipFilterAll = findViewById(R.id.chipFilterAll);
         chipFilterActive = findViewById(R.id.chipFilterActive);
         chipFilterPaused = findViewById(R.id.chipFilterPaused);
-        edtSearchComplex = findViewById(R.id.edtSearchComplex);
 
         cardThangLong = findViewById(R.id.cardThangLong);
         cardMaiDich = findViewById(R.id.cardMaiDich);
@@ -107,28 +103,10 @@ public class OwnerMainActivity extends AppCompatActivity {
         applySearchAndFilter();
     }
 
-    private void setupSearch() {
-        edtSearchComplex.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                applySearchAndFilter();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-    }
-
     private void applySearchAndFilter() {
-        String query = edtSearchComplex.getText() != null
-                ? edtSearchComplex.getText().toString().trim().toLowerCase() : "";
-
-        boolean showThangLong = matchesQuery("cụm sân thăng long 152 hoàng quốc việt cầu giấy hà nội", query);
-        boolean showMaiDich = matchesQuery("cụm sân mai dịch 28 đường số 2 bình an tp hà nội", query);
-        boolean showRiverside = matchesQuery("cụm sân riverside 66 nguyễn văn hưởng thảo điền tp thủ đức tphcm", query);
+        boolean showThangLong = true;
+        boolean showMaiDich = true;
+        boolean showRiverside = true;
 
         if ("ACTIVE".equals(currentFilter)) {
             showRiverside = false; // Riverside is Paused
@@ -149,11 +127,6 @@ public class OwnerMainActivity extends AppCompatActivity {
         tvComplexCountHeader.setText(String.format(java.util.Locale.getDefault(), "%d cơ sở", count));
     }
 
-    private boolean matchesQuery(String content, String query) {
-        if (query.isEmpty()) return true;
-        return content.toLowerCase().contains(query);
-    }
-
     private void setupActionButtons() {
         // + Thêm cụm sân
         View btnAddNewComplex = findViewById(R.id.btnAddNewComplex);
@@ -164,53 +137,29 @@ public class OwnerMainActivity extends AppCompatActivity {
             });
         }
 
-        // Nút Quản lý từng cụm sân -> Mở OwnerComplexDetailActivity
+        // Nút Quản lý & bấm vào toàn bộ Card từng cụm sân -> Mở OwnerComplexDetailActivity
+        if (cardThangLong != null) {
+            cardThangLong.setOnClickListener(v -> openComplexDetail("Cụm Sân Thăng Long"));
+        }
         View btnManageThangLong = findViewById(R.id.btnManageThangLong);
         if (btnManageThangLong != null) {
             btnManageThangLong.setOnClickListener(v -> openComplexDetail("Cụm Sân Thăng Long"));
         }
 
+        if (cardMaiDich != null) {
+            cardMaiDich.setOnClickListener(v -> openComplexDetail("Cụm Sân Mai Dịch"));
+        }
         View btnManageMaiDich = findViewById(R.id.btnManageMaiDich);
         if (btnManageMaiDich != null) {
             btnManageMaiDich.setOnClickListener(v -> openComplexDetail("Cụm Sân Mai Dịch"));
         }
 
+        if (cardRiverside != null) {
+            cardRiverside.setOnClickListener(v -> openComplexDetail("Cụm Sân Riverside"));
+        }
         View btnManageRiverside = findViewById(R.id.btnManageRiverside);
         if (btnManageRiverside != null) {
             btnManageRiverside.setOnClickListener(v -> openComplexDetail("Cụm Sân Riverside"));
-        }
-
-        // 4 Quick Actions trên Hero Dashboard Card
-        View btnQuickInvoice = findViewById(R.id.btnQuickInvoice);
-        if (btnQuickInvoice != null) {
-            btnQuickInvoice.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerFinanceActivity.class);
-                startActivity(intent);
-            });
-        }
-
-        View btnQuickSchedule = findViewById(R.id.btnQuickSchedule);
-        if (btnQuickSchedule != null) {
-            btnQuickSchedule.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerScheduleActivity.class);
-                startActivity(intent);
-            });
-        }
-
-        View btnQuickStaff = findViewById(R.id.btnQuickStaff);
-        if (btnQuickStaff != null) {
-            btnQuickStaff.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerStaffActivity.class);
-                startActivity(intent);
-            });
-        }
-
-        View btnQuickFinance = findViewById(R.id.btnQuickFinance);
-        if (btnQuickFinance != null) {
-            btnQuickFinance.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerFinanceActivity.class);
-                startActivity(intent);
-            });
         }
 
         // Badge "Chủ sân" trên Top Bar -> Mở OwnerProfileActivity
@@ -243,22 +192,30 @@ public class OwnerMainActivity extends AppCompatActivity {
         }
         if (navSchedule != null) {
             navSchedule.setOnClickListener(v -> {
-                startActivity(new android.content.Intent(OwnerMainActivity.this, OwnerScheduleActivity.class));
+                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerScheduleActivity.class);
+                intent.putExtra("COMPLEX_NAME", "Tất cả các sân");
+                startActivity(intent);
             });
         }
         if (navStaff != null) {
             navStaff.setOnClickListener(v -> {
-                startActivity(new android.content.Intent(OwnerMainActivity.this, OwnerStaffActivity.class));
+                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerStaffActivity.class);
+                intent.putExtra("COMPLEX_NAME", "Tất cả các sân");
+                startActivity(intent);
             });
         }
         if (navFinance != null) {
             navFinance.setOnClickListener(v -> {
-                startActivity(new android.content.Intent(OwnerMainActivity.this, OwnerFinanceActivity.class));
+                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerFinanceActivity.class);
+                intent.putExtra("COMPLEX_NAME", "Tất cả các sân");
+                startActivity(intent);
             });
         }
         if (navReviews != null) {
             navReviews.setOnClickListener(v -> {
-                startActivity(new android.content.Intent(OwnerMainActivity.this, OwnerReviewActivity.class));
+                android.content.Intent intent = new android.content.Intent(OwnerMainActivity.this, OwnerReviewActivity.class);
+                intent.putExtra("COMPLEX_NAME", "Tất cả các sân");
+                startActivity(intent);
             });
         }
     }

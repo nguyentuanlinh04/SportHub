@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import fpoly.duan1.sporthub_new.ChangePasswordActivity;
 import fpoly.duan1.sporthub_new.FavoritePitchesActivity;
 import fpoly.duan1.sporthub_new.LoginActivity;
 import fpoly.duan1.sporthub_new.MenuActivity;
@@ -87,7 +88,7 @@ public class ProfileFragment extends Fragment {
         );
 
         llChangePassword.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Mở màn hình Đổi mật khẩu", Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(requireContext(), ChangePasswordActivity.class))
         );
 
         llLogout.setOnClickListener(v -> showLogoutDialog());

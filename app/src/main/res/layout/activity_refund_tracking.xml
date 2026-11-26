@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainRefundTracking"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".RefundTrackingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Header Bar (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Theo dõi hoàn tiền"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Theo dõi hoàn tiền" />
+        </LinearLayout>
+
+        <!-- Refund Amount Banner Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_checkbox_checked"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvRefundStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đang hoàn tiền"
+                android:textColor="#0A6A3A"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Đang hoàn tiền" />
+
+            <TextView
+                android:id="@+id/tvRefundAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="255.000đ"
+                android:textColor="@color/primary_green"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="255.000đ" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Đơn SH-1109-0187 · Thắng Long"
+                android:textColor="#374151"
+                android:textSize="13sp"
+                tools:text="Đơn SH-1109-0187 · Thắng Long" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Hoàn về phương thức thanh toán ban đầu"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Hoàn về phương thức thanh toán ban đầu" />
+        </LinearLayout>
+
+        <!-- Timeline Progress Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Tiến trình hoàn tiền"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Tiến trình hoàn tiền" />
+
+            <!-- Step 1: Đã hủy đặt sân (Completed) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Step 1 Check"
+                    android:src="@drawable/ic_checkmark_green" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đã hủy đặt sân"
+                        android:textColor="@color/text_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Đã hủy đặt sân" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="08/11/2026 · 20:15 · Hủy đúng hạn"
+                        android:textColor="@color/text_sub"
+                        android:textSize="12sp"
+                        tools:text="08/11/2026 · 20:15 · Hủy đúng hạn" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginVertical="4dp"
+                android:background="#D1D5DB" />
+
+            <!-- Step 2: Đang hoàn tiền (In Progress -> Completed) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="24dp"
+                    android:layout_height="24dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressBarStep2"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/primary_green" />
+
+                    <ImageView
+                        android:id="@+id/ivCheckStep2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Step 2 Check"
+                        android:src="@drawable/ic_checkmark_green"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTitleStep2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đang hoàn tiền"
+                        android:textColor="@color/text_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Đang hoàn tiền" />
+
+                    <TextView
+                        android:id="@+id/tvSubStep2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Yêu cầu hoàn cọc đã được tiếp nhận"
+                        android:textColor="@color/text_sub"
+                        android:textSize="12sp"
+                        tools:text="Yêu cầu hoàn cọc đã được tiếp nhận" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="11dp"
+                android:layout_marginVertical="4dp"
+                android:background="#D1D5DB" />
+
+            <!-- Step 3: Hoàn tất -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="24dp"
+                    android:layout_height="24dp">
+
+                    <ImageView
+                        android:id="@+id/ivOutlineStep3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Step 3 Outline"
+                        android:src="@drawable/ic_radio_unchecked" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarStep3"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/primary_green"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/ivCheckStep3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Step 3 Check"
+                        android:src="@drawable/ic_checkmark_green"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTitleStep3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hoàn tất"
+                        android:textColor="@color/text_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Hoàn tất" />
+
+                    <TextView
+                        android:id="@+id/tvSubStep3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Chưa hoàn tất · Chờ xác nhận giao dịch"
+                        android:textColor="@color/text_sub"
+                        android:textSize="12sp"
+                        tools:text="Chưa hoàn tất · Chờ xác nhận giao dịch" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Bank Processing Time Notice Box -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_checkbox_checked"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvBankNoticeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời gian ghi có tùy ngân hàng"
+                android:textColor="#0A6A3A"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Thời gian ghi có tùy ngân hàng" />
+
+            <TextView
+                android:id="@+id/tvBankNoticeSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Chúng tôi sẽ cập nhật khi nhận được xác nhận hoàn tiền. Hiện chưa ghi nhận hoàn tất."
+                android:textColor="#276749"
+                android:textSize="12sp"
+                tools:text="Chúng tôi sẽ cập nhật khi nhận được xác nhận hoàn tiền. Hiện chưa ghi nhận hoàn tất." />
+        </LinearLayout>
+
+        <!-- Transaction History / Previous Order Card -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Lịch sử giao dịch · Đơn cũ"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Lịch sử giao dịch · Đơn cũ" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="SH-1030-0098"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="SH-1030-0098" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="75.000đ"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="75.000đ" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_skill_badge_green"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="Đã hoàn tất"
+                android:textColor="#0A6A3A"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Đã hoàn tất" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Khoản hoàn của đơn cũ, không thuộc đơn đang xử lý."
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Khoản hoàn của đơn cũ, không thuộc đơn đang xử lý." />
+        </LinearLayout>
+
+        <!-- Help Button -->
+        <TextView
+            android:id="@+id/btnSupportRefund"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_btn_edit_profile"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Liên hệ hỗ trợ hoàn tiền"
+            android:textColor="@color/primary_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Liên hệ hỗ trợ hoàn tiền" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

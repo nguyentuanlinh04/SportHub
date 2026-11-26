@@ -62,7 +62,7 @@
         android:id="@+id/tvLevelBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_level_badge_orange"
+        android:background="@drawable/bg_skill_badge_orange"
         android:paddingHorizontal="10dp"
         android:paddingVertical="5dp"
         android:text="Khá"
@@ -73,27 +73,28 @@
         app:layout_constraintTop_toTopOf="@id/tvTeamAvatar"
         tools:text="Khá" />
 
-    <!-- 3-Column Match Details Box -->
+    <!-- 3 Spec Cards Row -->
     <LinearLayout
         android:id="@+id/llMatchDetailsBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:background="@drawable/bg_match_info_box"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingHorizontal="14dp"
-        android:paddingVertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTeamAvatar">
 
-        <!-- Column 1: Thời gian -->
+        <!-- Card 1: Thời gian -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.2"
-            android:orientation="vertical">
+            android:layout_marginEnd="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_spec_card"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,12 +116,16 @@
                 tools:text="T4 · 19:00" />
         </LinearLayout>
 
-        <!-- Column 2: Loại sân -->
+        <!-- Card 2: Loại sân -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:background="@drawable/bg_spec_card"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,12 +147,16 @@
                 tools:text="Sân 7" />
         </LinearLayout>
 
-        <!-- Column 3: Chia sân -->
+        <!-- Card 3: Chia sân -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:background="@drawable/bg_spec_card"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -171,43 +180,23 @@
 
     </LinearLayout>
 
-    <!-- Action Buttons Row -->
-    <LinearLayout
-        android:id="@+id/llActionRow"
+    <!-- Send Request / Nhận kèo Button -->
+    <TextView
+        android:id="@+id/btnSendRequest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="14dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:background="@drawable/bg_btn_action_green"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Nhận kèo"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llMatchDetailsBox">
-
-        <!-- Send Request Main Action Button -->
-        <TextView
-            android:id="@+id/btnSendRequest"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn_action_green"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="Gửi yêu cầu giao lưu"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="Gửi yêu cầu giao lưu" />
-
-        <!-- Chat Icon Button -->
-        <ImageButton
-            android:id="@+id/btnChat"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/bg_btn_chat"
-            android:contentDescription="Chat Button"
-            android:src="@drawable/ic_chat_bubble" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/llMatchDetailsBox"
+        tools:text="Nhận kèo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

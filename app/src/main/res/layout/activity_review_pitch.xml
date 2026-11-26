@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainReviewPitch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".ReviewPitchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Header Bar (Title & Để sau) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Đánh giá sân"
+                android:textColor="@color/text_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Đánh giá sân" />
+
+            <TextView
+                android:id="@+id/btnSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_tab_container"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingHorizontal="14dp"
+                android:text="Để sau"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Để sau" />
+        </RelativeLayout>
+
+        <!-- Order Info Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPitchSubPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long · Sân 5-A"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 5-A" />
+
+            <TextView
+                android:id="@+id/tvMatchInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Trận ngày 01/11 - 18:00 – 20:00"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Trận ngày 01/11 - 18:00 – 20:00" />
+        </LinearLayout>
+
+        <!-- Rating Criteria Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Criteria 1: Mặt cỏ -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Mặt cỏ"
+                    android:textColor="#374151"
+                    android:textSize="15sp"
+                    tools:text="Mặt cỏ" />
+
+                <RatingBar
+                    android:id="@+id/rbGrass"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:progressBackgroundTint="#D1D5DB"
+                    android:progressTint="#F59E0B"
+                    android:rating="4.0"
+                    android:stepSize="1.0" />
+            </RelativeLayout>
+
+            <!-- Criteria 2: Ánh sáng -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Ánh sáng"
+                    android:textColor="#374151"
+                    android:textSize="15sp"
+                    tools:text="Ánh sáng" />
+
+                <RatingBar
+                    android:id="@+id/rbLight"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:progressBackgroundTint="#D1D5DB"
+                    android:progressTint="#F59E0B"
+                    android:rating="5.0"
+                    android:stepSize="1.0" />
+            </RelativeLayout>
+
+            <!-- Criteria 3: Thái độ phục vụ -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Thái độ phục vụ"
+                    android:textColor="#374151"
+                    android:textSize="15sp"
+                    tools:text="Thái độ phục vụ" />
+
+                <RatingBar
+                    android:id="@+id/rbService"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:progressBackgroundTint="#D1D5DB"
+                    android:progressTint="#F59E0B"
+                    android:rating="3.0"
+                    android:stepSize="1.0" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Section: Điểm nổi bật -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:text="Điểm nổi bật"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Điểm nổi bật" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvTagGrass"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Cỏ đẹp"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Cỏ đẹp" />
+
+            <TextView
+                android:id="@+id/tvTagLight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Đèn sáng"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Đèn sáng" />
+
+            <TextView
+                android:id="@+id/tvTagPrice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Giá hợp lý"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Giá hợp lý" />
+
+            <TextView
+                android:id="@+id/tvTagParking"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Dễ gửi xe"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Dễ gửi xe" />
+        </LinearLayout>
+
+        <!-- Detailed Review Input Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhận xét chi tiết"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Nhận xét chi tiết" />
+
+            <EditText
+                android:id="@+id/etReviewComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="Viết nhận xét của bạn..."
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:text="Cỏ êm, đèn đủ sáng, nhân viên nhiệt tình."
+                android:textColor="@color/text_title"
+                android:textColorHint="#9CA3AF"
+                android:textSize="15sp"
+                tools:text="Cỏ êm, đèn đủ sáng, nhân viên nhiệt tình." />
+        </LinearLayout>
+
+        <!-- Submit Button: Gửi đánh giá -->
+        <TextView
+            android:id="@+id/btnSubmitReview"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Gửi đánh giá"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Gửi đánh giá" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

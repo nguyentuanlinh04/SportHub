@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_filter_bottom_sheet_shape"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="24dp">
+
+    <!-- Top Handle Bar -->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#D1D5DB" />
+
+    <!-- Dialog Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhận kèo này?"
+        android:textColor="@color/text_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Nhận kèo này?" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/tvBottomSheetSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Kèo sẽ được chốt ngay, FC Cầu Giấy United nhận thông báo và không cần trao đổi thêm."
+        android:textColor="@color/text_sub"
+        android:textSize="13sp"
+        tools:text="Kèo sẽ được chốt ngay, FC Cầu Giấy United nhận thông báo và không cần trao đổi thêm." />
+
+    <!-- Match Summary Soft Green Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_checkbox_checked"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Team Avatar & Name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_team_avatar_green"
+                android:gravity="center"
+                android:text="MF"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="MF" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minh FC"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Minh FC" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Đội của bạn"
+                    android:textColor="@color/text_sub"
+                    android:textSize="12sp"
+                    tools:text="Đội của bạn" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Table Info -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="Gặp"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Gặp" />
+
+            <TextView
+                android:id="@+id/tvOpponentTeamName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="FC Cầu Giấy United"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="FC Cầu Giấy United" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="Thời gian"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Thời gian" />
+
+            <TextView
+                android:id="@+id/tvBottomSheetTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="T4, 11/11 · 19:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="T4, 11/11 · 19:00" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="Sân · Chia"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Sân · Chia" />
+
+            <TextView
+                android:id="@+id/tvBottomSheetPitchSplit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Sân 7 · 50/50"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Sân 7 · 50/50" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- Main Button 1: Xác nhận nhận kèo -->
+    <TextView
+        android:id="@+id/btnConfirmAccept"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_btn_action_green"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Xác nhận nhận kèo"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Xác nhận nhận kèo" />
+
+    <!-- Secondary Button 2: Để sau -->
+    <TextView
+        android:id="@+id/btnLater"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_btn_edit_profile"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Để sau"
+        android:textColor="@color/text_title"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="Để sau" />
+
+</LinearLayout>

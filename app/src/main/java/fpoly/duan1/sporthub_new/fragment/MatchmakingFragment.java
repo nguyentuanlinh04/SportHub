@@ -1,6 +1,6 @@
 package fpoly.duan1.sporthub_new.fragment;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fpoly.duan1.sporthub_new.CreateMatchPostActivity;
+import fpoly.duan1.sporthub_new.MatchDetailActivity;
 import fpoly.duan1.sporthub_new.R;
 import fpoly.duan1.sporthub_new.adapter.FilterChipAdapter;
 import fpoly.duan1.sporthub_new.adapter.MatchTeamAdapter;
 import fpoly.duan1.sporthub_new.model.FilterChip;
 import fpoly.duan1.sporthub_new.model.MatchTeam;
+import fpoly.duan1.sporthub_new.utils.MatchRepository;
 
 public class MatchmakingFragment extends Fragment {
 
@@ -50,13 +53,19 @@ public class MatchmakingFragment extends Fragment {
         setupMatchTeams();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadMatchData();
+    }
+
     private void initViews(View view) {
         rvMatchFilterChips = view.findViewById(R.id.rvMatchFilterChips);
         rvMatchTeams = view.findViewById(R.id.rvMatchTeams);
         btnPostMatch = view.findViewById(R.id.btnPostMatch);
 
         btnPostMatch.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Mở màn hình Đăng tin ghép kèo", Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(requireContext(), CreateMatchPostActivity.class))
         );
     }
 
@@ -77,69 +86,30 @@ public class MatchmakingFragment extends Fragment {
     }
 
     private void setupMatchTeams() {
-        teamList.clear();
-
-        // Item 1 (FC Cầu Giấy United)
-        teamList.add(new MatchTeam(
-                "m1",
-                "FC Cầu Giấy United",
-                "Hoàng Nam",
-                "1,2 km",
-                "Khá",
-                "T4 · 19:00",
-                "Sân 7",
-                "50 / 50",
-                "FC",
-                R.drawable.bg_team_avatar_green,
-                R.drawable.bg_level_badge_orange,
-                Color.parseColor("#8F5300")
-        ));
-
-        // Item 2 (Thăng Long Rangers)
-        teamList.add(new MatchTeam(
-                "m2",
-                "Thăng Long Rangers",
-                "Minh Đức",
-                "2,6 km",
-                "Trung bình",
-                "T6 · 20:00",
-                "Sân 5",
-                "Thua trả",
-                "TL",
-                R.drawable.bg_team_avatar_blue,
-                R.drawable.bg_level_badge_green,
-                Color.parseColor("#0A6A3A")
-        ));
-
-        // Item 3 (Mai Dịch Old Boys)
-        teamList.add(new MatchTeam(
-                "m3",
-                "Mai Dịch Old Boys",
-                "Tuấn Anh",
-                "3,5 km",
-                "Vui vẻ",
-                "T7 · 18:30",
-                "Sân 7",
-                "50 / 50",
-                "MD",
-                R.drawable.bg_team_avatar_red,
-                R.drawable.bg_level_badge_mint,
-                Color.parseColor("#0A6A3A")
-        ));
-
-        matchTeamAdapter = new MatchTeamAdapter(requireContext(), teamList, new MatchTeamAdapter.OnMatchActionListener() {
-            @Override
-            public void onRequestClick(MatchTeam team) {
-                Toast.makeText(requireContext(), "Đã gửi yêu cầu giao lưu tới " + team.getTeamName(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onChatClick(MatchTeam team) {
-                Toast.makeText(requireContext(), "Mở trò chuyện với đội " + team.getTeamName(), Toast.LENGTH_SHORT).show();
-            }
+        matchTeamAdapter = new MatchTeamAdapter(requireContext(), teamList, team -> {
+            Intent intent = new Intent(requireContext(), MatchDetailActivity.class);
+            intent.putExtra("team_name", team.getTeamName());
+            intent.putExtra("avatar_text", team.getAvatarText());
+            intent.putExtra("captain_distance", "Đội trưởng: " + team.getCaptainName() + " · Cách bạn " + team.getDistance());
+            intent.putExtra("skill_level", team.getLevelText());
+            intent.putExtra("match_time", team.getTimeText());
+            intent.putExtra("pitch_type", team.getPitchType());
+            intent.putExtra("split_fee", team.getSplitFee());
+            startActivity(intent);
         });
 
         rvMatchTeams.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvMatchTeams.setAdapter(matchTeamAdapter);
+
+        loadMatchData();
+    }
+
+    private void loadMatchData() {
+        teamList.clear();
+        teamList.addAll(MatchRepository.getInstance().getMatches());
+
+        if (matchTeamAdapter != null) {
+            matchTeamAdapter.notifyDataSetChanged();
+        }
     }
 }

@@ -24,18 +24,13 @@ public class AdminAccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        View userQuan = view.findViewById(R.id.btnUserQuan);
-        if (userQuan != null) {
-            userQuan.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), AdminUserDetailActivity.class);
-                startActivity(intent);
-            });
-        }
-
+        // ACTIVE STATUS USERS -> Open Role & Permission Screen (AdminRolePermissionActivity)
         View userTuan = view.findViewById(R.id.btnUserTuan);
         if (userTuan != null) {
             userTuan.setOnClickListener(v -> {
-                Intent intent = new Intent(getActivity(), AdminUserDetailActivity.class);
+                Intent intent = new Intent(getActivity(), AdminRolePermissionActivity.class);
+                intent.putExtra("USER_NAME", "Anh Tuấn");
+                intent.putExtra("USER_PHONE", "+84 903 456 789");
                 startActivity(intent);
             });
         }
@@ -43,6 +38,17 @@ public class AdminAccountFragment extends Fragment {
         View userHoa = view.findViewById(R.id.btnUserHoa);
         if (userHoa != null) {
             userHoa.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), AdminRolePermissionActivity.class);
+                intent.putExtra("USER_NAME", "Chị Hoa");
+                intent.putExtra("USER_PHONE", "+84 977 222 333");
+                startActivity(intent);
+            });
+        }
+
+        // LOCKED / REPORTED USERS -> Open User Lock Detail Flow (AdminUserDetailActivity)
+        View userQuan = view.findViewById(R.id.btnUserQuan);
+        if (userQuan != null) {
+            userQuan.setOnClickListener(v -> {
                 Intent intent = new Intent(getActivity(), AdminUserDetailActivity.class);
                 startActivity(intent);
             });

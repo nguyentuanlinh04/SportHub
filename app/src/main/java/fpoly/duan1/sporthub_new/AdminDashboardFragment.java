@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,7 +73,7 @@ public class AdminDashboardFragment extends Fragment {
     private void setupClickListeners() {
         if (btnNotification != null) {
             btnNotification.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Không có thông báo mới", Toast.LENGTH_SHORT).show()
+                AdminNotificationHelper.showNotificationDialog(getContext())
             );
         }
 
@@ -101,7 +100,7 @@ public class AdminDashboardFragment extends Fragment {
 
         if (btnPendingReports != null) {
             btnPendingReports.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Xử lý khiếu nại mới", Toast.LENGTH_SHORT).show()
+                AdminNotificationHelper.showNotificationDialog(getContext())
             );
         }
     }

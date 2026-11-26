@@ -43,6 +43,22 @@ public class AdminSystemFragment extends Fragment {
             });
         }
 
+        View btnEvents = view.findViewById(R.id.btnMenuEvents);
+        if (btnEvents != null) {
+            btnEvents.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), AdminBannerActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        View btnNotif = view.findViewById(R.id.btnMenuNotif);
+        if (btnNotif != null) {
+            btnNotif.setOnClickListener(v -> {
+                Intent intent = new Intent(getActivity(), AdminNotificationActivity.class);
+                startActivity(intent);
+            });
+        }
+
         View btnGrowth = view.findViewById(R.id.btnMenuGrowth);
         if (btnGrowth != null) {
             btnGrowth.setOnClickListener(v -> {

@@ -88,9 +88,12 @@ public class AdminOwnerAuditActivity extends AppCompatActivity {
                 // Button 2 in step 3 acts as "Duyệt và kích hoạt"
                 showStep(4);
             } else if (currentStep == 4) {
-                // Button 2 in result screen acts as "Xem hồ sơ" -> Mở màn hình Chi tiết tài khoản / Hồ sơ (AdminUserDetailActivity)
-                Intent intent = new android.content.Intent(AdminOwnerAuditActivity.this, AdminUserDetailActivity.class);
+                // Button 2 in result screen acts as "Xem hồ sơ" -> Chuyển sang màn hình Tài khoản (Tab 2: Tài khoản)
+                Intent intent = new Intent(AdminOwnerAuditActivity.this, AdminMainActivity.class);
+                intent.putExtra("OPEN_TAB", 2); // Tab Tài khoản
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
+                finish();
             }
         });
     }

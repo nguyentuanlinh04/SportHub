@@ -1,5 +1,6 @@
 package fpoly.duan1.sporthub_new.admin;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -39,8 +40,6 @@ public class AdminMainActivity extends AppCompatActivity {
     private final int COLOR_ACTIVE = Color.parseColor("#0E9F6E");
     private final int COLOR_INACTIVE = Color.parseColor("#9CA3AF");
 
-    private int currentTab = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +57,16 @@ public class AdminMainActivity extends AppCompatActivity {
         initViews();
         setupTabListeners();
 
-        // Load default tab (Dashboard)
-        switchToTab(0);
+        int targetTab = getIntent().getIntExtra("OPEN_TAB", 0);
+        switchToTab(targetTab);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        int targetTab = intent.getIntExtra("OPEN_TAB", 0);
+        switchToTab(targetTab);
     }
 
     private void initViews() {
@@ -91,7 +98,6 @@ public class AdminMainActivity extends AppCompatActivity {
     }
 
     public void switchToTab(int position) {
-        currentTab = position;
         updateTabUI(position);
 
         Fragment selectedFragment;

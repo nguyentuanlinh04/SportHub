@@ -17,31 +17,33 @@
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="14dp"
+        android:paddingHorizontal="16dp"
         android:paddingVertical="10dp">
 
-        <ImageButton
+        <!-- Logo Icon SportHub -->
+        <ImageView
             android:id="@+id/btnBackDetail"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Quay lại"
-            android:src="@drawable/ic_back" />
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="SportHub Logo"
+            android:src="@drawable/logo_sporthub" />
 
+        <!-- Tiêu đề SportHub & Phụ đề -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvComplexDetailTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cụm Sân Thăng Long"
+                android:text="SportHub"
                 android:textColor="@color/owner_text_title"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -49,12 +51,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Chi tiết &amp; vận hành cơ sở (5 sân)"
+                android:text="Cụm sân Thăng Long · 5 sân"
                 android:textColor="@color/owner_text_sub"
                 android:textSize="11sp" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/badgeRoleDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_badge_chu_san"
@@ -70,13 +73,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="1dp"
+        android:background="@color/owner_bg_screen"
         android:orientation="horizontal"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
+        android:paddingVertical="10dp">
 
-        <!-- Tab 1: Tổng quan -->
+        <!-- Tab 1: Cụm sân -->
         <TextView
             android:id="@+id/tabOverview"
             android:layout_width="0dp"
@@ -85,12 +87,12 @@
             android:layout_weight="1"
             android:background="@drawable/bg_owner_chip_selected"
             android:gravity="center"
-            android:text="Tổng quan"
+            android:text="Cụm sân"
             android:textColor="@color/white"
             android:textSize="13sp"
             android:textStyle="bold" />
 
-        <!-- Tab 2: Danh sách sân (5) -->
+        <!-- Tab 2: Sân con (5) -->
         <TextView
             android:id="@+id/tabPitchList"
             android:layout_width="0dp"
@@ -99,7 +101,7 @@
             android:layout_weight="1.2"
             android:background="@drawable/bg_owner_chip_unselected"
             android:gravity="center"
-            android:text="Danh sách sân (5)"
+            android:text="Sân con (5)"
             android:textColor="@color/owner_chip_unselected_text"
             android:textSize="13sp" />
 
@@ -132,7 +134,7 @@
             android:paddingTop="14dp"
             android:paddingBottom="24dp">
 
-            <!-- ================= TAB 1: TỔNG QUAN ================= -->
+            <!-- ================= TAB 1: CỤM SÂN ================= -->
             <LinearLayout
                 android:id="@+id/layoutOverviewContainer"
                 android:layout_width="match_parent"
@@ -141,70 +143,71 @@
                 android:visibility="visible">
 
                 <!-- Turf Pitch Big Banner Card -->
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card_pitch_green"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_height="170dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_badge_chu_san"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:text="Đang mở cửa: 05:30 - 23:30"
-                        android:textColor="@color/owner_lime_badge_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Cụm sân Thăng Long"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="68 Miếu Đầm, Mễ Trì, Cầu Giấy, Hà Nội"
-                        android:textColor="#D1FAE5"
-                        android:textSize="12sp" />
-
-                    <View
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginVertical="12dp"
-                        android:background="#059669" />
+                        android:layout_height="match_parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        <!-- Pitch field pattern -->
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_profile_pitch_banner" />
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <!-- Dark green overlay for text contrast -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp"
+                            android:layout_gravity="bottom"
+                            android:background="#A6072D1E" />
+
+                        <!-- Content Overlay -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Hotline: 0912.123.456"
-                            android:textColor="#D1FAE5"
-                            android:textSize="12sp" />
+                            android:layout_gravity="bottom"
+                            android:orientation="vertical"
+                            android:padding="14dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Quy mô: 5 sân cỏ nhân tạo"
-                            android:textColor="@color/white"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
+                            <TextView
+                                android:id="@+id/tvComplexDetailHours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_badge_chu_san"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="3dp"
+                                android:text="Khung giờ mở cửa · 05:30 - 23:30"
+                                android:textColor="@color/owner_lime_badge_text"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvComplexDetailTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Cụm sân Thăng long"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvComplexDetailAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="152 Hoàng Quốc Việt, Cầu Giấy , Hà Nội"
+                                android:textColor="#D1FAE5"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
                 <!-- Vị trí trên bản đồ -->
                 <LinearLayout
@@ -234,38 +237,146 @@
                             android:id="@+id/btnViewMap"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Xem lại 🗺️"
-                            android:textColor="@color/owner_green_btn"
+                            android:background="@drawable/bg_owner_status_active"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="Ghim lại"
+                            android:textColor="@color/owner_status_active_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Mini Map with 6 road blocks and center dot -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="96dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_map_preview">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_weight="1"
+                                    android:background="#DEEAE0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.4"
+                                    android:background="#DEEAE0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_weight="1"
+                                    android:background="#DEEAE0" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="6dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_weight="1"
+                                    android:background="#DEEAE0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.4"
+                                    android:background="#DEEAE0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_weight="1"
+                                    android:background="#DEEAE0" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Center Dot Pin -->
+                        <View
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/bg_pin_circle_white" />
+                    </FrameLayout>
+
+                    <!-- Row 1: Tọa độ -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tọa độ"
+                            android:textColor="@color/owner_text_sub"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvComplexDetailCoordinates"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10,7291° B, 106,7313° Đ"
+                            android:textColor="@color/owner_text_title"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <FrameLayout
+                    <!-- Row 2: Hotline -->
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#E2E8F0">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/bg_pitch_field" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
 
                         <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hotline"
+                            android:textColor="@color/owner_text_sub"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvComplexDetailHotline"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:background="@drawable/bg_owner_stats_card"
-                            android:paddingHorizontal="10dp"
-                            android:paddingVertical="4dp"
-                            android:text="📍 21.0075° N, 105.7825° E"
-                            android:textColor="@color/white"
-                            android:textSize="11sp" />
-                    </FrameLayout>
+                            android:text="0908 123 456"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <!-- Hình ảnh cụm sân -->
+                <!-- Hình ảnh (3) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -274,46 +385,136 @@
                     android:orientation="vertical"
                     android:padding="14dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hình ảnh sân (3)"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hình ảnh (3)"
+                            android:textColor="@color/owner_text_title"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:background="@drawable/bg_icon_square_add"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="#0A8B4D"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="72dp"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
-                        <ImageView
+                        <!-- Photo 1 -->
+                        <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="6dp"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_slot_available"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_football_pitch_thumb" />
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
 
-                        <ImageView
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/bg_profile_pitch_banner" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:background="#80000000"
+                                    android:gravity="center"
+                                    android:paddingVertical="3dp"
+                                    android:text="Ảnh sân"
+                                    android:textColor="@color/white"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Photo 2 -->
+                        <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="3dp"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_slot_available"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_football_pitch_thumb" />
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
 
-                        <ImageView
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/bg_profile_pitch_banner" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:background="#80000000"
+                                    android:gravity="center"
+                                    android:paddingVertical="3dp"
+                                    android:text="Ảnh sân"
+                                    android:textColor="@color/white"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Photo 3 -->
+                        <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="6dp"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_slot_available"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_football_pitch_thumb" />
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="0dp">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/bg_profile_pitch_banner" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:background="#80000000"
+                                    android:gravity="center"
+                                    android:paddingVertical="3dp"
+                                    android:text="Ảnh sân"
+                                    android:textColor="@color/white"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -334,52 +535,52 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="6dp"
                         android:checked="true"
-                        android:text="Đèn LED tiêu chuẩn FIFA"
+                        android:text="Đèn LED thi đấu ban đêm"
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="Bãi đỗ xe ô tô và xe máy"
+                        android:text="Bãi đỗ ô tô và xe máy có bảo vệ"
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="Căng tin giải khát &amp; đồ uống"
+                        android:text="Căng tin giải khát"
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="Phòng tắm &amp; thay đồ miễn phí"
+                        android:text="Phòng tắm nóng lạnh, thay đồ"
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="Wifi tốc độ cao"
+                        android:text="Wifi miễn phí"
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
 
-                    <com.google.android.material.materialswitch.MaterialSwitch
+                    <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
-                        android:text="Cho thuê giày &amp; áo bib"
+                        android:text="Khán đài 150 chỗ có mái che"
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -404,10 +605,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Các sân con hiện tại"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:text="Các sân thành phần"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="13sp" />
 
                     <Button
                         android:id="@+id/btnAddSubPitch"
@@ -441,11 +641,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_tag_pill"
+                            android:background="@drawable/bg_tag_pitch_blue"
                             android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
+                            android:paddingVertical="3dp"
                             android:text="Sân 5"
-                            android:textColor="#065F46"
+                            android:textColor="#0369A1"
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
@@ -494,9 +694,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="250.000đ/giờ"
+                            android:text="220.000đ/giờ"
                             android:textColor="@color/owner_green_btn"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -532,11 +732,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_tag_pill"
+                            android:background="@drawable/bg_tag_pitch_blue"
                             android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
+                            android:paddingVertical="3dp"
                             android:text="Sân 5"
-                            android:textColor="#065F46"
+                            android:textColor="#0369A1"
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
@@ -585,9 +785,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="250.000đ/giờ"
+                            android:text="220.000đ/giờ"
                             android:textColor="@color/owner_green_btn"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -623,11 +823,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_tag_pill"
+                            android:background="@drawable/bg_tag_pitch_blue"
                             android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
+                            android:paddingVertical="3dp"
                             android:text="Sân 7"
-                            android:textColor="#065F46"
+                            android:textColor="#0369A1"
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
@@ -661,7 +861,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="30 × 50 m · Ghép từ Sân 5-A &amp; Sân 5-B"
+                        android:text="33 × 52 m · Ghép từ 5-A và 5-B"
                         android:textColor="@color/owner_text_sub"
                         android:textSize="12sp" />
 
@@ -678,7 +878,7 @@
                             android:layout_weight="1"
                             android:text="380.000đ/giờ"
                             android:textColor="@color/owner_green_btn"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -687,7 +887,7 @@
                             android:layout_height="32dp"
                             android:background="@drawable/bg_owner_btn_manage"
                             android:paddingHorizontal="14dp"
-                            android:text="Đổi lịch"
+                            android:text="Bảo trì"
                             android:textAllCaps="false"
                             android:textColor="@color/owner_btn_manage_text"
                             android:textSize="11sp"
@@ -701,7 +901,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_owner_white_card"
+                    android:background="@drawable/bg_card_pitch_maintenance"
                     android:orientation="vertical"
                     android:padding="14dp">
 
@@ -714,11 +914,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_tag_pill"
+                            android:background="@drawable/bg_tag_pitch_blue"
                             android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
+                            android:paddingVertical="3dp"
                             android:text="Sân 7"
-                            android:textColor="#065F46"
+                            android:textColor="#0369A1"
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
@@ -730,11 +930,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_owner_status_paused"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="3dp"
                             android:text="Bảo trì"
-                            android:textColor="@color/owner_status_paused_text"
+                            android:textColor="#B45309"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -752,9 +949,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="30 × 50 m · Cỏ Desso 5.5 cm (Đang thay cỏ)"
+                        android:text="30 × 50 m · Monofilament 5,5 cm"
                         android:textColor="@color/owner_text_sub"
                         android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Lý do: Bảo dưỡng hạt cao su định kỳ, căng lưới"
+                        android:textColor="#B45309"
+                        android:textSize="11sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -769,7 +974,7 @@
                             android:layout_weight="1"
                             android:text="380.000đ/giờ"
                             android:textColor="@color/owner_green_btn"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -789,6 +994,7 @@
 
                 <!-- Sân 11 -->
                 <LinearLayout
+                    android:id="@+id/cardPitch11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -805,11 +1011,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_tag_pill"
+                            android:background="@drawable/bg_tag_pitch_blue"
                             android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
+                            android:paddingVertical="3dp"
                             android:text="Sân 11"
-                            android:textColor="#065F46"
+                            android:textColor="#0369A1"
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
@@ -834,7 +1040,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Sân 11 Chuẩn"
+                        android:text="Sân 11"
                         android:textColor="@color/owner_text_title"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -843,7 +1049,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="60 × 100 m · Cỏ tự nhiên Zeon Zoysia"
+                        android:text="68 × 105 m · Cỏ tự nhiên Zeon Zoysia"
                         android:textColor="@color/owner_text_sub"
                         android:textSize="12sp" />
 
@@ -860,7 +1066,7 @@
                             android:layout_weight="1"
                             android:text="1.200.000đ/giờ"
                             android:textColor="@color/owner_green_btn"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <Button
@@ -869,7 +1075,7 @@
                             android:layout_height="32dp"
                             android:background="@drawable/bg_owner_btn_manage"
                             android:paddingHorizontal="14dp"
-                            android:text="Đổi lịch"
+                            android:text="Bảo trì"
                             android:textAllCaps="false"
                             android:textColor="@color/owner_btn_manage_text"
                             android:textSize="11sp"
@@ -887,27 +1093,23 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
+                <!-- Notice Bar -->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bảng giá thuê sân theo khung giờ"
-                    android:textColor="@color/owner_text_title"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Áp dụng đồng bộ cho tất cả các đơn đặt sân"
-                    android:textColor="@color/owner_text_sub"
+                    android:background="@drawable/bg_owner_notice_box"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="10dp"
+                    android:text="Giá giờ vàng được áp dụng tự động khi chốt lịch."
+                    android:textColor="#2D5A3F"
                     android:textSize="12sp" />
 
-                <!-- Ca 1: Sáng sớm & trưa -->
+                <!-- Ca 1: Sáng sớm và thấp điểm -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_owner_white_card"
                     android:orientation="vertical"
                     android:padding="14dp">
@@ -922,9 +1124,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Sáng sớm và buổi trưa\n(06:00 - 16:00)"
+                            android:text="Sáng sớm và thấp điểm"
                             android:textColor="@color/owner_text_title"
-                            android:textSize="13sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -933,48 +1135,106 @@
                             android:background="@drawable/bg_owner_status_active"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="3dp"
-                            android:text="Bình thường"
+                            android:text="Giờ thường"
                             android:textColor="@color/owner_status_active_text"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="05:30 – 15:00"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="#F8FAFC"
-                        android:padding="8dp">
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 5\n180.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 5"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="180.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 7\n300.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 7"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="300.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 11\n900.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 11"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="900.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -982,7 +1242,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_owner_white_card"
                     android:orientation="vertical"
                     android:padding="14dp">
@@ -997,9 +1257,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Chiều chuyển ca\n(16:00 - 17:30)"
+                            android:text="Chiều chuyển ca"
                             android:textColor="@color/owner_text_title"
-                            android:textSize="13sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -1008,48 +1268,106 @@
                             android:background="@drawable/bg_owner_status_active"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="3dp"
-                            android:text="Bình thường"
+                            android:text="Giờ thường"
                             android:textColor="@color/owner_status_active_text"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="15:00 – 17:30"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="#F8FAFC"
-                        android:padding="8dp">
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 5\n220.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 5"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="240.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 7\n360.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 7"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="420.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 11\n1.000.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 11"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="1.200.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1057,8 +1375,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_owner_white_card"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_card_pitch_maintenance"
                     android:orientation="vertical"
                     android:padding="14dp">
 
@@ -1072,59 +1390,114 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Giờ vàng cao điểm\n(17:30 - 20:30)"
+                            android:text="Giờ vàng cao điểm"
                             android:textColor="@color/owner_text_title"
-                            android:textSize="13sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_owner_status_paused"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="3dp"
-                            android:text="Cao điểm"
-                            android:textColor="@color/owner_status_paused_text"
+                            android:text="Giờ vàng"
+                            android:textColor="#B45309"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="17:30 – 20:30"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="#FEF3C7"
-                        android:padding="8dp">
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:text="Sân 5\n280.000đ"
-                            android:textColor="#92400E"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 5"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="310.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:text="Sân 7\n450.000đ"
-                            android:textColor="#92400E"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 7"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="580.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:text="Sân 11\n1.400.000đ"
-                            android:textColor="#92400E"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 11"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="1.800.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1132,7 +1505,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_owner_white_card"
                     android:orientation="vertical"
                     android:padding="14dp">
@@ -1147,9 +1520,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Đêm muộn\n(20:30 - 23:00)"
+                            android:text="Đêm muộn"
                             android:textColor="@color/owner_text_title"
-                            android:textSize="13sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -1158,48 +1531,106 @@
                             android:background="@drawable/bg_owner_status_active"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="3dp"
-                            android:text="Bình thường"
+                            android:text="Giờ thường"
                             android:textColor="@color/owner_status_active_text"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="20:30 – 23:30"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="#F8FAFC"
-                        android:padding="8dp">
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 5\n200.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 5"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="200.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 7\n340.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 7"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="450.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_gray"
                             android:gravity="center"
-                            android:text="Sân 11\n1.000.000đ"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 11"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="1.300.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1207,8 +1638,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_owner_white_card"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_card_pitch_maintenance"
                     android:orientation="vertical"
                     android:padding="14dp">
 
@@ -1222,59 +1653,114 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Phụ thu Cuối tuần &amp; Lễ Tết"
+                            android:text="Phụ thu cuối tuần"
                             android:textColor="@color/owner_text_title"
-                            android:textSize="13sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/bg_tag_pill"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="3dp"
-                            android:text="Phụ phí"
-                            android:textColor="#065F46"
+                            android:text="Phụ thu"
+                            android:textColor="#B45309"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Thứ 7, Chủ nhật"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="#ECFDF5"
-                        android:padding="8dp">
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:text="Sân 5\n+50.000đ"
-                            android:textColor="#065F46"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 5"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="40.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:text="Sân 7\n+70.000đ"
-                            android:textColor="#065F46"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 7"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="70.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
                             android:layout_weight="1"
+                            android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:text="Sân 11\n+120.000đ"
-                            android:textColor="#065F46"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:orientation="vertical"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sân 11"
+                                android:textColor="@color/owner_text_sub"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="200.000"
+                                android:textColor="@color/owner_text_title"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

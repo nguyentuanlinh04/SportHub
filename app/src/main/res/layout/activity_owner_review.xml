@@ -17,22 +17,20 @@
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="14dp"
+        android:paddingHorizontal="16dp"
         android:paddingVertical="10dp">
 
-        <FrameLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_owner_logo">
+        <!-- Logo Icon SportHub -->
+        <ImageView
+            android:id="@+id/btnBackReview"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="SportHub Logo"
+            android:src="@drawable/logo_sporthub" />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_nav_review"
-                app:tint="@color/white" />
-        </FrameLayout>
-
+        <!-- Tiêu đề SportHub & Phụ đề -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,18 +47,22 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvReviewHeaderSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Đánh giá &amp; phản hồi từ khách"
+                android:text="Cụm sân Thăng Long · 5 sân"
                 android:textColor="@color/owner_text_sub"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/badgeRoleReview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_badge_chu_san"
+            android:clickable="true"
+            android:focusable="true"
             android:paddingHorizontal="12dp"
             android:paddingVertical="5dp"
             android:text="Chủ sân"
@@ -80,16 +82,57 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="14dp"
             android:paddingBottom="24dp">
 
-            <!-- Card Tổng Quan Đánh Giá -->
+            <!-- Search Input -->
+            <EditText
+                android:id="@+id/edtSearchReview"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_owner_search_input"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/owner_text_sub"
+                android:hint="Tìm khách quen, SĐT, đội..."
+                android:paddingHorizontal="14dp"
+                android:textColor="@color/owner_text_title"
+                android:textColorHint="@color/owner_text_sub"
+                android:textSize="13sp" />
+
+            <!-- Section 1 Header: Khách thân thiết và VIP -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Khách thân thiết và VIP"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 đội"
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- CUSTOMER CARD 1: Trần Minh Đức · Bão Táp -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_owner_white_card"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="14dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,92 +140,241 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4.8"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="32sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="⭐⭐⭐⭐⭐"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="218 đánh giá"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="70dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:background="#E2E8F0" />
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="Trần Minh Đức · Bão Táp"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mặt cỏ: 4.9/5 · Rất êm"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_vip"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="3dp"
+                        android:text="VIP"
+                        android:textColor="#166534"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Chiếu sáng: 4.8/5 · Rõ nét"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="0903 111 222"
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="12sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Dịch vụ &amp; Bãi xe: 4.7/5"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#F1F5F9" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Đã đá 48 trận"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chi tiêu 42.500.000đ"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Tiêu đề Danh Sách Đánh Giá -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Đánh giá từ người chơi"
-                android:textColor="@color/owner_text_title"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <!-- Review 1: Nguyễn Hoàng Khang -->
+            <!-- CUSTOMER CARD 2: Nguyễn Thanh Tùng · V-Bank -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nguyễn Thanh Tùng · V-Bank"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_vip"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="3dp"
+                        android:text="VIP"
+                        android:textColor="#166534"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="0978 111 222"
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#F1F5F9" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Đã đá 34 trận"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chi tiêu 36.800.000đ"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- CUSTOMER CARD 3: Lê Quang Huy · FC IT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Lê Quang Huy · FC IT"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_loyal"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="3dp"
+                        android:text="Thân thiết"
+                        android:textColor="#334155"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="0938 777 444"
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#F1F5F9" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Đã đá 19 trận"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chi tiêu 18.400.000đ"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Section 2 Header: Đánh giá từ người chơi -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Đánh giá từ người chơi"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="★ 4,8/5"
+                    android:textColor="@color/owner_text_title"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- REVIEW CARD: Nguyễn Hoàng Khang -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_owner_white_card"
                 android:orientation="vertical"
                 android:padding="14dp">
@@ -210,96 +402,28 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="20:15 · 19/11/2026 · Đặt Sân 5-A"
-                    android:textColor="@color/owner_text_sub"
-                    android:textSize="11sp" />
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Mặt sân mới đá rất êm, hệ thống đèn chiếu sáng cực chuẩn không bị chói mắt. Chủ sân và nhân viên hỗ trợ nhiệt tình."
-                    android:textColor="@color/owner_text_title"
-                    android:textSize="13sp" />
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="&quot;Mặt cỏ đẹp, sạch. Lưới khung thành góc phải hơi chùng, bóng lọt ra sau.&quot;"
+                    android:textColor="@color/owner_text_sub"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
 
+                <!-- Nút Phản hồi -->
                 <Button
                     android:id="@+id/btnReplyKhang"
                     android:layout_width="wrap_content"
-                    android:layout_height="32dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_owner_add_btn"
+                    android:background="@drawable/bg_staff_action_btn"
                     android:paddingHorizontal="14dp"
-                    android:text="Trả lời đánh giá"
+                    android:text="Phản hồi"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@null" />
-            </LinearLayout>
-
-            <!-- Review 2: Trần Tuấn Anh -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_owner_white_card"
-                android:orientation="vertical"
-                android:padding="14dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Trần Tuấn Anh"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="⭐⭐⭐⭐⭐"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="18:30 · 18/11/2026 · Đặt Sân 7-1"
-                    android:textColor="@color/owner_text_sub"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Bãi đỗ xe rộng rãi, có bảo vệ trông coi cẩn thận. Nước giải khát phục vụ chu đáo, giá cả hợp lý."
-                    android:textColor="@color/owner_text_title"
-                    android:textSize="13sp" />
-
-                <Button
-                    android:id="@+id/btnReplyTuanAnh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_owner_add_btn"
-                    android:paddingHorizontal="14dp"
-                    android:text="Trả lời đánh giá"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
+                    android:textColor="#334155"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     app:backgroundTint="@null" />
             </LinearLayout>
@@ -307,12 +431,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- BOTTOM NAVIGATION (Active Tab 5: Đánh giá) -->
+    <!-- BOTTOM NAVIGATION (Active Tab: Đánh giá) -->
     <LinearLayout
-        android:id="@+id/bottomNavReview"
+        android:id="@+id/ownerBottomNav"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/owner_nav_bg"
+        android:layout_height="62dp"
+        android:background="@color/white"
         android:elevation="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">

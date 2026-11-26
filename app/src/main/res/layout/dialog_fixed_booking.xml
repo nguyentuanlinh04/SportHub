@@ -7,6 +7,14 @@
     android:orientation="vertical"
     android:padding="20dp">
 
+    <!-- Drag Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"

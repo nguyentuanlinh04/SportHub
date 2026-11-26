@@ -26,7 +26,9 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
 
     private TextView tabOverview, tabPitchList, tabPriceTable;
     private View layoutOverviewContainer, layoutPitchListContainer, layoutPriceTableContainer;
-    private TextView tvComplexDetailTitle;
+    private TextView tvComplexDetailTitle, tvComplexDetailSub, tvComplexDetailAddress, tvComplexDetailHours, tvComplexDetailCoordinates, tvComplexDetailHotline;
+    private View cardPitch11;
+    private String currentComplexName = "Cụm Sân Thăng Long";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +58,105 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         layoutPriceTableContainer = findViewById(R.id.layoutPriceTableContainer);
 
         tvComplexDetailTitle = findViewById(R.id.tvComplexDetailTitle);
+        tvComplexDetailSub = findViewById(R.id.tvComplexDetailSub);
+        tvComplexDetailAddress = findViewById(R.id.tvComplexDetailAddress);
+        tvComplexDetailHours = findViewById(R.id.tvComplexDetailHours);
+        tvComplexDetailCoordinates = findViewById(R.id.tvComplexDetailCoordinates);
+        tvComplexDetailHotline = findViewById(R.id.tvComplexDetailHotline);
+        cardPitch11 = findViewById(R.id.cardPitch11);
 
         String complexName = getIntent().getStringExtra("COMPLEX_NAME");
         if (complexName != null && !complexName.isEmpty()) {
-            tvComplexDetailTitle.setText(complexName);
+            currentComplexName = complexName;
+        }
+
+        bindComplexData(currentComplexName);
+
+        if (tvComplexDetailSub != null) {
+            tvComplexDetailSub.setOnClickListener(v -> showComplexSwitcherDialog());
         }
 
         findViewById(R.id.btnBackDetail).setOnClickListener(v -> finish());
         findViewById(R.id.btnViewMap).setOnClickListener(v -> {
             Toast.makeText(this, "Xem vị trí cơ sở trên Google Maps", Toast.LENGTH_SHORT).show();
         });
+
+        View badgeRoleDetail = findViewById(R.id.badgeRoleDetail);
+        if (badgeRoleDetail != null) {
+            badgeRoleDetail.setOnClickListener(v -> {
+                Intent intent = new Intent(OwnerComplexDetailActivity.this, OwnerProfileActivity.class);
+                startActivity(intent);
+            });
+        }
+    }
+
+    private void showComplexSwitcherDialog() {
+        String[] options = {
+                "🌐 Tất cả các sân (Toàn hệ thống · 9 sân)",
+                "⚽ Cụm sân Thăng Long (5 sân con)",
+                "⚽ Cụm sân Mai Dịch (4 sân con)",
+                "⚽ Cụm sân Riverside (Tạm ngưng)"
+        };
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Chọn cụm sân quản lý")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        bindComplexData("Tất cả các sân");
+                    } else if (which == 1) {
+                        bindComplexData("Cụm Sân Thăng Long");
+                    } else if (which == 2) {
+                        bindComplexData("Cụm Sân Mai Dịch");
+                    } else {
+                        bindComplexData("Cụm Sân Riverside");
+                    }
+                    Toast.makeText(this, "Đã chuyển sang: " + currentComplexName, Toast.LENGTH_SHORT).show();
+                })
+                .show();
+    }
+
+    private void bindComplexData(String name) {
+        if (name.contains("Tất cả") || name.contains("Toàn hệ thống")) {
+            currentComplexName = "Tất cả các sân";
+            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Tất cả các sân");
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Tất cả các sân · 3 cơ sở · 9 sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("Hà Nội (Thăng Long, Mai Dịch) & TP.HCM (Riverside)");
+            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 05:30 - 23:30");
+            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("Toàn quốc · 3 cụm sân");
+            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("1900 6868");
+            if (tabPitchList != null) tabPitchList.setText("Sân con (9)");
+            if (cardPitch11 != null) cardPitch11.setVisibility(View.VISIBLE);
+        } else if (name.contains("Mai Dịch")) {
+            currentComplexName = "Cụm Sân Mai Dịch";
+            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Cụm sân Mai Dịch");
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Cụm sân Mai Dịch · 4 sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("28 Đường số 2, P. Bình An, TP. Hà Nội");
+            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 06:00 - 23:00");
+            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("21.0375° B, 105.7825° Đ");
+            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0918 654 321");
+            if (tabPitchList != null) tabPitchList.setText("Sân con (4)");
+            if (cardPitch11 != null) cardPitch11.setVisibility(View.GONE);
+        } else if (name.contains("Riverside")) {
+            currentComplexName = "Cụm Sân Riverside";
+            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Cụm sân Riverside");
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Cụm sân Riverside · 0 sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("86 Nguyễn Văn Hưởng, P. Thảo Điền, TP. Thủ Đức, TP.HCM");
+            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 06:00 - 22:00");
+            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("10.8032° B, 106.7324° Đ");
+            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0909 888 999");
+            if (tabPitchList != null) tabPitchList.setText("Sân con (0)");
+            if (cardPitch11 != null) cardPitch11.setVisibility(View.GONE);
+        } else {
+            // Thăng Long
+            currentComplexName = "Cụm Sân Thăng Long";
+            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Cụm sân Thăng long");
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Cụm sân Thăng long · 5 sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("152 Hoàng Quốc Việt, Cầu Giấy , Hà Nội");
+            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 05:30 - 23:30");
+            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("10,7291° B, 106,7313° Đ");
+            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0908 123 456");
+            if (tabPitchList != null) tabPitchList.setText("Sân con (5)");
+            if (cardPitch11 != null) cardPitch11.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setupTabs() {
@@ -123,7 +214,7 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         findViewById(R.id.btnChange72).setOnClickListener(v -> {
             Toast.makeText(this, "Đã mở lại hoạt động cho Sân 7-2 thành công!", Toast.LENGTH_SHORT).show();
         });
-        findViewById(R.id.btnChange11).setOnClickListener(v -> showMaintenanceDialog("Sân 11 Chuẩn"));
+        findViewById(R.id.btnChange11).setOnClickListener(v -> showMaintenanceDialog("Sân 11"));
     }
 
     // Modal: Thêm sân con mới (khớp thiết kế ảnh 2)
@@ -189,19 +280,27 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
     private void setupBottomNav() {
         findViewById(R.id.navDetailFacilities).setOnClickListener(v -> finish());
         findViewById(R.id.navDetailSchedule).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerScheduleActivity.class));
+            Intent intent = new Intent(this, OwnerScheduleActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
         findViewById(R.id.navDetailStaff).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerStaffActivity.class));
+            Intent intent = new Intent(this, OwnerStaffActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
         findViewById(R.id.navDetailFinance).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerFinanceActivity.class));
+            Intent intent = new Intent(this, OwnerFinanceActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
         findViewById(R.id.navDetailReviews).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerReviewActivity.class));
+            Intent intent = new Intent(this, OwnerReviewActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
     }

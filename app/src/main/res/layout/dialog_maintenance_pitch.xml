@@ -7,6 +7,14 @@
     android:orientation="vertical"
     android:padding="20dp">
 
+    <!-- Drag Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,32 +46,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Tạm dừng nhận lịch đặt từ khách hàng"
+        android:text="Sân sẽ ngừng nhận lịch đặt mới."
         android:textColor="@color/owner_text_sub"
         android:textSize="12sp" />
 
-    <!-- Lý do bảo trì -->
+    <!-- Lý do hiển thị cho khách -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Lý do bảo trì &amp; sửa chữa"
+        android:text="Lý do hiển thị cho khách"
         android:textColor="@color/owner_text_title"
         android:textSize="12sp"
         android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/edtMaintenanceReason"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/bg_owner_search_input"
         android:gravity="top|start"
         android:padding="12dp"
-        android:text="Bảo dưỡng mặt cỏ, kiểm tra dàn pha chiếu sáng định kỳ."
+        android:text="Bảo dưỡng hạt cao su, kiểm tra đèn pha và lưới."
         android:textColor="@color/owner_text_title"
         android:textSize="13sp" />
 
-    <!-- Button Xác nhận -->
+    <!-- Button Khóa sân để bảo trì -->
     <Button
         android:id="@+id/btnConfirmMaintenance"
         android:layout_width="match_parent"
@@ -71,7 +80,7 @@
         android:layout_marginTop="18dp"
         android:background="@drawable/bg_btn_action_green"
         android:backgroundTint="#B45309"
-        android:text="Xác nhận đưa vào bảo trì"
+        android:text="Khóa sân để bảo trì"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"

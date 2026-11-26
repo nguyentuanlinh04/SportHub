@@ -3,7 +3,6 @@ package fpoly.duan1.sporthub_new;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,36 +16,21 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class OwnerStaffActivity extends AppCompatActivity {
 
-    private static final String PREFS_NAME = "owner_staff_storage";
-
-    private TextView chipStaffThangLong, chipStaffMaiDich, chipStaffRiverside;
-    private View layoutStaffListThangLong, layoutStaffListMaiDich, layoutStaffListRiverside;
-    private TextView tvStaffHeaderSubtitle;
-
-    // Staff Card Views
-    private View cardStaffHung, cardStaffThao, cardStaffLoc;
-    private View cardStaffNam, cardStaffMai;
-    private View cardStaffTrong, cardStaffTuan;
-
-    private SharedPreferences prefs;
-
-    // Track active complex index (0: Thăng Long, 1: Mai Dịch, 2: Riverside)
-    private int currentComplexIndex = 0;
+    private String currentComplexName = "Cụm Sân Thăng Long";
+    private boolean isHungLocked = false;
+    private boolean isThaoLocked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_owner_staff);
-
-        prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainOwnerStaff), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -55,39 +39,27 @@ public class OwnerStaffActivity extends AppCompatActivity {
         });
 
         initViews();
-        setupComplexTabs();
         setupStaffActions();
-        applyStaffVisibilityAndCounts();
         setupBottomNav();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        applyStaffVisibilityAndCounts();
-    }
-
     private void initViews() {
-        chipStaffThangLong = findViewById(R.id.chipStaffThangLong);
-        chipStaffMaiDich = findViewById(R.id.chipStaffMaiDich);
-        chipStaffRiverside = findViewById(R.id.chipStaffRiverside);
+        String passedComplex = getIntent().getStringExtra("COMPLEX_NAME");
+        if (passedComplex != null && !passedComplex.isEmpty()) {
+            currentComplexName = passedComplex;
+        }
 
-        layoutStaffListThangLong = findViewById(R.id.layoutStaffListThangLong);
-        layoutStaffListMaiDich = findViewById(R.id.layoutStaffListMaiDich);
-        layoutStaffListRiverside = findViewById(R.id.layoutStaffListRiverside);
+        updateStaffHeaderSubtitle();
 
-        tvStaffHeaderSubtitle = findViewById(R.id.tvStaffHeaderSubtitle);
+        TextView tvSub = findViewById(R.id.tvStaffHeaderSubtitle);
+        if (tvSub != null) {
+            tvSub.setOnClickListener(v -> showComplexSwitcherDialog());
+        }
 
-        // Staff cards
-        cardStaffHung = findViewById(R.id.cardStaffHung);
-        cardStaffThao = findViewById(R.id.cardStaffThao);
-        cardStaffLoc = findViewById(R.id.cardStaffLoc);
-
-        cardStaffNam = findViewById(R.id.cardStaffNam);
-        cardStaffMai = findViewById(R.id.cardStaffMai);
-
-        cardStaffTrong = findViewById(R.id.cardStaffTrong);
-        cardStaffTuan = findViewById(R.id.cardStaffTuan);
+        View btnBack = findViewById(R.id.btnBackStaff);
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
 
         View badgeRoleStaff = findViewById(R.id.badgeRoleStaff);
         if (badgeRoleStaff != null) {
@@ -98,219 +70,195 @@ public class OwnerStaffActivity extends AppCompatActivity {
         }
     }
 
-    private void setupComplexTabs() {
-        chipStaffThangLong.setOnClickListener(v -> selectComplexTab(0));
-        chipStaffMaiDich.setOnClickListener(v -> selectComplexTab(1));
-        chipStaffRiverside.setOnClickListener(v -> selectComplexTab(2));
-    }
-
-    private void selectComplexTab(int index) {
-        currentComplexIndex = index;
-
-        // Reset all chips style
-        resetChip(chipStaffThangLong);
-        resetChip(chipStaffMaiDich);
-        resetChip(chipStaffRiverside);
-
-        // Hide all lists
-        layoutStaffListThangLong.setVisibility(View.GONE);
-        layoutStaffListMaiDich.setVisibility(View.GONE);
-        layoutStaffListRiverside.setVisibility(View.GONE);
-
-        if (index == 0) {
-            setChipSelected(chipStaffThangLong);
-            layoutStaffListThangLong.setVisibility(View.VISIBLE);
-        } else if (index == 1) {
-            setChipSelected(chipStaffMaiDich);
-            layoutStaffListMaiDich.setVisibility(View.VISIBLE);
-        } else {
-            setChipSelected(chipStaffRiverside);
-            layoutStaffListRiverside.setVisibility(View.VISIBLE);
+    private void updateStaffHeaderSubtitle() {
+        TextView tvSub = findViewById(R.id.tvStaffHeaderSubtitle);
+        if (tvSub != null) {
+            if (currentComplexName.contains("Tất cả") || currentComplexName.contains("Toàn hệ thống")) {
+                tvSub.setText("Tất cả các sân · Toàn hệ thống (3 cơ sở) ▾");
+            } else if (currentComplexName.contains("Mai Dịch")) {
+                tvSub.setText("Cụm sân Mai Dịch · 4 sân ▾");
+            } else if (currentComplexName.contains("Riverside")) {
+                tvSub.setText("Cụm sân Riverside · 0 sân ▾");
+            } else {
+                tvSub.setText("Cụm sân Thăng Long · 5 sân ▾");
+            }
         }
-
-        applyStaffVisibilityAndCounts();
     }
 
-    private void resetChip(TextView chip) {
-        chip.setBackgroundResource(R.drawable.bg_owner_chip_unselected);
-        chip.setTextColor(ContextCompat.getColor(this, R.color.owner_chip_unselected_text));
-    }
-
-    private void setChipSelected(TextView chip) {
-        chip.setBackgroundResource(R.drawable.bg_owner_chip_selected);
-        chip.setTextColor(Color.WHITE);
-    }
-
-    /**
-     * Đồng bộ trạng thái đã xóa vào SharedPreferences và cập nhật số lượng nhân sự hiển thị
-     */
-    private void applyStaffVisibilityAndCounts() {
-        // Cụm Thăng Long
-        boolean isHungDeleted = prefs.getBoolean("deleted_hung", false);
-        boolean isThaoDeleted = prefs.getBoolean("deleted_thao", false);
-        boolean isLocDeleted = prefs.getBoolean("deleted_loc", false);
-
-        if (cardStaffHung != null) cardStaffHung.setVisibility(isHungDeleted ? View.GONE : View.VISIBLE);
-        if (cardStaffThao != null) cardStaffThao.setVisibility(isThaoDeleted ? View.GONE : View.VISIBLE);
-        if (cardStaffLoc != null) cardStaffLoc.setVisibility(isLocDeleted ? View.GONE : View.VISIBLE);
-
-        int countTL = (isHungDeleted ? 0 : 1) + (isThaoDeleted ? 0 : 1) + (isLocDeleted ? 0 : 1);
-        chipStaffThangLong.setText("Cụm Thăng Long (" + countTL + ")");
-
-        // Cụm Mai Dịch
-        boolean isNamDeleted = prefs.getBoolean("deleted_nam", false);
-        boolean isMaiDeleted = prefs.getBoolean("deleted_mai", false);
-
-        if (cardStaffNam != null) cardStaffNam.setVisibility(isNamDeleted ? View.GONE : View.VISIBLE);
-        if (cardStaffMai != null) cardStaffMai.setVisibility(isMaiDeleted ? View.GONE : View.VISIBLE);
-
-        int countMD = (isNamDeleted ? 0 : 1) + (isMaiDeleted ? 0 : 1);
-        chipStaffMaiDich.setText("Cụm Mai Dịch (" + countMD + ")");
-
-        // Cụm Riverside
-        boolean isTrongDeleted = prefs.getBoolean("deleted_trong", false);
-        boolean isTuanDeleted = prefs.getBoolean("deleted_tuan", false);
-
-        if (cardStaffTrong != null) cardStaffTrong.setVisibility(isTrongDeleted ? View.GONE : View.VISIBLE);
-        if (cardStaffTuan != null) cardStaffTuan.setVisibility(isTuanDeleted ? View.GONE : View.VISIBLE);
-
-        int countRS = (isTrongDeleted ? 0 : 1) + (isTuanDeleted ? 0 : 1);
-        chipStaffRiverside.setText("Cụm Riverside (" + countRS + ")");
-
-        // Cập nhật Subtitle trên Header
-        if (currentComplexIndex == 0) {
-            tvStaffHeaderSubtitle.setText("Cụm Sân Thăng Long · " + countTL + " nhân viên");
-        } else if (currentComplexIndex == 1) {
-            tvStaffHeaderSubtitle.setText("Cụm Sân Mai Dịch · " + countMD + " nhân viên");
-        } else {
-            tvStaffHeaderSubtitle.setText("Cụm Sân Riverside · " + countRS + " nhân viên");
-        }
+    private void showComplexSwitcherDialog() {
+        String[] options = {
+                "🌐 Tất cả các sân (Toàn hệ thống · 9 sân)",
+                "⚽ Cụm sân Thăng Long (5 sân con)",
+                "⚽ Cụm sân Mai Dịch (4 sân con)",
+                "⚽ Cụm sân Riverside (Tạm ngưng)"
+        };
+        new AlertDialog.Builder(this)
+                .setTitle("Chọn cụm sân xem nhân sự")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        currentComplexName = "Tất cả các sân";
+                    } else if (which == 1) {
+                        currentComplexName = "Cụm Sân Thăng Long";
+                    } else if (which == 2) {
+                        currentComplexName = "Cụm Sân Mai Dịch";
+                    } else {
+                        currentComplexName = "Cụm Sân Riverside";
+                    }
+                    updateStaffHeaderSubtitle();
+                    Toast.makeText(this, "Đã chuyển sang nhân sự: " + currentComplexName, Toast.LENGTH_SHORT).show();
+                })
+                .show();
     }
 
     private void setupStaffActions() {
-        // Nút "+ Thêm nhân viên"
-        findViewById(R.id.btnAddStaff).setOnClickListener(v -> showAddStaffDialog());
+        View btnAdd = findViewById(R.id.btnAddStaff);
+        if (btnAdd != null) {
+            btnAdd.setOnClickListener(v -> showAddStaffDialog());
+        }
 
-        // --- CỤM THĂNG LONG ---
-        findViewById(R.id.btnPermHung).setOnClickListener(v -> showPermissionDialog("Nguyễn Văn Hùng", "Quản lý cơ sở · Ca sáng"));
-        findViewById(R.id.btnDeleteHung).setOnClickListener(v -> confirmDeleteStaff("hung", "Nguyễn Văn Hùng", "Cụm Thăng Long"));
+        // --- NHÂN VIÊN: NGUYỄN VĂN HÙNG ---
+        View btnPermHung = findViewById(R.id.btnPermHung);
+        TextView tvRoleHung = findViewById(R.id.tvRoleHung);
+        TextView tvRevenueHung = findViewById(R.id.tvRevenueHung);
+        if (btnPermHung != null) {
+            btnPermHung.setOnClickListener(v ->
+                    showPermissionDialog("Nguyễn Văn Hùng", tvRoleHung != null ? tvRoleHung.getText().toString() : "Quản lý ca tối", tvRevenueHung)
+            );
+        }
 
-        findViewById(R.id.btnPermThao).setOnClickListener(v -> showPermissionDialog("Trần Thị Thu Thảo", "Thu ngân & CSKH · Ca chiều tối"));
-        findViewById(R.id.btnDeleteThao).setOnClickListener(v -> confirmDeleteStaff("thao", "Trần Thị Thu Thảo", "Cụm Thăng Long"));
+        TextView btnLockHung = findViewById(R.id.btnLockHung);
+        TextView tvStatusHung = findViewById(R.id.tvStatusHung);
+        if (btnLockHung != null) {
+            btnLockHung.setOnClickListener(v -> {
+                isHungLocked = !isHungLocked;
+                if (isHungLocked) {
+                    if (tvStatusHung != null) {
+                        tvStatusHung.setText("Đã khóa");
+                        tvStatusHung.setBackgroundResource(R.drawable.bg_owner_status_paused);
+                        tvStatusHung.setTextColor(Color.parseColor("#991B1B"));
+                    }
+                    btnLockHung.setText("Mở khóa");
+                    Toast.makeText(this, "Đã khóa tài khoản nhân viên Nguyễn Văn Hùng!", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (tvStatusHung != null) {
+                        tvStatusHung.setText("Hoạt động");
+                        tvStatusHung.setBackgroundResource(R.drawable.bg_owner_status_active);
+                        tvStatusHung.setTextColor(Color.parseColor("#166534"));
+                    }
+                    btnLockHung.setText("Khóa");
+                    Toast.makeText(this, "Đã mở khóa tài khoản nhân viên Nguyễn Văn Hùng!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
-        findViewById(R.id.btnPermLoc).setOnClickListener(v -> {
-            Toast.makeText(this, "Đã mở khóa tài khoản cho Phạm Đức Lộc thành công!", Toast.LENGTH_SHORT).show();
-        });
-        findViewById(R.id.btnDeleteLoc).setOnClickListener(v -> confirmDeleteStaff("loc", "Phạm Đức Lộc", "Cụm Thăng Long"));
+        View btnDeleteHung = findViewById(R.id.btnDeleteHung);
+        if (btnDeleteHung != null) {
+            btnDeleteHung.setOnClickListener(v -> confirmDeleteStaff("Nguyễn Văn Hùng", findViewById(R.id.cardStaffHung)));
+        }
 
-        // --- CỤM MAI DỊCH ---
-        findViewById(R.id.btnPermNam).setOnClickListener(v -> showPermissionDialog("Hoàng Văn Nam", "Giám sát ca trực & Đặt sân"));
-        findViewById(R.id.btnDeleteNam).setOnClickListener(v -> confirmDeleteStaff("nam", "Hoàng Văn Nam", "Cụm Mai Dịch"));
+        View btnChangePassHung = findViewById(R.id.btnChangePassHung);
+        if (btnChangePassHung != null) {
+            btnChangePassHung.setOnClickListener(v -> showChangePasswordDialog("Nguyễn Văn Hùng", "0918 234 567"));
+        }
 
-        findViewById(R.id.btnPermMai).setOnClickListener(v -> showPermissionDialog("Lê Thị Mai", "Thu ngân & Chăm sóc khách hàng"));
-        findViewById(R.id.btnDeleteMai).setOnClickListener(v -> confirmDeleteStaff("mai", "Lê Thị Mai", "Cụm Mai Dịch"));
+        // --- NHÂN VIÊN: TRẦN THỊ THU THẢO ---
+        View btnPermThao = findViewById(R.id.btnPermThao);
+        TextView tvRoleThao = findViewById(R.id.tvRoleThao);
+        TextView tvRevenueThao = findViewById(R.id.tvRevenueThao);
+        if (btnPermThao != null) {
+            btnPermThao.setOnClickListener(v ->
+                    showPermissionDialog("Trần Thị Thu Thảo", tvRoleThao != null ? tvRoleThao.getText().toString() : "Thu ngân, tiếp đón", tvRevenueThao)
+            );
+        }
 
-        // --- CỤM RIVERSIDE ---
-        findViewById(R.id.btnPermTrong).setOnClickListener(v -> showPermissionDialog("Vũ Đình Trọng", "Quản lý ca trực · Cụm Riverside"));
-        findViewById(R.id.btnDeleteTrong).setOnClickListener(v -> confirmDeleteStaff("trong", "Vũ Đình Trọng", "Cụm Riverside"));
+        TextView btnLockThao = findViewById(R.id.btnLockThao);
+        TextView tvStatusThao = findViewById(R.id.tvStatusThao);
+        if (btnLockThao != null) {
+            btnLockThao.setOnClickListener(v -> {
+                isThaoLocked = !isThaoLocked;
+                if (isThaoLocked) {
+                    if (tvStatusThao != null) {
+                        tvStatusThao.setText("Đã khóa");
+                        tvStatusThao.setBackgroundResource(R.drawable.bg_owner_status_paused);
+                        tvStatusThao.setTextColor(Color.parseColor("#991B1B"));
+                    }
+                    btnLockThao.setText("Mở khóa");
+                    Toast.makeText(this, "Đã khóa tài khoản nhân viên Trần Thị Thu Thảo!", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (tvStatusThao != null) {
+                        tvStatusThao.setText("Hoạt động");
+                        tvStatusThao.setBackgroundResource(R.drawable.bg_owner_status_active);
+                        tvStatusThao.setTextColor(Color.parseColor("#166534"));
+                    }
+                    btnLockThao.setText("Khóa");
+                    Toast.makeText(this, "Đã mở khóa tài khoản nhân viên Trần Thị Thu Thảo!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
-        findViewById(R.id.btnPermTuan).setOnClickListener(v -> showPermissionDialog("Đặng Minh Tuấn", "Kỹ thuật & Hỗ trợ sân bóng"));
-        findViewById(R.id.btnDeleteTuan).setOnClickListener(v -> confirmDeleteStaff("tuan", "Đặng Minh Tuấn", "Cụm Riverside"));
+        View btnDeleteThao = findViewById(R.id.btnDeleteThao);
+        if (btnDeleteThao != null) {
+            btnDeleteThao.setOnClickListener(v -> confirmDeleteStaff("Trần Thị Thu Thảo", findViewById(R.id.cardStaffThao)));
+        }
+
+        View btnChangePassThao = findViewById(R.id.btnChangePassThao);
+        if (btnChangePassThao != null) {
+            btnChangePassThao.setOnClickListener(v -> showChangePasswordDialog("Trần Thị Thu Thảo", "0978 654 321"));
+        }
     }
 
-    private void confirmDeleteStaff(String staffId, String staffName, String complexName) {
+    private void confirmDeleteStaff(String staffName, View cardView) {
         new AlertDialog.Builder(this)
-                .setTitle("Xác nhận xóa nhân viên")
-                .setMessage("Bạn có chắc chắn muốn xóa vĩnh viễn nhân viên \"" + staffName + "\" khỏi " + complexName + " không?\n\nNhân viên này sẽ bị xóa khỏi danh sách và hủy toàn bộ quyền vận hành.")
-                .setPositiveButton("Xóa ngay", (dialog, which) -> {
-                    // Lưu vĩnh viễn trạng thái đã xóa vào SharedPreferences
-                    prefs.edit().putBoolean("deleted_" + staffId, true).apply();
-                    // Cập nhật giao diện và số lượng
-                    applyStaffVisibilityAndCounts();
-                    Toast.makeText(this, "Đã xóa nhân viên \"" + staffName + "\" thành công!", Toast.LENGTH_SHORT).show();
+                .setTitle("Thu hồi tài khoản")
+                .setMessage("Bạn có chắc chắn muốn thu hồi tài khoản của \"" + staffName + "\" không?\n\nNhân viên sẽ mất toàn bộ quyền truy cập vào hệ thống.")
+                .setPositiveButton("Thu hồi ngay", (dialog, which) -> {
+                    if (cardView != null) {
+                        cardView.setVisibility(View.GONE);
+                    }
+                    Toast.makeText(this, "Đã thu hồi tài khoản \"" + staffName + "\" thành công!", Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss())
                 .show();
     }
 
-    private void showAddStaffDialog() {
+    private void showChangePasswordDialog(String staffName, String phone) {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_staff, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_change_staff_password, null);
         dialog.setContentView(dialogView);
 
-        EditText edtName = dialogView.findViewById(R.id.edtAddStaffName);
-        EditText edtPhone = dialogView.findViewById(R.id.edtAddStaffPhone);
-        TextView tvComplex = dialogView.findViewById(R.id.tvAddStaffComplex);
-        TextView tvRole = dialogView.findViewById(R.id.tvAddStaffRole);
-        TextView tvShift = dialogView.findViewById(R.id.tvAddStaffShift);
-
-        // Đặt mặc định cụm sân theo tab hiện tại
-        String initialComplex = (currentComplexIndex == 0) ? "Cụm Sân Thăng Long" : (currentComplexIndex == 1 ? "Cụm Sân Mai Dịch" : "Cụm Sân Riverside");
-        if (tvComplex != null) {
-            tvComplex.setText(initialComplex);
-            tvComplex.setOnClickListener(v -> {
-                String[] complexes = {"Cụm Sân Thăng Long", "Cụm Sân Mai Dịch", "Cụm Sân Riverside"};
-                new AlertDialog.Builder(this)
-                        .setTitle("Chọn cụm sân làm việc")
-                        .setItems(complexes, (d, which) -> tvComplex.setText(complexes[which]))
-                        .show();
-            });
+        TextView tvTitle = dialogView.findViewById(R.id.tvDialogChangePassTitle);
+        TextView tvSub = dialogView.findViewById(R.id.tvDialogChangePassSubtitle);
+        if (tvTitle != null) {
+            tvTitle.setText("Đổi mật khẩu: " + staffName);
+        }
+        if (tvSub != null && phone != null && !phone.isEmpty()) {
+            tvSub.setText("Tài khoản: " + phone + " · Nhập mật khẩu mới");
         }
 
-        // Chọn Vị trí / Vai trò
-        if (tvRole != null) {
-            tvRole.setOnClickListener(v -> {
-                String[] roles = {
-                        "Thu ngân & CSKH",
-                        "Quản lý cơ sở",
-                        "Giám sát ca trực",
-                        "Kỹ thuật & bảo trì sân",
-                        "Nhân viên hỗ trợ sân bóng"
-                };
-                new AlertDialog.Builder(this)
-                        .setTitle("Chọn vị trí / vai trò")
-                        .setItems(roles, (d, which) -> tvRole.setText(roles[which]))
-                        .show();
-            });
-        }
+        EditText edtNewPass = dialogView.findViewById(R.id.edtNewStaffPassword);
+        EditText edtConfirmPass = dialogView.findViewById(R.id.edtConfirmStaffPassword);
 
-        // Chọn Ca làm việc
-        if (tvShift != null) {
-            tvShift.setOnClickListener(v -> {
-                String[] shifts = {
-                        "Ca sáng (06:00 - 14:00)",
-                        "Ca chiều (14:00 - 22:00)",
-                        "Ca tối (18:00 - 24:00)",
-                        "Ca gãy / Linh hoạt (Theo ca đặt)",
-                        "Toàn thời gian (Cả ngày)"
-                };
-                new AlertDialog.Builder(this)
-                        .setTitle("Chọn ca làm việc")
-                        .setItems(shifts, (d, which) -> tvShift.setText(shifts[which]))
-                        .show();
-            });
-        }
+        dialogView.findViewById(R.id.btnCloseChangePass).setOnClickListener(v -> dialog.dismiss());
+        dialogView.findViewById(R.id.btnSubmitChangePass).setOnClickListener(v -> {
+            String newPass = edtNewPass != null ? edtNewPass.getText().toString().trim() : "";
+            String confirmPass = edtConfirmPass != null ? edtConfirmPass.getText().toString().trim() : "";
 
-        dialogView.findViewById(R.id.btnCloseAddStaff).setOnClickListener(v -> dialog.dismiss());
-        dialogView.findViewById(R.id.btnSubmitAddStaff).setOnClickListener(v -> {
-            String name = edtName != null ? edtName.getText().toString().trim() : "";
-            String phone = edtPhone != null ? edtPhone.getText().toString().trim() : "";
-            String complex = tvComplex != null ? tvComplex.getText().toString() : initialComplex;
-            String role = tvRole != null ? tvRole.getText().toString() : "Nhân viên";
-            String shift = tvShift != null ? tvShift.getText().toString() : "Ca sáng";
-
-            if (name.isEmpty()) {
-                if (edtName != null) edtName.setError("Vui lòng nhập họ tên");
+            if (newPass.isEmpty()) {
+                if (edtNewPass != null) edtNewPass.setError("Vui lòng nhập mật khẩu mới");
                 return;
             }
-            if (phone.isEmpty()) {
-                if (edtPhone != null) edtPhone.setError("Vui lòng nhập số điện thoại");
+            if (newPass.length() < 6) {
+                if (edtNewPass != null) edtNewPass.setError("Mật khẩu phải có ít nhất 6 ký tự");
+                return;
+            }
+            if (!newPass.equals(confirmPass)) {
+                if (edtConfirmPass != null) edtConfirmPass.setError("Mật khẩu xác nhận không trùng khớp");
                 return;
             }
 
-            Toast.makeText(this, "Đã thêm \"" + name + "\" (" + role + " - " + shift + ") vào " + complex + " thành công!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Đã đổi mật khẩu thành công cho nhân viên " + staffName + "!", Toast.LENGTH_LONG).show();
             dialog.dismiss();
         });
 
@@ -322,7 +270,133 @@ public class OwnerStaffActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void showPermissionDialog(String staffName, String role) {
+    private void showAddStaffDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_staff, null);
+        dialog.setContentView(dialogView);
+
+        EditText edtName = dialogView.findViewById(R.id.edtAddStaffName);
+        EditText edtPhone = dialogView.findViewById(R.id.edtAddStaffPhone);
+        TextView tvBranch = dialogView.findViewById(R.id.tvAddStaffBranch);
+        TextView tvRole = dialogView.findViewById(R.id.tvAddStaffRole);
+
+        if (tvBranch != null) {
+            View layoutBranch = dialogView.findViewById(R.id.layoutAddStaffBranch);
+            if (layoutBranch != null) {
+                layoutBranch.setOnClickListener(v -> {
+                    String[] branches = {"Cụm sân Thăng Long", "Cụm sân Mai Dịch", "Cụm sân Riverside", "Toàn hệ thống"};
+                    new AlertDialog.Builder(this)
+                            .setTitle("Chọn nhánh hoạt động")
+                            .setItems(branches, (d, which) -> tvBranch.setText(branches[which]))
+                            .show();
+                });
+            }
+        }
+
+        if (tvRole != null) {
+            View layoutRole = dialogView.findViewById(R.id.layoutAddStaffRole);
+            if (layoutRole != null) {
+                layoutRole.setOnClickListener(v -> {
+                    String[] roles = {"Quản lý ca tối", "Thu ngân, tiếp đón", "Quản lý ca sáng", "Kỹ thuật sân"};
+                    new AlertDialog.Builder(this)
+                            .setTitle("Chọn vai trò")
+                            .setItems(roles, (d, which) -> tvRole.setText(roles[which]))
+                            .show();
+                });
+            }
+        }
+
+        dialogView.findViewById(R.id.btnCloseAddStaff).setOnClickListener(v -> dialog.dismiss());
+        dialogView.findViewById(R.id.btnSubmitAddStaff).setOnClickListener(v -> {
+            String name = edtName != null ? edtName.getText().toString().trim() : "";
+            if (name.isEmpty()) name = "Lê Hoàng Nam";
+            String phone = edtPhone != null ? edtPhone.getText().toString().trim() : "";
+            if (phone.isEmpty()) phone = "0933 555 789";
+            String roleText = tvRole != null ? tvRole.getText().toString() : "Quản lý ca sáng";
+
+            addNewStaffCard(name, phone, roleText);
+
+            Toast.makeText(this, "Đã thêm và cấp quyền cho " + name + " thành công!", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+        }
+        dialog.show();
+    }
+
+    private void addNewStaffCard(String name, String phone, String role) {
+        android.widget.LinearLayout container = findViewById(R.id.layoutStaffListContainer);
+        if (container == null) return;
+
+        View newCard = getLayoutInflater().inflate(R.layout.item_staff_card, container, false);
+
+        TextView tvAvatar = newCard.findViewById(R.id.tvStaffAvatar);
+        TextView tvName = newCard.findViewById(R.id.tvStaffName);
+        TextView tvRole = newCard.findViewById(R.id.tvStaffRole);
+        TextView tvStatus = newCard.findViewById(R.id.tvStaffStatus);
+        TextView tvPhone = newCard.findViewById(R.id.tvStaffPhone);
+        TextView tvRevenue = newCard.findViewById(R.id.tvStaffRevenueStatus);
+
+        TextView btnPerm = newCard.findViewById(R.id.btnStaffPerm);
+        TextView btnLock = newCard.findViewById(R.id.btnStaffLock);
+        TextView btnDelete = newCard.findViewById(R.id.btnStaffDelete);
+        TextView btnChangePass = newCard.findViewById(R.id.btnStaffChangePass);
+
+        if (tvName != null) tvName.setText(name);
+        if (tvRole != null) tvRole.setText(role);
+        if (tvPhone != null) tvPhone.setText(phone);
+        if (tvAvatar != null) {
+            String[] parts = name.trim().split("\\s+");
+            String initials = parts.length > 1 ? ("" + parts[0].charAt(0) + parts[parts.length - 1].charAt(0)) : name.substring(0, Math.min(2, name.length()));
+            tvAvatar.setText(initials.toUpperCase());
+        }
+
+        final boolean[] isLocked = {false};
+        if (btnLock != null) {
+            btnLock.setOnClickListener(v -> {
+                isLocked[0] = !isLocked[0];
+                if (isLocked[0]) {
+                    if (tvStatus != null) {
+                        tvStatus.setText("Đã khóa");
+                        tvStatus.setBackgroundResource(R.drawable.bg_owner_status_paused);
+                        tvStatus.setTextColor(Color.parseColor("#991B1B"));
+                    }
+                    btnLock.setText("Mở khóa");
+                    Toast.makeText(this, "Đã khóa tài khoản nhân viên " + name + "!", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (tvStatus != null) {
+                        tvStatus.setText("Hoạt động");
+                        tvStatus.setBackgroundResource(R.drawable.bg_owner_status_active);
+                        tvStatus.setTextColor(Color.parseColor("#166534"));
+                    }
+                    btnLock.setText("Khóa");
+                    Toast.makeText(this, "Đã mở khóa tài khoản nhân viên " + name + "!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        if (btnDelete != null) {
+            btnDelete.setOnClickListener(v -> confirmDeleteStaff(name, newCard));
+        }
+
+        if (btnPerm != null) {
+            btnPerm.setOnClickListener(v -> showPermissionDialog(name, role, tvRevenue));
+        }
+
+        if (btnChangePass != null) {
+            btnChangePass.setOnClickListener(v -> showChangePasswordDialog(name, phone));
+        }
+
+        container.addView(newCard);
+    }
+
+    private void showPermissionDialog(String staffName, String role, TextView tvRevenueStatus) {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -333,19 +407,35 @@ public class OwnerStaffActivity extends AppCompatActivity {
         if (tvName != null) {
             tvName.setText("Phân quyền: " + staffName);
         }
-
-        View btnClose = dialogView.findViewById(R.id.btnCloseStaffPerm);
-        if (btnClose != null) {
-            btnClose.setOnClickListener(v -> dialog.dismiss());
+        TextView tvRole = dialogView.findViewById(R.id.tvStaffPermRole);
+        if (tvRole != null) {
+            tvRole.setText(role);
         }
 
-        View btnSave = dialogView.findViewById(R.id.btnSaveStaffPerm);
-        if (btnSave != null) {
-            btnSave.setOnClickListener(v -> {
-                Toast.makeText(this, "Đã cập nhật phân quyền cho " + staffName + " thành công!", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            });
+        com.google.android.material.materialswitch.MaterialSwitch swRevenue = dialogView.findViewById(R.id.swPermRevenue);
+        if (swRevenue != null && tvRevenueStatus != null) {
+            swRevenue.setChecked("Cho phép".equals(tvRevenueStatus.getText().toString()));
         }
+
+        View btnPermResetPassword = dialogView.findViewById(R.id.btnPermResetPassword);
+        if (btnPermResetPassword != null) {
+            btnPermResetPassword.setOnClickListener(v -> showChangePasswordDialog(staffName, ""));
+        }
+
+        dialogView.findViewById(R.id.btnCloseStaffPerm).setOnClickListener(v -> dialog.dismiss());
+        dialogView.findViewById(R.id.btnSaveStaffPerm).setOnClickListener(v -> {
+            if (swRevenue != null && tvRevenueStatus != null) {
+                if (swRevenue.isChecked()) {
+                    tvRevenueStatus.setText("Cho phép");
+                    tvRevenueStatus.setTextColor(Color.parseColor("#166534"));
+                } else {
+                    tvRevenueStatus.setText("Đã ẩn");
+                    tvRevenueStatus.setTextColor(Color.parseColor("#DC2626"));
+                }
+            }
+            Toast.makeText(this, "Đã cập nhật phân quyền cho " + staffName + " thành công!", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
 
         if (dialog.getWindow() != null) {
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -361,18 +451,24 @@ public class OwnerStaffActivity extends AppCompatActivity {
             finish();
         });
         findViewById(R.id.navStaffSchedule).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerScheduleActivity.class));
+            Intent intent = new Intent(this, OwnerScheduleActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
         findViewById(R.id.navStaffTab).setOnClickListener(v -> {
             // Đang ở tab Nhân sự
         });
         findViewById(R.id.navStaffFinance).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerFinanceActivity.class));
+            Intent intent = new Intent(this, OwnerFinanceActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
         findViewById(R.id.navStaffReviews).setOnClickListener(v -> {
-            startActivity(new Intent(this, OwnerReviewActivity.class));
+            Intent intent = new Intent(this, OwnerReviewActivity.class);
+            intent.putExtra("COMPLEX_NAME", currentComplexName);
+            startActivity(intent);
             finish();
         });
     }

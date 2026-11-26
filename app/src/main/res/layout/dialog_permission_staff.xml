@@ -7,6 +7,14 @@
     android:orientation="vertical"
     android:padding="20dp">
 
+    <!-- Drag Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,12 +38,13 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvStaffPermRole"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="Quản lý cơ sở · Cụm sân Thăng Long"
+                android:layout_marginTop="2dp"
+                android:text="Quản lý ca tối"
                 android:textColor="@color/owner_text_sub"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <TextView
@@ -51,54 +60,190 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginVertical="12dp"
+        android:layout_marginVertical="14dp"
         android:background="#E2E8F0" />
 
-    <!-- Switch 1 -->
-    <com.google.android.material.materialswitch.MaterialSwitch
+    <!-- Switch 1: Duyệt lịch và check-in -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="Duyệt đặt sân online\nKiểm tra và xác nhận lịch đặt từ ứng dụng"
-        android:textColor="@color/owner_text_title"
-        android:textSize="13sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
 
-    <!-- Switch 2 -->
-    <com.google.android.material.materialswitch.MaterialSwitch
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duyệt lịch và check-in"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Kiểm tra mã đặt, cho khách vào sân"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swPermCheckin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/white"
+            app:trackTint="@color/owner_lime_badge_text" />
+    </LinearLayout>
+
+    <!-- Switch 2: Thu ngân quầy -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thu ngân quầy"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Tạo hóa đơn nước, nhận tiền cọc"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swPermCashier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/white"
+            app:trackTint="@color/owner_lime_badge_text" />
+    </LinearLayout>
+
+    <!-- Switch 3: Đóng, mở bảo trì sân con -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đóng, mở bảo trì sân con"
+                android:textColor="@color/owner_text_title"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Xử lý khi mặt cỏ gặp lỗi"
+                android:textColor="@color/owner_text_sub"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swPermMaintenance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/white"
+            app:trackTint="@color/owner_lime_badge_text" />
+    </LinearLayout>
+
+    <!-- Switch 4: Xem báo cáo doanh thu (Restricted Peach Box) -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="Thu tiền trực tiếp\nTạo hóa đơn ngày, nhận tiền mặt"
-        android:textColor="@color/owner_text_title"
-        android:textSize="13sp" />
+        android:background="@drawable/bg_permission_restricted_box"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
 
-    <!-- Switch 3 -->
-    <com.google.android.material.materialswitch.MaterialSwitch
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xem báo cáo doanh thu"
+                android:textColor="#991B1B"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Số liệu tài chính của chủ sân"
+                android:textColor="#B91C1C"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/swPermRevenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+    </LinearLayout>
+
+    <!-- Nút Đổi mật khẩu nhân viên -->
+    <Button
+        android:id="@+id/btnPermResetPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="Đóng, mở hoặc đổi sân con\nThay đổi trạng thái sân con và ghép sân"
-        android:textColor="@color/owner_text_title"
-        android:textSize="13sp" />
+        android:layout_height="42dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_staff_action_btn"
+        android:text="🔒 Đổi mật khẩu cho nhân viên này"
+        android:textAllCaps="false"
+        android:textColor="#334155"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null" />
 
-    <!-- Switch 4 -->
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:checked="false"
-        android:text="Xem báo cáo doanh thu\nSố liệu tài chính của cụm sân"
-        android:textColor="@color/owner_text_title"
-        android:textSize="13sp" />
-
-    <!-- Nút Lưu -->
+    <!-- Nút Lưu phân quyền -->
     <Button
         android:id="@+id/btnSaveStaffPerm"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_owner_add_btn"
         android:text="Lưu phân quyền"
         android:textAllCaps="false"

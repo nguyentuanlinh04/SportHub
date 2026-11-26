@@ -1,7 +1,9 @@
 package fpoly.duan1.sporthub_new;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -83,11 +85,11 @@ public class AddComplexActivity extends AppCompatActivity {
 
     private void setupTimePickers() {
         tvOpenTime.setOnClickListener(v -> showTimePicker(5, 30, (view, hourOfDay, minute) -> {
-            tvOpenTime.setText(String.format(Locale.getDefault(), "🕒 %02d:%02d", hourOfDay, minute));
+            tvOpenTime.setText(String.format(Locale.getDefault(), "🕒  %02d:%02d", hourOfDay, minute));
         }));
 
         tvCloseTime.setOnClickListener(v -> showTimePicker(23, 30, (view, hourOfDay, minute) -> {
-            tvCloseTime.setText(String.format(Locale.getDefault(), "🕒 %02d:%02d", hourOfDay, minute));
+            tvCloseTime.setText(String.format(Locale.getDefault(), "🕒  %02d:%02d", hourOfDay, minute));
         }));
     }
 
@@ -96,6 +98,10 @@ public class AddComplexActivity extends AppCompatActivity {
     }
 
     private void setupStatusRadio() {
+        rbStatusPaused.setChecked(true);
+        rbStatusPaused.setBackgroundResource(R.drawable.bg_radio_option_active);
+        rbStatusActive.setBackgroundResource(R.drawable.bg_radio_option_inactive);
+
         rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rbStatusActive) {
                 rbStatusActive.setBackgroundResource(R.drawable.bg_radio_option_active);
@@ -109,7 +115,23 @@ public class AddComplexActivity extends AppCompatActivity {
 
     private void setupActions() {
         findViewById(R.id.btnBackAddComplex).setOnClickListener(v -> finish());
+
+        View badgeRoleAddComplex = findViewById(R.id.badgeRoleAddComplex);
+        if (badgeRoleAddComplex != null) {
+            badgeRoleAddComplex.setOnClickListener(v -> {
+                Intent intent = new Intent(AddComplexActivity.this, OwnerProfileActivity.class);
+                startActivity(intent);
+            });
+        }
         findViewById(R.id.btnCancelAddComplex).setOnClickListener(v -> finish());
+
+        findViewById(R.id.layoutUploadAvatar).setOnClickListener(v -> {
+            Toast.makeText(this, "Mở thư viện chọn ảnh đại diện cụm sân...", Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.layoutUploadFacility).setOnClickListener(v -> {
+            Toast.makeText(this, "Mở thư viện chọn hình ảnh cơ sở...", Toast.LENGTH_SHORT).show();
+        });
 
         findViewById(R.id.btnSelectMapLocation).setOnClickListener(v -> {
             Toast.makeText(this, "Đã ghim vị trí tọa độ cơ sở trên bản đồ!", Toast.LENGTH_SHORT).show();

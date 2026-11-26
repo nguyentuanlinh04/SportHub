@@ -17,22 +17,20 @@
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="14dp"
+        android:paddingHorizontal="16dp"
         android:paddingVertical="10dp">
 
-        <FrameLayout
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_owner_logo">
+        <!-- Logo Icon SportHub -->
+        <ImageView
+            android:id="@+id/btnBackFinance"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="SportHub Logo"
+            android:src="@drawable/logo_sporthub" />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_nav_finance"
-                app:tint="@color/white" />
-        </FrameLayout>
-
+        <!-- Tiêu đề SportHub & Phụ đề -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,9 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:text="Báo cáo tài chính &amp; doanh thu · 3 cụm sân"
+                android:text="Cụm sân Thăng Long · 5 sân"
                 android:textColor="@color/owner_text_sub"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
         <TextView
@@ -63,6 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_badge_chu_san"
+            android:clickable="true"
+            android:focusable="true"
             android:paddingHorizontal="12dp"
             android:paddingVertical="5dp"
             android:text="Chủ sân"
@@ -82,14 +82,160 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
-            android:paddingTop="16dp"
+            android:paddingTop="14dp"
             android:paddingBottom="24dp">
 
-            <!-- ================= THẺ 1: TỔNG DOANH THU CẢ 3 CỤM SÂN ================= -->
+            <!-- CARD 1: Doanh thu tháng này -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_pitch_green"
+                android:background="@drawable/bg_owner_stats_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Doanh thu tháng này"
+                    android:textColor="#A8D5B8"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvTotalRevenueMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="148.650.000đ"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lấp đầy giờ vàng"
+                            android:textColor="#A8D5B8"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvGoldHourFillRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="96,2%"
+                            android:textColor="#CCF638"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trận hoàn thành"
+                            android:textColor="#A8D5B8"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvCompletedMatches"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="412 trận"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- CARD 2: Xuất báo cáo thu chi -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_owner_white_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xuất báo cáo thu chi"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Tệp đối soát cho kế toán"
+                        android:textColor="@color/owner_text_sub"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btnExportExcel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_excel"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="Excel"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnExportCsv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_btn_csv"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="CSV"
+                    android:textColor="#334155"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- CARD 3: Doanh thu 7 ngày (triệu đồng) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_owner_white_card"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -103,997 +249,464 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Tổng doanh thu toàn bộ 3 cụm sân"
-                        android:textColor="#D1FAE5"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_badge_chu_san"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="3dp"
-                        android:text="Tháng 11/2026"
-                        android:textColor="@color/owner_lime_badge_text"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvTotalRevenueAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="385.200.000đ"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="10dp"
-                    android:background="#059669" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="▲ +21.4% so với tháng trước"
-                        android:textColor="#A7F3D0"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1.048 trận đấu"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Nút Lập Phiếu Thu Nhanh -->
-            <Button
-                android:id="@+id/btnCreateInvoiceHeader"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_owner_add_btn"
-                android:drawableStart="@android:drawable/ic_input_add"
-                android:drawableTint="@color/white"
-                android:paddingHorizontal="16dp"
-                android:text="  + Lập phiếu thu phí sân tại quầy"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
-
-            <!-- ================= THẺ 2: DOANH THU CHI TIẾT TỪNG CỤM SÂN ================= -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Doanh thu theo từng cụm sân"
-                android:textColor="@color/owner_text_title"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Tỷ trọng doanh thu và số lượng trận đấu từng cơ sở"
-                android:textColor="@color/owner_text_sub"
-                android:textSize="12sp" />
-
-            <!-- Thanh Tỷ Trọng Phân Bổ Doanh Thu 3 Cụm Sân -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <!-- Thăng Long: 38.6% -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="386"
-                        android:background="#0A8B4D" />
-
-                    <!-- Divider -->
-                    <View
-                        android:layout_width="1.5dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white" />
-
-                    <!-- Mai Dịch: 34.5% -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="345"
-                        android:background="#10B981" />
-
-                    <!-- Divider -->
-                    <View
-                        android:layout_width="1.5dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/white" />
-
-                    <!-- Riverside: 26.9% -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="269"
-                        android:background="#F59E0B" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Chú thích tỷ trọng -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/bg_dot_thanglong" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="Thăng Long 38.6%"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/bg_dot_maidich" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="Mai Dịch 34.5%"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/bg_dot_riverside" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="Riverside 26.9%"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Card 1: Cụm Thăng Long -->
-            <LinearLayout
-                android:id="@+id/cardRevenueThangLong"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_owner_white_card"
-                android:orientation="vertical"
-                android:padding="14dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <FrameLayout
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/bg_level_badge_mint">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_nav_facility"
-                            app:tint="#065F46" />
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cụm Sân Thăng Long"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:text="412 trận · Chiếm 38.6% doanh thu"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_owner_status_active"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="3dp"
-                        android:text="+18.2%"
-                        android:textColor="@color/owner_status_active_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="148.650.000đ"
-                        android:textColor="#065F46"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btnCollectThangLong"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:background="@drawable/bg_owner_btn_manage"
-                        android:paddingHorizontal="14dp"
-                        android:text="Lập phiếu thu"
-                        android:textAllCaps="false"
-                        android:textColor="@color/owner_btn_manage_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="@null" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Card 2: Cụm Mai Dịch -->
-            <LinearLayout
-                android:id="@+id/cardRevenueMaiDich"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_owner_white_card"
-                android:orientation="vertical"
-                android:padding="14dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <FrameLayout
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/bg_team_avatar_green">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_nav_facility"
-                            app:tint="#065F46" />
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cụm Sân Mai Dịch"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:text="380 trận · Chiếm 34.5% doanh thu"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_owner_status_active"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="3dp"
-                        android:text="+25.1%"
-                        android:textColor="@color/owner_status_active_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="132.800.000đ"
-                        android:textColor="#065F46"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btnCollectMaiDich"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:background="@drawable/bg_owner_btn_manage"
-                        android:paddingHorizontal="14dp"
-                        android:text="Lập phiếu thu"
-                        android:textAllCaps="false"
-                        android:textColor="@color/owner_btn_manage_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="@null" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Card 3: Cụm Riverside -->
-            <LinearLayout
-                android:id="@+id/cardRevenueRiverside"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_owner_white_card"
-                android:orientation="vertical"
-                android:padding="14dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <FrameLayout
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:background="@drawable/bg_tag_pill">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_nav_facility"
-                            app:tint="#374151" />
-                    </FrameLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cụm Sân Riverside"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:text="256 trận · Chiếm 26.9% doanh thu"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_owner_status_paused"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="3dp"
-                        android:text="+22.0%"
-                        android:textColor="@color/owner_status_paused_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="103.750.000đ"
-                        android:textColor="#065F46"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btnCollectRiverside"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:background="@drawable/bg_owner_btn_manage"
-                        android:paddingHorizontal="14dp"
-                        android:text="Lập phiếu thu"
-                        android:textAllCaps="false"
-                        android:textColor="@color/owner_btn_manage_text"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:backgroundTint="@null" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- ================= BỘ LỌC XEM BIỂU ĐỒ VÀ HIỆU SUẤT ================= -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Biểu đồ 7 ngày &amp; Hiệu suất sân"
-                android:textColor="@color/owner_text_title"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/chipFinanceAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:background="@drawable/bg_owner_chip_selected"
-                        android:gravity="center"
-                        android:paddingHorizontal="14dp"
-                        android:text="Tất cả 3 cụm"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/chipFinanceThangLong"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_owner_chip_unselected"
-                        android:gravity="center"
-                        android:paddingHorizontal="14dp"
-                        android:text="Cụm Thăng Long"
-                        android:textColor="@color/owner_chip_unselected_text"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/chipFinanceMaiDich"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_owner_chip_unselected"
-                        android:gravity="center"
-                        android:paddingHorizontal="14dp"
-                        android:text="Cụm Mai Dịch"
-                        android:textColor="@color/owner_chip_unselected_text"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/chipFinanceRiverside"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_owner_chip_unselected"
-                        android:gravity="center"
-                        android:paddingHorizontal="14dp"
-                        android:text="Cụm Riverside"
-                        android:textColor="@color/owner_chip_unselected_text"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- Card Biểu đồ cột Doanh thu 7 ngày -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/bg_owner_white_card"
-                android:orientation="vertical"
-                android:padding="14dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvChartTitle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Doanh thu 7 ngày qua (Triệu VNĐ)"
+                        android:text="Doanh thu 7 ngày (triệu đồng)"
                         android:textColor="@color/owner_text_title"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvChartGrowth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_owner_status_active"
+                        android:background="@drawable/bg_badge_growth_green"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="3dp"
-                        android:text="+24.5%"
-                        android:textColor="@color/owner_status_active_text"
+                        android:text="+18,4%"
+                        android:textColor="#166534"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <!-- Chart Bar Rows -->
+                <!-- Chart Bars: T2, T3, T4, T5, T6, T7, CN -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
                     android:orientation="horizontal">
 
-                    <!-- T2 -->
+                    <!-- T2: 16.5 (66dp) -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarT2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="48.2"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="10sp" />
+                            android:text="16.5"
+                            android:textColor="#1E293B"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarT2"
-                            android:layout_width="16dp"
-                            android:layout_height="52dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_normal" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarT2"
+                                android:layout_width="26dp"
+                                android:layout_height="66dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_green" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="T2"
-                            android:textColor="@color/owner_text_title"
+                            android:textColor="#94A3B8"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- T3 -->
+                    <!-- T3: 18.2 (73dp) -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarT3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="51.5"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="10sp" />
+                            android:text="18.2"
+                            android:textColor="#1E293B"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarT3"
-                            android:layout_width="16dp"
-                            android:layout_height="58dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_normal" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarT3"
+                                android:layout_width="26dp"
+                                android:layout_height="73dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_green" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="T3"
-                            android:textColor="@color/owner_text_title"
+                            android:textColor="#94A3B8"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- T4 -->
+                    <!-- T4: 15.8 (63dp) -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarT4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="46.0"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="10sp" />
+                            android:text="15.8"
+                            android:textColor="#1E293B"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarT4"
-                            android:layout_width="16dp"
-                            android:layout_height="48dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_normal" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarT4"
+                                android:layout_width="26dp"
+                                android:layout_height="63dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_green" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="T4"
-                            android:textColor="@color/owner_text_title"
+                            android:textColor="#94A3B8"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- T5 -->
+                    <!-- T5: 19.4 (78dp) -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarT5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="58.0"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="10sp" />
+                            android:text="19.4"
+                            android:textColor="#1E293B"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarT5"
-                            android:layout_width="16dp"
-                            android:layout_height="66dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_normal" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarT5"
+                                android:layout_width="26dp"
+                                android:layout_height="78dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_green" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="T5"
-                            android:textColor="@color/owner_text_title"
+                            android:textColor="#94A3B8"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- T6 -->
+                    <!-- T6: 24.8 (99dp) -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarT6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="69.5"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="10sp" />
+                            android:text="24.8"
+                            android:textColor="#1E293B"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarT6"
-                            android:layout_width="16dp"
-                            android:layout_height="82dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_normal" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarT6"
+                                android:layout_width="26dp"
+                                android:layout_height="99dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_green" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="T6"
-                            android:textColor="@color/owner_text_title"
+                            android:textColor="#94A3B8"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- T7 (Active) -->
+                    <!-- T7: 29.5 (118dp) - Lime -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarT7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="86.0"
-                            android:textColor="#059669"
+                            android:text="29.5"
+                            android:textColor="#1E293B"
                             android:textSize="10sp"
                             android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarT7"
-                            android:layout_width="16dp"
-                            android:layout_height="100dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_active" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarT7"
+                                android:layout_width="26dp"
+                                android:layout_height="118dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_lime" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="T7"
-                            android:textColor="#059669"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- CN (Active) -->
+                    <!-- CN: 24.5 (98dp) - Lime -->
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="bottom|center_horizontal"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tvBarCN"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="76.0"
-                            android:textColor="#059669"
+                            android:text="24.5"
+                            android:textColor="#1E293B"
                             android:textSize="10sp"
                             android:textStyle="bold" />
 
-                        <View
-                            android:id="@+id/viewBarCN"
-                            android:layout_width="16dp"
-                            android:layout_height="90dp"
-                            android:layout_marginTop="3dp"
-                            android:background="@drawable/bg_bar_chart_active" />
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp">
+
+                            <View
+                                android:id="@+id/viewBarCN"
+                                android:layout_width="26dp"
+                                android:layout_height="98dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:background="@drawable/bg_bar_lime" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="CN"
-                            android:textColor="#059669"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp" />
                     </LinearLayout>
-
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Card Hiệu Suất Theo Loại Sân -->
+            <!-- CARD 4: Hiệu suất theo loại sân -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/bg_owner_white_card"
                 android:orientation="vertical"
-                android:padding="14dp">
+                android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/tvEfficiencyTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hiệu suất lấp đầy theo loại sân (3 Cụm)"
+                    android:text="Hiệu suất theo loại sân"
                     android:textColor="@color/owner_text_title"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <!-- Sân 5 -->
+                <!-- Sân 7: 65,4 triệu · 44% -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="14dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="Sân 5"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <ProgressBar
-                        android:id="@+id/pbPitch5"
-                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
-                        android:layout_height="8dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:max="100"
-                        android:progress="74"
-                        android:progressTint="#059669" />
-
-                    <TextView
-                        android:id="@+id/tvPitch5Stat"
-                        android:layout_width="95dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="74.2% (486 trận)"
-                        android:textColor="@color/owner_text_sub"
-                        android:textSize="11sp" />
-                </LinearLayout>
-
-                <!-- Sân 7 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
                         android:text="Sân 7"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <ProgressBar
-                        android:id="@+id/pbPitch7"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="0dp"
-                        android:layout_height="8dp"
-                        android:layout_weight="1"
-                        android:max="100"
-                        android:progress="88"
-                        android:progressTint="#10B981" />
+                        android:textColor="#64748B"
+                        android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tvPitch7Stat"
-                        android:layout_width="95dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="88.5% (432 trận)"
-                        android:textColor="@color/owner_text_sub"
-                        android:textSize="11sp" />
+                        android:text="65,4 triệu · 44%"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <!-- Sân 11 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_progress_track"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="44"
+                        android:background="@drawable/bg_progress_fill" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="56" />
+                </LinearLayout>
+
+                <!-- Sân 5: 53,5 triệu · 36% -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="14dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:text="Sân 11"
-                        android:textColor="@color/owner_text_title"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <ProgressBar
-                        android:id="@+id/pbPitch11"
-                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
-                        android:layout_height="8dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:max="100"
-                        android:progress="56"
-                        android:progressTint="#F59E0B" />
+                        android:text="Sân 5"
+                        android:textColor="#64748B"
+                        android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tvPitch11Stat"
-                        android:layout_width="95dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="56.0% (130 trận)"
-                        android:textColor="@color/owner_text_sub"
-                        android:textSize="11sp" />
+                        android:text="53,5 triệu · 36%"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_progress_track"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="36"
+                        android:background="@drawable/bg_progress_fill" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="64" />
+                </LinearLayout>
+
+                <!-- Sân 11: 29,7 triệu · 20% -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sân 11"
+                        android:textColor="#64748B"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="29,7 triệu · 20%"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_progress_track"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:background="@drawable/bg_progress_fill" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="80" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- BOTTOM NAVIGATION (Active Tab 4: Thu chi) -->
+    <!-- BOTTOM NAVIGATION (Active Tab: Thu chi) -->
     <LinearLayout
-        android:id="@+id/bottomNavFinance"
+        android:id="@+id/ownerBottomNav"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@color/owner_nav_bg"
+        android:layout_height="62dp"
+        android:background="@color/white"
         android:elevation="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -1170,7 +783,7 @@
                 android:textSize="10sp" />
         </LinearLayout>
 
-        <!-- Tab 4: Thu chi (ACTIVE) -->
+        <!-- Tab 4: Thu chi (Active) -->
         <LinearLayout
             android:id="@+id/navFinanceTab"
             android:layout_width="0dp"

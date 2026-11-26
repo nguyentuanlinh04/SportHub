@@ -38,6 +38,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvPendingPostCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -70,6 +71,7 @@
             android:padding="4dp">
 
             <TextView
+                android:id="@+id/tabPendingPosts"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -81,6 +83,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tabApprovedPosts"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -90,6 +93,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tabRemovedPosts"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -110,6 +114,7 @@
 
             <!-- POST 1: FC Cầu Giấy United -->
             <LinearLayout
+                android:id="@+id/cardPost1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -155,12 +160,14 @@
                     android:textSize="12sp" />
 
                 <LinearLayout
+                    android:id="@+id/layoutPost1Actions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btnRemovePost1"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginRight="6dp"
@@ -174,6 +181,7 @@
                         android:textStyle="bold" />
 
                     <Button
+                        android:id="@+id/btnApprovePost1"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="6dp"
@@ -188,6 +196,7 @@
 
             <!-- POST 2: Thăng Long Rangers -->
             <LinearLayout
+                android:id="@+id/cardPost2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -233,12 +242,14 @@
                     android:textSize="12sp" />
 
                 <LinearLayout
+                    android:id="@+id/layoutPost2Actions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/btnRemovePost2"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginRight="6dp"
@@ -252,6 +263,89 @@
                         android:textStyle="bold" />
 
                     <Button
+                        android:id="@+id/btnApprovePost2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#046A38"
+                        android:text="Duyệt"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- POST 3: Mai Dịch Old Boys -->
+            <LinearLayout
+                android:id="@+id/cardPost3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card_white"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="Mai Dịch Old Boys"
+                        android:textColor="#111827"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="#F3F4F6"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="2dp"
+                        android:text="Vui vẻ"
+                        android:textColor="#4B5563"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="T7 · 18:30 · Sân 7 · Chia 50/50"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/layoutPost3Actions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnRemovePost3"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        android:strokeColor="#FCA5A5"
+                        app:strokeWidth="1dp"
+                        android:text="Gỡ bài"
+                        android:textColor="#DC2626"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnApprovePost3"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="6dp"

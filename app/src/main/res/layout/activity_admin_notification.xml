@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootNotifWizard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F8">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomBarNotif"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <!-- STEPPER HEADER -->
+            <LinearLayout
+                android:id="@+id/headerNotifStepper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingTop="24dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="16dp"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="04 / THÔNG BÁO HỆ THỐNG"
+                        android:textColor="#059669"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btnBackNotifWizard"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/bg_back_button" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvNotifStepTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Chọn đối tượng nhận"
+                    android:textColor="#111827"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvNotifStepSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Xác định phạm vi trước khi soạn thông báo"
+                    android:textColor="#6B7280"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvNotifStepNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="BƯỚC 1/3"
+                    android:textColor="#059669"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <!-- STEP 1 LINE -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <View
+                            android:id="@+id/lineNotif1"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:background="#059669" />
+
+                        <TextView
+                            android:id="@+id/tvNotif1Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="1 Đối tượng"
+                            android:textColor="#059669"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="1dp" />
+
+                    <!-- STEP 2 LINE -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <View
+                            android:id="@+id/lineNotif2"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:background="#E5E7EB" />
+
+                        <TextView
+                            android:id="@+id/tvNotif2Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="2 Nội dung"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="1dp" />
+
+                    <!-- STEP 3 LINE -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <View
+                            android:id="@+id/lineNotif3"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:background="#E5E7EB" />
+
+                        <TextView
+                            android:id="@+id/tvNotif3Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="3 Gửi"
+                            android:textColor="#6B7280"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- STEP 1 CONTENT: CHỌN ĐỐI TƯỢNG NHẬN -->
+            <LinearLayout
+                android:id="@+id/contentNotifStep1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:visibility="visible">
+
+                <!-- CARD PHẠM VI GỬI -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_white"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phạm vi gửi"
+                            android:textColor="#111827"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:checked="true" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Gửi đến tất cả nhóm người dùng trong hệ thống."
+                        android:textColor="#6B7280"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_stat_icon_1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="3dp"
+                        android:text="Tất cả đang được chọn"
+                        android:textColor="#046A38"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- CARD NHÓM NGƯỜI DÙNG -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_card_white"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nhóm người dùng"
+                        android:textColor="#111827"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:checked="true"
+                        android:text="Khách hàng\nNgười dùng đặt sân và tham gia hoạt động"
+                        android:textColor="#111827"
+                        android:textSize="13sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Chủ sân\nTài khoản quản lý cụm sân"
+                        android:textColor="#111827"
+                        android:textSize="13sp" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Nhân viên\nTài khoản hỗ trợ vận hành sân"
+                        android:textColor="#111827"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- STEP 2 CONTENT: SOẠN NỘI DUNG -->
+            <LinearLayout
+                android:id="@+id/contentNotifStep2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:visibility="gone">
+
+                <!-- INPUT CARD -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_white"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gửi đến"
+                            android:textColor="#6B7280"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/bg_stat_icon_1"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="8dp"
+                            android:paddingBottom="2dp"
+                            android:text="Tất cả"
+                            android:textColor="#046A38"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/edtNotifTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="Tiêu đề: Bảo trì hệ thống đêm nay"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:textColor="#111827"
+                        android:textColorHint="#9CA3AF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edtNotifBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_input_field"
+                        android:gravity="top"
+                        android:hint="Nội dung: Hệ thống bảo trì từ 01:00 đến 03:00..."
+                        android:padding="14dp"
+                        android:textColor="#111827"
+                        android:textColorHint="#9CA3AF"
+                        android:textSize="13sp" />
+
+                    <!-- TOGGLE BUTTONS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#F3F4F6"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_white"
+                            android:elevation="1dp"
+                            android:gravity="center"
+                            android:text="Gửi ngay"
+                            android:textColor="#111827"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Hẹn giờ"
+                            android:textColor="#6B7280"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- PREVIEW BOX -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_stat_icon_4"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem trước trên điện thoại"
+                        android:textColor="#86EFAC"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/iconNotifPre"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/bg_stat_icon_1"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_notification_bell" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@id/iconNotifPre"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bảo trì hệ thống đêm nay"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Hệ thống bảo trì từ 01:00 đến 03:00..."
+                                android:textColor="#E0E7FF"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- STEP 3 CONTENT: XÁC NHẬN GỬI THÔNG BÁO -->
+            <LinearLayout
+                android:id="@+id/contentNotifStep3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:visibility="gone">
+
+                <!-- SUMMARY CARD -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_white"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Đối tượng"
+                            android:textColor="#6B7280"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="Tất cả"
+                            android:textColor="#111827"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Bảo trì hệ thống đêm nay"
+                        android:textColor="#111827"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Hệ thống bảo trì từ 01:00 đến 03:00. Lịch đặt không bị ảnh hưởng."
+                        android:textColor="#6B7280"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- SEND TIME OPTIONS CARD -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_card_white"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thời điểm gửi"
+                        android:textColor="#111827"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_stat_icon_4"
+                            android:gravity="center"
+                            android:text="⦿ Gửi ngay"
+                            android:textColor="#FFFFFF"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_weight="1"
+                            android:background="#F3F4F6"
+                            android:gravity="center"
+                            android:text="○ Hẹn giờ"
+                            android:textColor="#6B7280"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- STEP 4 CONTENT: LỊCH SỬ THÔNG BÁO -->
+            <LinearLayout
+                android:id="@+id/contentNotifHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:visibility="gone">
+
+                <!-- CARD SENT ITEM -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_white"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_stat_icon_1"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="8dp"
+                            android:paddingBottom="2dp"
+                            android:text="Đã gửi"
+                            android:textColor="#046A38"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_notification_bell" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Bảo trì hệ thống đêm nay"
+                        android:textColor="#111827"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Hệ thống bảo trì từ 01:00 đến 03:00. Lịch đặt không bị ảnh hưởng."
+                        android:textColor="#6B7280"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- BOTTOM ACTION BUTTONS -->
+    <LinearLayout
+        android:id="@+id/bottomBarNotif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp">
+
+        <Button
+            android:id="@+id/btnNotifBack"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="6dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:strokeColor="#D1D5DB"
+            app:strokeWidth="1dp"
+            android:text="Quay lại"
+            android:textColor="#111827"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnNotifNext"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1"
+            android:backgroundTint="#046A38"
+            android:text="Tiếp tục"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

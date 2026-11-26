@@ -935,49 +935,392 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <!-- GREEN BANNER -->
+                <!-- TOP LIGHT GREEN BANNER -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#DCFCE7"
                     android:paddingLeft="20dp"
-                    android:paddingTop="28dp"
+                    android:paddingTop="24dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="20dp">
 
-                    <ImageView
-                        android:id="@+id/iconLockResult"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/bg_stat_icon_4"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_nav_shield" />
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_toRightOf="@id/iconLockResult"
-                        android:orientation="vertical">
+                        android:layout_alignParentLeft="true"
+                        android:text="02 / KHÓA TÀI KHOẢN"
+                        android:textColor="#059669"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btnBackLockResult"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/bg_back_button" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_stat_icon_4"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_nav_shield" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
                             android:text="Đã tạm khóa 30 ngày"
                             android:textColor="#046A38"
-                            android:textSize="20sp"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="68dp"
+                        android:text="Trạng thái kết quả minh họa · Quyết định mới"
+                        android:textColor="#15803D"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingRight="16dp">
+
+                    <!-- CARD 1: ACCOUNT SUMMARY -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card_white"
+                        android:elevation="2dp"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/avatarLockRes"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentLeft="true"
+                                android:background="@drawable/bg_stat_icon_4"
+                                android:gravity="center"
+                                android:text="Q"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:layout_toRightOf="@id/avatarLockRes"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Quân"
+                                    android:textColor="#111827"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="+84 966 555 777"
+                                    android:textColor="#6B7280"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_btn_duyet"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="3dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="3dp"
+                            android:text="Tạm khóa - 30 ngày"
+                            android:textColor="#B45309"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#F3F4F6" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lý do"
+                                android:textColor="#6B7280"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:text="Vi phạm quy tắc"
+                                android:textColor="#111827"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hủy đơn sắp tới"
+                                android:textColor="#6B7280"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:text="Không hủy"
+                                android:textColor="#111827"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Thời hạn mới"
+                                android:textColor="#6B7280"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:text="30 ngày"
+                                android:textColor="#111827"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!-- CARD 2: USER NOTIFICATION STATUS -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_card_white"
+                        android:elevation="2dp"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:text="Thông báo người dùng"
+                                android:textColor="#111827"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/bg_btn_duyet"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="3dp"
+                                android:text="Chờ cập nhật kết quả gửi"
+                                android:textColor="#B45309"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Đã bật gửi thông báo cho Quân."
+                            android:textColor="#111827"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Trạng thái kết quả minh họa · Quyết định mới"
-                            android:textColor="#15803D"
+                            android:layout_marginTop="4dp"
+                            android:text="Trạng thái khóa đã được ghi nhận trong kịch bản này. Chưa có xác nhận thông báo đã được giao đến người dùng."
+                            android:textColor="#6B7280"
                             android:textSize="12sp" />
                     </LinearLayout>
-                </RelativeLayout>
+
+                    <!-- CARD 3: POST-DECISION TRACKING -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_card_white"
+                        android:elevation="2dp"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Theo dõi sau quyết định"
+                            android:textColor="#111827"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <!-- ITEM 1 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/bg_badge_green"
+                                android:gravity="center"
+                                android:text="✓"
+                                android:textColor="#059669"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Quyết định mới đã ghi nhận"
+                                    android:textColor="#111827"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tạm khóa 30 ngày · Vi phạm quy tắc"
+                                    android:textColor="#6B7280"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- ITEM 2 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/bg_badge_green"
+                                android:gravity="center"
+                                android:text="✓"
+                                android:textColor="#059669"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Giữ nguyên đơn sắp tới"
+                                    android:textColor="#111827"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tùy chọn hủy đơn đã tắt"
+                                    android:textColor="#6B7280"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- CARD 4: INFO NOTE CARD -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_stat_icon_1"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ⓘ Không nhầm với lịch sử"
+                            android:textColor="#046A38"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Lần tạm khóa 7 ngày từ 06/11/2026 là quyết định trước đó, không phải thời hạn của lần khóa này."
+                            android:textColor="#4B5563"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 

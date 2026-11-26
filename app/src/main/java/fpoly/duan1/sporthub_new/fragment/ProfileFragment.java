@@ -13,16 +13,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import fpoly.duan1.sporthub_new.FavoritePitchesActivity;
 import fpoly.duan1.sporthub_new.LoginActivity;
-import fpoly.duan1.sporthub_new.MainActivity;
 import fpoly.duan1.sporthub_new.MenuActivity;
 import fpoly.duan1.sporthub_new.R;
+import fpoly.duan1.sporthub_new.utils.FavoriteManager;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView tvProfileAvatar, tvUserName, tvUserPhone, tvUserAddress;
+    private TextView tvProfileAvatar, tvUserName, tvUserPhone, tvUserAddress, tvFavoriteCount;
     private TextView btnEditProfile;
-    private View llMyTeam, llMyBookings, llMyReviews, llChangePassword, llLogout;
+    private View llFavoritePitches, llMyBookings, llMyReviews, llChangePassword, llLogout;
 
     @Nullable
     @Override
@@ -38,18 +39,32 @@ public class ProfileFragment extends Fragment {
         setupListeners();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateFavoriteCount();
+    }
+
     private void initViews(View view) {
         tvProfileAvatar = view.findViewById(R.id.tvProfileAvatar);
         tvUserName = view.findViewById(R.id.tvUserName);
         tvUserPhone = view.findViewById(R.id.tvUserPhone);
         tvUserAddress = view.findViewById(R.id.tvUserAddress);
+        tvFavoriteCount = view.findViewById(R.id.tvFavoriteCount);
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
 
-        llMyTeam = view.findViewById(R.id.llMyTeam);
+        llFavoritePitches = view.findViewById(R.id.llFavoritePitches);
         llMyBookings = view.findViewById(R.id.llMyBookings);
         llMyReviews = view.findViewById(R.id.llMyReviews);
         llChangePassword = view.findViewById(R.id.llChangePassword);
         llLogout = view.findViewById(R.id.llLogout);
+    }
+
+    private void updateFavoriteCount() {
+        if (tvFavoriteCount != null && isAdded()) {
+            int count = FavoriteManager.getInstance().getFavoriteCount(requireContext());
+            tvFavoriteCount.setText(count + " sân đã lưu");
+        }
     }
 
     private void setupListeners() {
@@ -57,8 +72,8 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(requireContext(), "Mở màn hình Sửa hồ sơ", Toast.LENGTH_SHORT).show()
         );
 
-        llMyTeam.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Đội bóng của tôi: Minh FC", Toast.LENGTH_SHORT).show()
+        llFavoritePitches.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), FavoritePitchesActivity.class))
         );
 
         llMyBookings.setOnClickListener(v -> {

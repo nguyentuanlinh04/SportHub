@@ -1,6 +1,8 @@
 package fpoly.duan1.sporthub_new.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +25,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import fpoly.duan1.sporthub_new.NotificationActivity;
+import fpoly.duan1.sporthub_new.PitchDetailActivity;
 import fpoly.duan1.sporthub_new.R;
+import fpoly.duan1.sporthub_new.SelectLocationActivity;
 import fpoly.duan1.sporthub_new.adapter.FilterChipAdapter;
 import fpoly.duan1.sporthub_new.adapter.PitchAdapter;
 import fpoly.duan1.sporthub_new.model.FilterChip;
@@ -30,6 +35,7 @@ import fpoly.duan1.sporthub_new.model.PitchComplex;
 
 public class HomeFragment extends Fragment {
 
+    private TextView tvLocation;
     private RecyclerView rvFilterChips;
     private RecyclerView rvPitches;
     private EditText edtSearch;
@@ -56,18 +62,45 @@ public class HomeFragment extends Fragment {
         setupFilterChips();
         setupPitchList();
         setupSearchAndFilter();
+        loadSavedLocation();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadSavedLocation();
     }
 
     private void initViews(View view) {
+        tvLocation = view.findViewById(R.id.tvLocation);
         rvFilterChips = view.findViewById(R.id.rvFilterChips);
         rvPitches = view.findViewById(R.id.rvPitches);
         edtSearch = view.findViewById(R.id.edtSearch);
         btnFilter = view.findViewById(R.id.btnFilter);
 
+        View llLocationHeader = view.findViewById(R.id.llLocationHeader);
+        if (llLocationHeader != null) {
+            llLocationHeader.setOnClickListener(v -> {
+                Intent intent = new Intent(requireContext(), SelectLocationActivity.class);
+                startActivity(intent);
+            });
+        }
+
         view.findViewById(R.id.btnNotification).setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), NotificationActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void loadSavedLocation() {
+        if (tvLocation == null || getContext() == null) return;
+        SharedPreferences pref = requireContext().getSharedPreferences("sporthub_users_db", Context.MODE_PRIVATE);
+        String savedLoc = pref.getString(SelectLocationActivity.PREF_SELECTED_LOCATION, "");
+        if (savedLoc == null || savedLoc.trim().isEmpty()) {
+            tvLocation.setText(SelectLocationActivity.DEFAULT_LOCATION_HINT);
+        } else {
+            tvLocation.setText(savedLoc);
+        }
     }
 
     private void setupFilterChips() {
@@ -129,9 +162,16 @@ public class HomeFragment extends Fragment {
         displayPitchList.clear();
         displayPitchList.addAll(fullPitchList);
 
-        pitchAdapter = new PitchAdapter(requireContext(), displayPitchList, pitch ->
-                Toast.makeText(requireContext(), "Đã chọn: " + pitch.getName(), Toast.LENGTH_SHORT).show()
-        );
+        pitchAdapter = new PitchAdapter(requireContext(), displayPitchList, pitch -> {
+            Intent intent = new Intent(requireContext(), PitchDetailActivity.class);
+            intent.putExtra("pitch_id", pitch.getId());
+            intent.putExtra("pitch_name", pitch.getName());
+            intent.putExtra("pitch_address", pitch.getDistanceAndAddress());
+            intent.putExtra("pitch_rating", pitch.getRating());
+            intent.putExtra("pitch_review_count", pitch.getReviewCount());
+            intent.putExtra("pitch_price", pitch.getPriceText());
+            startActivity(intent);
+        });
 
         rvPitches.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPitches.setAdapter(pitchAdapter);
@@ -151,9 +191,10 @@ public class HomeFragment extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
 
-        btnFilter.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Mở bộ lọc nâng cao", Toast.LENGTH_SHORT).show()
-        );
+        btnFilter.setOnClickListener(v -> {
+            FilterBottomSheetFragment bottomSheet = FilterBottomSheetFragment.newInstance();
+            bottomSheet.show(getChildFragmentManager(), "FilterBottomSheet");
+        });
     }
 
     private void filterPitchList() {

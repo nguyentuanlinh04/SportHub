@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_card_pitch"
+    android:padding="14dp">
+
+    <!-- Title & Unit Price Column -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvAddonTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Áo bib phân đội"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Áo bib phân đội" />
+
+        <TextView
+            android:id="@+id/tvAddonUnitPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="30.000đ / bộ"
+            android:textColor="@color/text_sub"
+            android:textSize="12sp"
+            tools:text="30.000đ / bộ" />
+    </LinearLayout>
+
+    <!-- Quantity Counter Controls (- quantity +) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Minus Button -->
+        <ImageButton
+            android:id="@+id/btnMinus"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_counter_btn_minus"
+            android:contentDescription="Minus Button"
+            android:src="@drawable/ic_minus" />
+
+        <!-- Quantity Text -->
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="1" />
+
+        <!-- Plus Button -->
+        <ImageButton
+            android:id="@+id/btnPlus"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_counter_btn_plus"
+            android:contentDescription="Plus Button"
+            android:src="@drawable/ic_plus" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package fpoly.duan1.sporthub_new.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fpoly.duan1.sporthub_new.BookingTicketActivity;
 import fpoly.duan1.sporthub_new.R;
 import fpoly.duan1.sporthub_new.adapter.BookingAdapter;
 import fpoly.duan1.sporthub_new.model.BookingItem;
@@ -157,7 +159,10 @@ public class BookingScheduleFragment extends Fragment {
         adapter = new BookingAdapter(requireContext(), displayList, new BookingAdapter.OnBookingActionListener() {
             @Override
             public void onViewQRClick(BookingItem item) {
-                Toast.makeText(requireContext(), "Mã QR cho đơn " + item.getSubTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(requireContext(), BookingTicketActivity.class);
+                intent.putExtra("pitch_name", item.getPitchName());
+                intent.putExtra("booking_code", item.getSubTitle());
+                startActivity(intent);
             }
 
             @Override

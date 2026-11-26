@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainBookingTicket"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#063D23"
+    android:fillViewport="true"
+    tools:context=".BookingTicketActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Header Bar (Close X & Title) -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/btnClose"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_btn_close_ticket"
+                android:contentDescription="Close Button"
+                android:padding="11dp"
+                android:src="@drawable/ic_close_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Vé đặt sân"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Vé đặt sân" />
+        </RelativeLayout>
+
+        <!-- Status Banner (Lime Checkmark + Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_circle_lime">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Checkmark Icon"
+                    android:src="@drawable/ic_check_dark" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đặt sân thành công"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Đặt sân thành công" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Đưa mã này cho nhân viên khi đến sân"
+                    android:textColor="#C2D6CB"
+                    android:textSize="13sp"
+                    tools:text="Đưa mã này cho nhân viên khi đến sân" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Digital Ticket White Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical">
+
+            <!-- Top QR Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="12dp">
+
+                <ImageView
+                    android:id="@+id/ivTicketQR"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:contentDescription="Ticket QR"
+                    android:src="@drawable/ic_qr_code_dark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Mã đặt sân"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Mã đặt sân" />
+
+                <TextView
+                    android:id="@+id/tvTicketCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="SH-1109-0187"
+                    android:textColor="@color/text_title"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="SH-1109-0187" />
+            </LinearLayout>
+
+            <!-- Perforated Ticket Cutouts Row -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:clipChildren="false">
+
+                <!-- Left Semi-circle Cutout -->
+                <View
+                    android:id="@+id/cutoutLeft"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="-10dp"
+                    android:background="@drawable/bg_loading_circle"
+                    android:backgroundTint="#063D23" />
+
+                <!-- Dashed Line -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_toEndOf="@id/cutoutLeft"
+                    android:layout_toStartOf="@id/cutoutRight"
+                    android:background="@drawable/bg_dashed_line" />
+
+                <!-- Right Semi-circle Cutout -->
+                <View
+                    android:id="@+id/cutoutRight"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="-10dp"
+                    android:background="@drawable/bg_loading_circle"
+                    android:backgroundTint="#063D23" />
+            </RelativeLayout>
+
+            <!-- Bottom Details Table Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="Cụm sân"
+                        android:textColor="@color/text_sub"
+                        android:textSize="14sp"
+                        tools:text="Cụm sân" />
+
+                    <TextView
+                        android:id="@+id/tvTicketPitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Thắng Long · Sân 5-A"
+                        android:textColor="@color/text_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Thắng Long · Sân 5-A" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="Thời gian"
+                        android:textColor="@color/text_sub"
+                        android:textSize="14sp"
+                        tools:text="Thời gian" />
+
+                    <TextView
+                        android:id="@+id/tvTicketTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Thứ 2, 09/11 · 18:00 – 20:00"
+                        android:textColor="@color/text_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Thứ 2, 09/11 · 18:00 – 20:00" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="Dịch vụ"
+                        android:textColor="@color/text_sub"
+                        android:textSize="14sp"
+                        tools:text="Dịch vụ" />
+
+                    <TextView
+                        android:id="@+id/tvTicketAddons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="Áo bib × 1, nước × 1"
+                        android:textColor="@color/text_title"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Áo bib × 1, nước × 1" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="Thanh toán"
+                        android:textColor="@color/text_sub"
+                        android:textSize="14sp"
+                        tools:text="Thanh toán" />
+
+                    <TextView
+                        android:id="@+id/tvDepositBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_deposit_badge"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:text="Đã cọc 255.000đ"
+                        android:textColor="@color/primary_green"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        tools:text="Đã cọc 255.000đ" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="Còn thu tại sân"
+                        android:textColor="@color/text_sub"
+                        android:textSize="14sp"
+                        tools:text="Còn thu tại sân" />
+
+                    <TextView
+                        android:id="@+id/tvTicketRemainingAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="595.000đ"
+                        android:textColor="@color/primary_green"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="595.000đ" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Action Buttons Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <!-- Button 1: Chỉ đường đến sân -->
+            <TextView
+                android:id="@+id/btnDirections"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_lime"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Chỉ đường đến sân"
+                android:textColor="#111827"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Chỉ đường đến sân" />
+
+            <!-- Button 2: Xem lịch đặt -->
+            <TextView
+                android:id="@+id/btnViewSchedule"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_ticket_outline"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="Xem lịch đặt"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Xem lịch đặt" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

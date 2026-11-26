@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Clock circle -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M12,12m-9,0a9,9 0 1,0 18,0a9,9 0 1,0 -18,0"
+        android:strokeWidth="2"
+        android:strokeColor="#8F5300" />
+    <!-- Clock hands -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M12,7v5l3,2"
+        android:strokeWidth="2"
+        android:strokeColor="#8F5300"
+        android:strokeLineCap="round" />
+    <!-- Diagonal Slash line -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M4,4L20,20"
+        android:strokeWidth="2"
+        android:strokeColor="#8F5300"
+        android:strokeLineCap="round" />
+</vector>

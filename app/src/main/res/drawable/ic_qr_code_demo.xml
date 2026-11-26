@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="220dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- QR Container Background with soft gradient tint -->
+    <path
+        android:fillColor="#F0E8FF"
+        android:pathData="M10,10 H190 V190 H10 Z" />
+
+    <!-- Outer Finder Patterns (Top-Left, Top-Right, Bottom-Left) -->
+    <!-- Top-Left Finder -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M25,25 H75 V75 H25 Z M35,35 V65 H65 V35 Z M42,42 H58 V58 H42 Z" />
+
+    <!-- Top-Right Finder -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M125,25 H175 V75 H125 Z M135,35 V65 H165 V35 Z M142,42 H158 V58 H142 Z" />
+
+    <!-- Bottom-Left Finder -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M25,125 H75 V175 H25 Z M35,135 V165 H65 V135 Z M42,142 H58 V158 H42 Z" />
+
+    <!-- Random Data Modules simulating VietQR Code -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M85,25 H95 V35 H85 Z M105,25 H115 V45 H105 Z M85,45 H105 V55 H85 Z M85,65 H95 V85 H85 Z M105,65 H125 V75 H105 Z M135,85 H155 V95 H135 Z M25,85 H45 V95 H25 Z M55,85 H75 V105 H55 Z M85,95 H115 V115 H85 Z M125,105 H145 V125 H125 Z M155,105 H175 V115 H155 Z M25,105 H45 V115 H25 Z M165,125 H175 V145 H165 Z M135,135 H155 V155 H135 Z M85,125 H105 V145 H85 Z M115,135 H125 V165 H115 Z M85,155 H105 V175 H85 Z M145,165 H175 V175 H145 Z M125,175 H155 V185 H125 Z" />
+
+    <!-- VietQR / Napas247 logo text simulation at bottom -->
+    <path
+        android:fillColor="#C0392B"
+        android:pathData="M145,178 L150,186 L155,178 Z" />
+
+</vector>

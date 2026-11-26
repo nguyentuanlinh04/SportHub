@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="60dp"
+    android:height="60dp"
+    android:viewportWidth="60"
+    android:viewportHeight="60">
+    <!-- Outer Corner Boxes -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M2,2h16v16h-16z M6,6h8v8h-8z M42,2h16v16h-16z M46,6h8v8h-8z M2,42h16v16h-16z M6,46h8v8h-8z" />
+    <!-- Center dots inside corner boxes -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M8,8h4v4h-4z M48,8h4v4h-4z M8,48h4v4h-4z" />
+    <!-- Internal random/pixel data modules -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M24,4h6v6h-6z M32,12h6v6h-6z M22,18h6v6h-6z M4,24h6v6h-6z M14,28h6v6h-6z M28,26h6v6h-6z M40,24h6v6h-6z M50,28h6v6h-6z M22,38h6v6h-6z M34,36h6v6h-6z M44,42h6v6h-6z M28,48h6v6h-6z M50,50h6v6h-6z" />
+</vector>

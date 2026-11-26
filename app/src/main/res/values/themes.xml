@@ -7,5 +7,9 @@
         <item name="colorOnSecondaryContainer">#124E2A</item>
     </style>
 
+    <style name="TransparentActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+    </style>
+
     <style name="Theme.Sporthubnew" parent="Base.Theme.Sporthubnew" />
 </resources>

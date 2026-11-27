@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainCreateMatchPost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".CreateMatchPostActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Header Bar (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Đăng tin tìm đối"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Đăng tin tìm đối" />
+        </LinearLayout>
+
+        <!-- My Team Card -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đội của tôi"
+                    android:textColor="@color/text_sub"
+                    android:textSize="12sp"
+                    tools:text="Đội của tôi" />
+
+                <TextView
+                    android:id="@+id/tvMyTeamName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Minh FC"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Minh FC" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_skill_badge_green"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="Đội trưởng"
+                android:textColor="#0A6A3A"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Đội trưởng" />
+        </RelativeLayout>
+
+        <!-- Section: Loại sân -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="Loại sân"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Loại sân" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvPitchType5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Sân 5"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Sân 5" />
+
+            <TextView
+                android:id="@+id/tvPitchType7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Sân 7"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Sân 7" />
+
+            <TextView
+                android:id="@+id/tvPitchType11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Sân 11"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Sân 11" />
+        </LinearLayout>
+
+        <!-- Row: Ngày & Khung giờ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!-- Card Ngày -->
+            <LinearLayout
+                android:id="@+id/llCardDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_pitch"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày"
+                    android:textColor="@color/text_sub"
+                    android:textSize="12sp"
+                    tools:text="Ngày" />
+
+                <TextView
+                    android:id="@+id/tvMatchDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Thứ 4, 11/11"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Thứ 4, 11/11" />
+            </LinearLayout>
+
+            <!-- Card Khung giờ -->
+            <LinearLayout
+                android:id="@+id/llCardTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_pitch"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khung giờ"
+                    android:textColor="@color/text_sub"
+                    android:textSize="12sp"
+                    tools:text="Khung giờ" />
+
+                <TextView
+                    android:id="@+id/tvMatchTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="19:00 – 20:00"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="19:00 – 20:00" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Location Card -->
+        <LinearLayout
+            android:id="@+id/llCardLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sân đã đặt / khu vực"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Sân đã đặt / khu vực" />
+
+            <TextView
+                android:id="@+id/tvMatchLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Cụm sân Thắng Long · Sân 7-1"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 7-1" />
+        </LinearLayout>
+
+        <!-- Section: Trình độ mong muốn -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:text="Trình độ mong muốn"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Trình độ mong muốn" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvLevelFun"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Vui vẻ"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Vui vẻ" />
+
+            <TextView
+                android:id="@+id/tvLevelMedium"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="TB"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="TB" />
+
+            <TextView
+                android:id="@+id/tvLevelGood"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Khá"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Khá" />
+
+            <TextView
+                android:id="@+id/tvLevelStrong"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Mạnh"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Mạnh" />
+        </LinearLayout>
+
+        <!-- Section: Chia tiền sân -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:text="Chia tiền sân"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Chia tiền sân" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvSplit50"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="50/50"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="50/50" />
+
+            <TextView
+                android:id="@+id/tvSplitLoserPays"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Thua trả"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Thua trả" />
+
+            <TextView
+                android:id="@+id/tvSplitWePay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Đội mình trả"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Đội mình trả" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tin hiển thị ngay. Đội đầu tiên nhận kèo sẽ được chốt tự động."
+            android:textColor="#718096"
+            android:textSize="12sp"
+            tools:text="Tin hiển thị ngay. Đội đầu tiên nhận kèo sẽ được chốt tự động." />
+
+        <!-- Submit Button: Đăng tin -->
+        <TextView
+            android:id="@+id/btnSubmitPost"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Đăng tin"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Đăng tin" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

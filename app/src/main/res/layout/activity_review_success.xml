@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainReviewSuccess"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".ReviewSuccessActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Header Bar (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Đánh giá sân"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Đánh giá sân" />
+        </LinearLayout>
+
+        <!-- Success Check Circle Container -->
+        <FrameLayout
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_success_circle">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:contentDescription="Success Check"
+                android:src="@drawable/ic_checkmark_green" />
+        </FrameLayout>
+
+        <!-- Header Announcement Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Cảm ơn đánh giá của bạn!"
+            android:textColor="@color/text_title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Cảm ơn đánh giá của bạn!" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Nhận xét của Minh đã được gửi và sẽ giúp các đội chọn sân phù hợp."
+            android:textColor="@color/text_sub"
+            android:textSize="14sp"
+            tools:text="Nhận xét của Minh đã được gửi và sẽ giúp các đội chọn sân phù hợp." />
+
+        <!-- Submitted Review Summary Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvReviewPitchName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long" />
+
+            <TextView
+                android:id="@+id/tvReviewMatchCodeDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SH-1101-0120 · Đã hoàn thành · 01/11/2026 · 18:00–20:00 · Sân 5-A"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="SH-1101-0120 · Đã hoàn thành · 01/11/2026 · 18:00–20:00 · Sân 5-A" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="10dp"
+                android:background="#EAEFE9" />
+
+            <!-- Stars Row -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="★ ★ ★ ★ ★"
+                android:textColor="#D97706"
+                android:textSize="18sp"
+                tools:text="★ ★ ★ ★ ★" />
+
+            <!-- Criteria Scores Table -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Mặt cỏ / Ánh sáng /\nPhục vụ"
+                    android:textColor="@color/text_sub"
+                    android:textSize="12sp"
+                    tools:text="Mặt cỏ / Ánh sáng /\nPhục vụ" />
+
+                <TextView
+                    android:id="@+id/tvScores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="5 / 5 / 5"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="5 / 5 / 5" />
+            </RelativeLayout>
+
+            <!-- Highlight Tags Badge -->
+            <TextView
+                android:id="@+id/tvHighlightTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_skill_badge_green"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="Mặt cỏ tốt · Đèn sáng"
+                android:textColor="#0A6A3A"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Mặt cỏ tốt · Đèn sáng" />
+
+            <!-- Review Comment Quote -->
+            <TextView
+                android:id="@+id/tvReviewCommentText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="“Sân đẹp, mặt cỏ êm và đèn sáng. Nhân viên nhiệt tình, đội mình sẽ quay lại!”"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="“Sân đẹp, mặt cỏ êm và đèn sáng. Nhân viên nhiệt tình, đội mình sẽ quay lại!”" />
+
+            <!-- Review Author Footer -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Minh · Đánh giá từ lượt đặt đã hoàn thành"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Minh · Đánh giá từ lượt đặt đã hoàn thành" />
+        </LinearLayout>
+
+        <!-- Main Button 1: Xem nhận xét của tôi -->
+        <TextView
+            android:id="@+id/btnViewMyReviews"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Xem nhận xét của tôi"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Xem nhận xét của tôi" />
+
+        <!-- Secondary Button 2: Đặt lại sân Thắng Long -->
+        <TextView
+            android:id="@+id/btnRebookPitch"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_btn_edit_profile"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Đặt lại sân Thắng Long"
+            android:textColor="@color/primary_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Đặt lại sân Thắng Long" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

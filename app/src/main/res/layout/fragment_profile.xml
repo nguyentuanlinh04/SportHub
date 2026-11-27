@@ -128,9 +128,9 @@
             android:background="@drawable/bg_card_pitch"
             android:orientation="vertical">
 
-            <!-- Item 1: Đội bóng của tôi -->
+            <!-- Item 1: Sân bóng yêu thích -->
             <RelativeLayout
-                android:id="@+id/llMyTeam"
+                android:id="@+id/llFavoritePitches"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:background="?attr/selectableItemBackground"
@@ -139,39 +139,41 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
-                    android:id="@+id/ivTeamIcon"
+                    android:id="@+id/ivFavoriteIcon"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:contentDescription="Team Icon"
-                    android:src="@drawable/ic_profile_team" />
+                    android:contentDescription="Favorite Icon"
+                    android:src="@drawable/ic_heart_outline"
+                    app:tint="@color/primary_green" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="14dp"
-                    android:layout_toEndOf="@id/ivTeamIcon"
+                    android:layout_toEndOf="@id/ivFavoriteIcon"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Đội bóng của tôi"
+                        android:text="Sân bóng yêu thích"
                         android:textColor="@color/text_title"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        tools:text="Đội bóng của tôi" />
+                        tools:text="Sân bóng yêu thích" />
 
                     <TextView
+                        android:id="@+id/tvFavoriteCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="Minh FC"
+                        android:text="2 sân đã lưu"
                         android:textColor="@color/text_sub"
                         android:textSize="12sp"
-                        tools:text="Minh FC" />
+                        tools:text="2 sân đã lưu" />
                 </LinearLayout>
 
                 <ImageView

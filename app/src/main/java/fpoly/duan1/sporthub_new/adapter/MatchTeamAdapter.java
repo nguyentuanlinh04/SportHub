@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +23,6 @@ public class MatchTeamAdapter extends RecyclerView.Adapter<MatchTeamAdapter.Matc
 
     public interface OnMatchActionListener {
         void onRequestClick(MatchTeam team);
-        void onChatClick(MatchTeam team);
     }
 
     public MatchTeamAdapter(Context context, List<MatchTeam> teamList, OnMatchActionListener listener) {
@@ -45,32 +43,34 @@ public class MatchTeamAdapter extends RecyclerView.Adapter<MatchTeamAdapter.Matc
         MatchTeam team = teamList.get(position);
 
         holder.tvTeamAvatar.setText(team.getAvatarText());
-        holder.tvTeamAvatar.setBackgroundResource(team.getAvatarBgRes());
+        if (team.getAvatarBgRes() != 0) {
+            holder.tvTeamAvatar.setBackgroundResource(team.getAvatarBgRes());
+        }
 
         holder.tvTeamName.setText(team.getTeamName());
         holder.tvCaptainDistance.setText(String.format("Đội trưởng: %s · %s", team.getCaptainName(), team.getDistance()));
 
         holder.tvLevelBadge.setText(team.getLevelText());
-        holder.tvLevelBadge.setBackgroundResource(team.getLevelBgRes());
-        holder.tvLevelBadge.setTextColor(team.getLevelTextColor());
+        if (team.getLevelBgRes() != 0) {
+            holder.tvLevelBadge.setBackgroundResource(team.getLevelBgRes());
+        }
+        if (team.getLevelTextColor() != 0) {
+            holder.tvLevelBadge.setTextColor(team.getLevelTextColor());
+        }
 
         holder.tvTime.setText(team.getTimeText());
         holder.tvPitchType.setText(team.getPitchType());
         holder.tvSplitFee.setText(team.getSplitFee());
 
-        holder.btnSendRequest.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onRequestClick(team);
-            } else {
-                Toast.makeText(context, "Đã gửi yêu cầu giao lưu tới " + team.getTeamName(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        holder.btnChat.setOnClickListener(v -> {
+        holder.btnSendRequest.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onChatClick(team);
-            } else {
-                Toast.makeText(context, "Mở trò chuyện với đội " + team.getTeamName(), Toast.LENGTH_SHORT).show();
+                listener.onRequestClick(team);
             }
         });
     }
@@ -89,7 +89,6 @@ public class MatchTeamAdapter extends RecyclerView.Adapter<MatchTeamAdapter.Matc
         TextView tvPitchType;
         TextView tvSplitFee;
         TextView btnSendRequest;
-        ImageButton btnChat;
 
         public MatchViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,7 +100,6 @@ public class MatchTeamAdapter extends RecyclerView.Adapter<MatchTeamAdapter.Matc
             tvPitchType = itemView.findViewById(R.id.tvPitchType);
             tvSplitFee = itemView.findViewById(R.id.tvSplitFee);
             btnSendRequest = itemView.findViewById(R.id.btnSendRequest);
-            btnChat = itemView.findViewById(R.id.btnChat);
         }
     }
 }

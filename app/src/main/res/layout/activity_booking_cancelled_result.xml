@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainBookingCancelledResult"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".BookingCancelledResultActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Bar Header (Back & Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back Button"
+                android:padding="8dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Hủy đặt sân"
+                android:textColor="@color/text_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="Hủy đặt sân" />
+        </LinearLayout>
+
+        <!-- Success Check Circle Container -->
+        <FrameLayout
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_success_circle">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:contentDescription="Success Check"
+                android:src="@drawable/ic_checkmark_green" />
+        </FrameLayout>
+
+        <!-- Status Header Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Đã hủy đặt sân"
+            android:textColor="@color/text_title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Đã hủy đặt sân" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Đơn SH-1109-0187 đã được hủy. Khung giờ không còn được giữ cho đội của bạn."
+            android:textColor="@color/text_sub"
+            android:textSize="14sp"
+            tools:text="Đơn SH-1109-0187 đã được hủy. Khung giờ không còn được giữ cho đội của bạn." />
+
+        <!-- Order Summary Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPitchSubPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long · Sân 5-A"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 5-A" />
+
+            <TextView
+                android:id="@+id/tvOrderCodeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SH-1109-0187 · Minh"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="SH-1109-0187 · Minh" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="#EAEFE9" />
+
+            <TextView
+                android:id="@+id/tvFullDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thứ 2, 09/11/2026 · 18:00–20:00"
+                android:textColor="@color/text_title"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Thứ 2, 09/11/2026 · 18:00–20:00" />
+        </LinearLayout>
+
+        <!-- Refund Status Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Tiền cọc được hoàn"
+                    android:textColor="@color/text_sub"
+                    android:textSize="13sp"
+                    tools:text="Tiền cọc được hoàn" />
+
+                <TextView
+                    android:id="@+id/tvRefundAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="255.000đ"
+                    android:textColor="@color/primary_green"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="255.000đ" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvRefundBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_skill_badge_green"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="Đang xử lý hoàn tiền"
+                android:textColor="#0A6A3A"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Đang xử lý hoàn tiền" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Khoản hoàn chưa hoàn tất, sẽ trả về phương thức ban đầu. Thời gian ghi có tùy ngân hàng."
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Khoản hoàn chưa hoàn tất, sẽ trả về phương thức ban đầu. Thời gian ghi có tùy ngân hàng." />
+        </LinearLayout>
+
+        <!-- Disclaimer Timestamp Text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Đã hủy 08/11/2026 lúc 20:15, trước mốc 09/11 lúc 06:00. Đủ điều kiện hoàn 100% tiền cọc."
+            android:textColor="#718096"
+            android:textSize="12sp"
+            tools:text="Đã hủy 08/11/2026 lúc 20:15, trước mốc 09/11 lúc 06:00. Đủ điều kiện hoàn 100% tiền cọc." />
+
+        <!-- Main Button 1: Xem tiến trình hoàn tiền -->
+        <TextView
+            android:id="@+id/btnViewRefundProgress"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Xem tiến trình hoàn tiền"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Xem tiến trình hoàn tiền" />
+
+        <!-- Secondary Button 2: Về lịch đặt sân -->
+        <TextView
+            android:id="@+id/btnReturnToSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_btn_edit_profile"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Về lịch đặt sân"
+            android:textColor="@color/primary_green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Về lịch đặt sân" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

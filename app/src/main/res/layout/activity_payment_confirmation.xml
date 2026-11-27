@@ -434,7 +434,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:contentDescription="Info Icon"
-                    android:src="@drawable/ic_info_circle" />
+                    android:src="@drawable/ic_payment_info_notice" />
 
                 <TextView
                     android:layout_width="wrap_content"

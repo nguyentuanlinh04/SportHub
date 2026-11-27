@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fpoly.duan1.sporthub_new.BookingTicketActivity;
+import fpoly.duan1.sporthub_new.CancelBookingActivity;
 import fpoly.duan1.sporthub_new.R;
+import fpoly.duan1.sporthub_new.ReviewPitchActivity;
 import fpoly.duan1.sporthub_new.adapter.BookingAdapter;
 import fpoly.duan1.sporthub_new.model.BookingItem;
 
@@ -53,6 +55,12 @@ public class BookingScheduleFragment extends Fragment {
         setupTabs();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setupSampleData();
+    }
+
     private void initViews(View view) {
         tvTabUpcoming = view.findViewById(R.id.tvTabUpcoming);
         tvTabCompleted = view.findViewById(R.id.tvTabCompleted);
@@ -64,7 +72,7 @@ public class BookingScheduleFragment extends Fragment {
         TextView btnReview = view.findViewById(R.id.btnReview);
         if (btnReview != null) {
             btnReview.setOnClickListener(v ->
-                    Toast.makeText(requireContext(), "Mở màn hình Đánh giá trận đấu ngày 01/11", Toast.LENGTH_SHORT).show()
+                    startActivity(new Intent(requireContext(), ReviewPitchActivity.class))
             );
         }
     }
@@ -96,6 +104,8 @@ public class BookingScheduleFragment extends Fragment {
                 0
         ));
 
+        boolean b3Reviewed = fpoly.duan1.sporthub_new.utils.ReviewManager.getInstance().isReviewed(requireContext(), "b3");
+
         // --- TAB 1: ĐÃ HOÀN THÀNH ---
         fullList.add(new BookingItem(
                 "b3",
@@ -107,7 +117,7 @@ public class BookingScheduleFragment extends Fragment {
                 "Đã thanh toán",
                 "0đ",
                 "850.000đ",
-                false,
+                b3Reviewed,
                 1
         ));
 
@@ -167,12 +177,18 @@ public class BookingScheduleFragment extends Fragment {
 
             @Override
             public void onCancelClick(BookingItem item) {
-                Toast.makeText(requireContext(), "Hủy đơn đặt sân " + item.getSubTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(requireContext(), CancelBookingActivity.class);
+                intent.putExtra("pitch_name", item.getPitchName());
+                intent.putExtra("booking_code", item.getSubTitle());
+                startActivity(intent);
             }
 
             @Override
             public void onReviewClick(BookingItem item) {
-                Toast.makeText(requireContext(), "Mở đánh giá cho " + item.getPitchName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(requireContext(), ReviewPitchActivity.class);
+                intent.putExtra("pitch_name", item.getPitchName());
+                intent.putExtra("booking_code", item.getSubTitle());
+                startActivity(intent);
             }
 
             @Override

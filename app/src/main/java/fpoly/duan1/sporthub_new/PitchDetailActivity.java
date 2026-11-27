@@ -13,6 +13,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fpoly.duan1.sporthub_new.model.PitchComplex;
+import fpoly.duan1.sporthub_new.utils.FavoriteManager;
+
 public class PitchDetailActivity extends AppCompatActivity {
 
     private ImageButton btnBack, btnFavorite;
@@ -87,15 +93,23 @@ public class PitchDetailActivity extends AppCompatActivity {
                 tvDetailBottomPrice.setText(price);
             }
         }
+
+        isFavorite = FavoriteManager.getInstance().isFavorite(this, pitchName);
+        btnFavorite.setImageResource(isFavorite ? R.drawable.ic_heart_filled : R.drawable.ic_heart_outline);
     }
 
     private void setupListeners() {
         btnBack.setOnClickListener(v -> finish());
 
         btnFavorite.setOnClickListener(v -> {
-            isFavorite = !isFavorite;
+            List<String> tags = new ArrayList<>();
+            tags.add("Sân 5");
+            tags.add("Sân 7");
+            PitchComplex dummy = new PitchComplex("p_detail", pitchName, pitchAddressText, 4.8, 126, tags, tvDetailBottomPrice.getText().toString(), "Còn trống", true);
+
+            isFavorite = FavoriteManager.getInstance().toggleFavorite(this, dummy);
             btnFavorite.setImageResource(isFavorite ? R.drawable.ic_heart_filled : R.drawable.ic_heart_outline);
-            Toast.makeText(this, isFavorite ? "Đã thêm vào sân yêu thích!" : "Đã xóa khỏi sân yêu thích", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, isFavorite ? "Đã thêm vào danh sách yêu thích!" : "Đã xóa khỏi danh sách yêu thích", Toast.LENGTH_SHORT).show();
         });
 
         btnDirections.setOnClickListener(v -> {

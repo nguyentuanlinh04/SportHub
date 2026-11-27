@@ -214,42 +214,58 @@ public class FirebaseUserHelper {
         }
     }
 
-    // Đổi mật khẩu trên Firebase
+    // Đổi mật khẩu trên Firebase và SharedPreferences
     public static void updatePassword(Context context, String phone, String newPassword, OnUserActionListener listener) {
-        String cleanPhone = phone.trim();
-        User localUser = getUserFromPreferences(context, cleanPhone);
-
-        if (localUser != null) {
-            localUser.setPassword(newPassword);
-            localUsersMemory.put(cleanPhone, localUser);
-            saveUserToPreferences(context, localUser);
+        if (context == null || newPassword == null || newPassword.trim().isEmpty()) {
+            if (listener != null) listener.onError("Mật khẩu mới không hợp lệ!");
+            return;
         }
 
+        String cleanPass = newPassword.trim();
+        SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+
+        // 1. Cập nhật mật khẩu cho tất cả tài khoản trong SharedPreferences local
+        Map<String, ?> allEntries = pref.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            if (entry.getKey().endsWith("_password")) {
+                editor.putString(entry.getKey(), cleanPass);
+            }
+        }
+        editor.apply();
+
+        // 2. Cập nhật mật khẩu trong bộ nhớ RAM localUsersMemory
+        for (Map.Entry<String, User> entry : localUsersMemory.entrySet()) {
+            if (entry.getValue() != null) {
+                entry.getValue().setPassword(cleanPass);
+            }
+        }
+
+        // 3. Cập nhật mật khẩu trực tiếp trên Firebase Realtime Database
         DatabaseReference ref = getUsersRef();
         if (ref != null) {
             try {
-                Query query = ref.orderByChild("phoneNumber").equalTo(cleanPhone);
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
                             for (DataSnapshot child : snapshot.getChildren()) {
-                                child.getRef().child("password").setValue(newPassword);
+                                child.getRef().child("password").setValue(cleanPass);
                             }
                         }
-                        listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
+                        if (listener != null) listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
+                        if (listener != null) listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
                     }
                 });
             } catch (Exception e) {
-                listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
+                if (listener != null) listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
             }
         } else {
-            listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
+            if (listener != null) listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
         }
     }
 

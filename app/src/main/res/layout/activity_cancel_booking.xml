@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainCancelBooking"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".CancelBookingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Header Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hủy đặt sân"
+            android:textColor="@color/text_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Hủy đặt sân" />
+
+        <!-- Order Info Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvPitchSubPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cụm sân Thắng Long · Sân 5-A"
+                android:textColor="@color/text_title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Cụm sân Thắng Long · Sân 5-A" />
+
+            <TextView
+                android:id="@+id/tvOrderCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SH-1109-0187"
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="SH-1109-0187" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tvDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Thứ 2, 09/11"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Thứ 2, 09/11" />
+
+                <TextView
+                    android:id="@+id/tvTimeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="18:00 – 20:00"
+                    android:textColor="@color/text_title"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="18:00 – 20:00" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Refund Eligibility Banner Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_checkbox_checked"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đủ điều kiện hoàn 100% tiền cọc"
+                android:textColor="#0A6A3A"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Đủ điều kiện hoàn 100% tiền cọc" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Hủy trước 06:00 ngày 09/11 để hoàn 100% cọc (đơn 18:00 – 20:00)."
+                android:textColor="#276749"
+                android:textSize="12sp"
+                tools:text="Hủy trước 06:00 ngày 09/11 để hoàn 100% cọc (đơn 18:00 – 20:00)." />
+        </LinearLayout>
+
+        <!-- Fee & Refund Breakdown Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_pitch"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Tổng đơn"
+                    android:textColor="@color/text_sub"
+                    android:textSize="14sp"
+                    tools:text="Tổng đơn" />
+
+                <TextView
+                    android:id="@+id/tvTotalFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="850.000đ"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="850.000đ" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Đã cọc"
+                    android:textColor="@color/text_sub"
+                    android:textSize="14sp"
+                    tools:text="Đã cọc" />
+
+                <TextView
+                    android:id="@+id/tvDepositFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="255.000đ"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="255.000đ" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="#EAEFE9" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Hoàn lại"
+                    android:textColor="@color/text_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Hoàn lại" />
+
+                <TextView
+                    android:id="@+id/tvRefundFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="255.000đ"
+                    android:textColor="@color/primary_green"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="255.000đ" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Hoàn về phương thức thanh toán ban đầu."
+                android:textColor="@color/text_sub"
+                android:textSize="12sp"
+                tools:text="Hoàn về phương thức thanh toán ban đầu." />
+        </LinearLayout>
+
+        <!-- Keep Booking Card / Button -->
+        <TextView
+            android:id="@+id/btnKeepBooking"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_pitch"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Giữ lại đặt sân"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Giữ lại đặt sân" />
+
+        <!-- Section: Lý do hủy -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:text="Lý do hủy"
+            android:textColor="@color/text_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Lý do hủy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_container"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tvReasonSchedule"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_selected"
+                android:gravity="center"
+                android:text="Đổi lịch"
+                android:textColor="@color/text_title"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="Đổi lịch" />
+
+            <TextView
+                android:id="@+id/tvReasonMembers"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Thiếu người"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Thiếu người" />
+
+            <TextView
+                android:id="@+id/tvReasonWeather"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Thời tiết"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Thời tiết" />
+
+            <TextView
+                android:id="@+id/tvReasonOther"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="Khác"
+                android:textColor="@color/text_sub"
+                android:textSize="13sp"
+                tools:text="Khác" />
+        </LinearLayout>
+
+        <!-- Main Action Button: Xác nhận hủy -->
+        <TextView
+            android:id="@+id/btnConfirmCancel"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Xác nhận hủy"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Xác nhận hủy" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

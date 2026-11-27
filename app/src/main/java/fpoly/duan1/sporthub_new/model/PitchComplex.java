@@ -12,6 +12,7 @@ public class PitchComplex {
     private String priceText;
     private String statusText;
     private boolean isAvailable; // true: Còn trống, false: Sắp hết giờ
+    private boolean isFavorite;
 
     public PitchComplex(String id, String name, String distanceAndAddress, double rating, int reviewCount, List<String> tags, String priceText, String statusText, boolean isAvailable) {
         this.id = id;
@@ -23,6 +24,14 @@ public class PitchComplex {
         this.priceText = priceText;
         this.statusText = statusText;
         this.isAvailable = isAvailable;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     public String getId() {

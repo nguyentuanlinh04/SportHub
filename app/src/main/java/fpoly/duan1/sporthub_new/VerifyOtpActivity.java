@@ -149,11 +149,41 @@ public class VerifyOtpActivity extends AppCompatActivity {
         }
 
         if (enteredOtp.toString().equals(expectedOtp)) {
-            Toast.makeText(this, "Xác thực mã OTP thành công!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(VerifyOtpActivity.this, ResetPasswordActivity.class);
-            intent.putExtra("PHONE_NUMBER", phoneNumber);
-            startActivity(intent);
-            finish();
+            boolean isRegistration = getIntent() != null && getIntent().getBooleanExtra("IS_REGISTRATION", false);
+            fpoly.duan1.sporthub_new.model.User pendingRegisterUser = null;
+            if (getIntent() != null) {
+                pendingRegisterUser = (fpoly.duan1.sporthub_new.model.User) getIntent().getSerializableExtra("REGISTER_USER_DATA");
+            }
+
+            if (isRegistration && pendingRegisterUser != null) {
+                final fpoly.duan1.sporthub_new.model.User finalUser = pendingRegisterUser;
+                fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.registerUser(this, pendingRegisterUser, new fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.OnUserActionListener() {
+                    @Override
+                    public void onSuccess(String message) {
+                        if (fpoly.duan1.sporthub_new.model.User.ROLE_CHU_SAN.equals(finalUser.getRole())) {
+                            Toast.makeText(VerifyOtpActivity.this, "Xác thực SĐT thành công! Đã gửi yêu cầu đăng ký Chủ sân (Chờ duyệt trong 24h).", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(VerifyOtpActivity.this, "Xác thực SĐT thành công! Tạo tài khoản Khách hàng thành công!", Toast.LENGTH_LONG).show();
+                        }
+
+                        Intent intent = new Intent(VerifyOtpActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(VerifyOtpActivity.this, error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(this, "Xác thực mã OTP thành công!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(VerifyOtpActivity.this, ResetPasswordActivity.class);
+                intent.putExtra("PHONE_NUMBER", phoneNumber);
+                startActivity(intent);
+                finish();
+            }
         } else {
             Toast.makeText(this, "Mã xác thực không chính xác. Vui lòng kiểm tra lại.", Toast.LENGTH_SHORT).show();
         }

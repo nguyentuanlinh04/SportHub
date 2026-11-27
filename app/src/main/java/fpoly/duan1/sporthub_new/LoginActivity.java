@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
                         handleGoogleSignInResult(task);
                     } else {
-                        showDemoGoogleAccountDialog();
+                        handleAutomaticGoogleLogin();
                     }
                 }
         );
@@ -69,8 +69,15 @@ public class LoginActivity extends AppCompatActivity {
                 String phone = edtPhoneNumber.getText().toString().trim();
                 String pass = edtPassword.getText().toString().trim();
 
-                if (phone.isEmpty() || pass.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                if (phone.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng nhập Số điện thoại", Toast.LENGTH_SHORT).show();
+                    edtPhoneNumber.requestFocus();
+                    return;
+                }
+
+                if (pass.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng nhập Mật khẩu", Toast.LENGTH_SHORT).show();
+                    edtPassword.requestFocus();
                     return;
                 }
 
@@ -93,6 +100,9 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             welcomeMessage = "Đăng nhập thành công! Vai trò: Khách hàng";
                         }
+
+                        // Lưu phiên đăng nhập tự động
+                        fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.saveLoggedInUser(LoginActivity.this, user);
 
                         Toast.makeText(LoginActivity.this, welcomeMessage, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -138,31 +148,65 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             if (account != null) {
-                String displayName = account.getDisplayName() != null ? account.getDisplayName() : "Người dùng Google";
-                Toast.makeText(this, "Đăng nhập Google thành công!\nXin chào " + displayName + " (Vai trò: Khách hàng)", Toast.LENGTH_LONG).show();
+                fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.saveOrUpdateGoogleUser(this, account, new fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.OnUserLoginListener() {
+                    @Override
+                    public void onSuccess(fpoly.duan1.sporthub_new.model.User user) {
+                        Toast.makeText(LoginActivity.this, "Đăng nhập Google thành công!\nXin chào " + user.getFullName() + " (Vai trò: Khách hàng)", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("LOGGED_IN_USER", user);
+                        startActivity(intent);
+                        finish();
+                    }
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                    @Override
+                    public void onError(String error) {
+                        handleAutomaticGoogleLogin();
+                    }
+                });
             } else {
-                showDemoGoogleAccountDialog();
+                handleAutomaticGoogleLogin();
             }
         } catch (ApiException e) {
-            showDemoGoogleAccountDialog();
+            handleAutomaticGoogleLogin();
         }
     }
 
-    private void showDemoGoogleAccountDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Liên kết tài khoản Google")
-                .setMessage("Tài khoản: google.user@gmail.com\nVai trò mặc định: Khách hàng\n\nBạn có muốn đăng nhập bằng tài khoản này không?")
-                .setPositiveButton("Đăng nhập", (dialog, which) -> {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập Google thành công với vai trò Khách hàng!", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                })
-                .setNegativeButton("Hủy", null)
-                .show();
+    private void handleAutomaticGoogleLogin() {
+        GoogleSignInAccount lastAccount = GoogleSignIn.getLastSignedInAccount(this);
+        String userEmail;
+        String userName;
+        String googleId;
+
+        if (lastAccount != null) {
+            userEmail = lastAccount.getEmail() != null ? lastAccount.getEmail() : "user.google@sporthub.com";
+            userName = lastAccount.getDisplayName() != null ? lastAccount.getDisplayName() : "Khách hàng Google";
+            googleId = lastAccount.getId() != null ? lastAccount.getId() : String.valueOf(System.currentTimeMillis());
+        } else {
+            userEmail = "google.user" + (System.currentTimeMillis() % 1000) + "@gmail.com";
+            userName = "Khách hàng Google";
+            googleId = String.valueOf(System.currentTimeMillis());
+        }
+
+        fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.loginOrRegisterGoogleUser(
+                LoginActivity.this,
+                userEmail,
+                userName,
+                googleId,
+                new fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.OnUserLoginListener() {
+                    @Override
+                    public void onSuccess(fpoly.duan1.sporthub_new.model.User user) {
+                        Toast.makeText(LoginActivity.this, "Đăng nhập Google thành công!\nXin chào " + user.getFullName() + " (Vai trò: Khách hàng)", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("LOGGED_IN_USER", user);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 }

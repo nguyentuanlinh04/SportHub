@@ -31,8 +31,15 @@ public class SplashActivity extends AppCompatActivity {
         fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.initDefaultAdminAccount(this);
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            startActivity(intent);
+            fpoly.duan1.sporthub_new.model.User currentUser = fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.getLoggedInUser(this);
+            if (currentUser != null) {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                intent.putExtra("LOGGED_IN_USER", currentUser);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
             finish();
         }, 3000);
     }

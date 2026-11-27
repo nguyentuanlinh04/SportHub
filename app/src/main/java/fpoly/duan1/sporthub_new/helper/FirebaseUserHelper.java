@@ -22,6 +22,7 @@ import fpoly.duan1.sporthub_new.model.User;
 public class FirebaseUserHelper {
 
     private static final String PREF_NAME = "sporthub_users_db";
+    private static final String SESSION_PREF_NAME = "sporthub_user_session";
     private static final Map<String, User> localUsersMemory = new HashMap<>();
     private static boolean isAdminInitialized = false;
 
@@ -249,6 +250,117 @@ public class FirebaseUserHelper {
             }
         } else {
             listener.onSuccess("Đã cập nhật mật khẩu mới thành công!");
+        }
+    }
+
+    // Lưu phiên đăng nhập người dùng hiện tại
+    public static void saveLoggedInUser(Context context, User user) {
+        if (context == null || user == null) return;
+        SharedPreferences pref = context.getSharedPreferences(SESSION_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("userId", user.getUserId());
+        editor.putString("phoneNumber", user.getPhoneNumber());
+        editor.putString("fullName", user.getFullName());
+        editor.putString("password", user.getPassword());
+        editor.putString("role", user.getRole());
+        editor.putString("status", user.getStatus());
+        editor.putString("cccd", user.getCccd());
+        editor.putString("address", user.getAddress());
+        editor.putString("businessName", user.getBusinessName());
+        editor.putString("taxCode", user.getTaxCode());
+        editor.putLong("createdAt", user.getCreatedAt());
+        editor.putBoolean("isLoggedIn", true);
+        editor.apply();
+    }
+
+    // Lấy thông tin phiên đăng nhập hiện tại
+    public static User getLoggedInUser(Context context) {
+        if (context == null) return null;
+        SharedPreferences pref = context.getSharedPreferences(SESSION_PREF_NAME, Context.MODE_PRIVATE);
+        if (!pref.getBoolean("isLoggedIn", false)) return null;
+
+        User user = new User();
+        user.setUserId(pref.getString("userId", ""));
+        user.setPhoneNumber(pref.getString("phoneNumber", ""));
+        user.setFullName(pref.getString("fullName", ""));
+        user.setPassword(pref.getString("password", ""));
+        user.setRole(pref.getString("role", User.ROLE_KHACH_HANG));
+        user.setStatus(pref.getString("status", User.STATUS_ACTIVE));
+        user.setCccd(pref.getString("cccd", ""));
+        user.setAddress(pref.getString("address", ""));
+        user.setBusinessName(pref.getString("businessName", ""));
+        user.setTaxCode(pref.getString("taxCode", ""));
+        user.setCreatedAt(pref.getLong("createdAt", 0));
+        return user;
+    }
+
+    // Xóa phiên đăng nhập (Đăng xuất)
+    public static void clearSession(Context context) {
+        if (context == null) return;
+        SharedPreferences pref = context.getSharedPreferences(SESSION_PREF_NAME, Context.MODE_PRIVATE);
+        pref.edit().clear().apply();
+    }
+
+    // Đăng ký hoặc Đăng nhập bằng tài khoản Google thực tế duy nhất
+    public static void saveOrUpdateGoogleUser(Context context, com.google.android.gms.auth.api.signin.GoogleSignInAccount account, OnUserLoginListener listener) {
+        if (account == null) {
+            listener.onError("Không nhận được thông tin tài khoản Google!");
+            return;
+        }
+
+        String googleId = account.getId() != null ? account.getId() : String.valueOf(System.currentTimeMillis());
+        String email = account.getEmail() != null && !account.getEmail().isEmpty() ? account.getEmail() : ("google_" + googleId + "@sporthub.com");
+        String name = account.getDisplayName() != null && !account.getDisplayName().isEmpty() ? account.getDisplayName() : "Người dùng Google";
+
+        loginOrRegisterGoogleUser(context, email, name, googleId, listener);
+    }
+
+    // Đăng ký / Đăng nhập tài khoản Google độc lập theo Email & Tên
+    public static void loginOrRegisterGoogleUser(Context context, String email, String name, String googleId, OnUserLoginListener listener) {
+        if (email == null || email.trim().isEmpty()) {
+            email = "user_" + System.currentTimeMillis() + "@gmail.com";
+        }
+        if (name == null || name.trim().isEmpty()) {
+            name = "Người dùng Google";
+        }
+
+        String cleanEmail = email.trim().toLowerCase();
+        String sanitizedId = cleanEmail.replaceAll("[^a-zA-Z0-9]", "_");
+        String userId = "google_" + sanitizedId;
+
+        User googleUser = new User(
+                userId,
+                cleanEmail,
+                name.trim(),
+                "",
+                User.ROLE_KHACH_HANG,
+                User.STATUS_ACTIVE,
+                System.currentTimeMillis()
+        );
+
+        // Lưu bộ nhớ local & phiên làm việc
+        localUsersMemory.put(cleanEmail, googleUser);
+        saveUserToPreferences(context, googleUser);
+        saveLoggedInUser(context, googleUser);
+
+        // Lưu đồng thời lên Cloud Firestore
+        try {
+            FirebaseFirestore.getInstance().collection("users").document(userId).set(googleUser);
+        } catch (Exception ignored) {
+        }
+
+        // Đồng bộ trực tiếp lên Realtime Database
+        DatabaseReference ref = getUsersRef();
+        if (ref != null) {
+            try {
+                ref.child(userId).setValue(googleUser)
+                        .addOnSuccessListener(aVoid -> listener.onSuccess(googleUser))
+                        .addOnFailureListener(e -> listener.onSuccess(googleUser));
+            } catch (Exception e) {
+                listener.onSuccess(googleUser);
+            }
+        } else {
+            listener.onSuccess(googleUser);
         }
     }
 

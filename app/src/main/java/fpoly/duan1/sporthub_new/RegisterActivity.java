@@ -16,9 +16,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private boolean isOwnerRole = false;
+
+    // Regex: Tối thiểu 8 ký tự, ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile(
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!._\\-*()<>?/\\[\\]{}|]).{8,}$"
+    );
 
     private TextView tvRegisterSubtitle, tvRoleSelected, tvNameLabel;
     private EditText edtFullName, edtPhoneNumber, edtCccd, edtAddress, edtBusinessName, edtTaxCode, edtPassword, edtConfirmPassword;
@@ -134,76 +141,132 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void handleSubmitRegister() {
+        String name = edtFullName.getText().toString().trim();
+        if (name.isEmpty()) {
+            Toast.makeText(this, "Vui lòng nhập Họ và tên", Toast.LENGTH_SHORT).show();
+            edtFullName.requestFocus();
+            return;
+        }
+
+        String phone = edtPhoneNumber.getText().toString().trim();
+        if (phone.isEmpty()) {
+            Toast.makeText(this, "Vui lòng nhập Số điện thoại", Toast.LENGTH_SHORT).show();
+            edtPhoneNumber.requestFocus();
+            return;
+        }
+
+        String cccd = "";
+        String address = "";
+        String business = "";
+        String tax = "";
+
+        if (isOwnerRole) {
+            cccd = edtCccd.getText().toString().trim();
+            if (cccd.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập Số CMND / CCCD", Toast.LENGTH_SHORT).show();
+                edtCccd.requestFocus();
+                return;
+            }
+
+            address = edtAddress.getText().toString().trim();
+            if (address.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập Địa chỉ thường trú", Toast.LENGTH_SHORT).show();
+                edtAddress.requestFocus();
+                return;
+            }
+
+            business = edtBusinessName.getText().toString().trim();
+            if (business.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập Tên doanh nghiệp / Hộ kinh doanh", Toast.LENGTH_SHORT).show();
+                edtBusinessName.requestFocus();
+                return;
+            }
+
+            tax = edtTaxCode.getText().toString().trim();
+            if (tax.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập Mã số thuế", Toast.LENGTH_SHORT).show();
+                edtTaxCode.requestFocus();
+                return;
+            }
+        }
+
+        String password = edtPassword.getText().toString().trim();
+        if (password.isEmpty()) {
+            Toast.makeText(this, "Vui lòng nhập Mật khẩu", Toast.LENGTH_SHORT).show();
+            edtPassword.requestFocus();
+            return;
+        }
+
+        if (!PASSWORD_PATTERN.matcher(password).matches()) {
+            Toast.makeText(this, "Mật khẩu phải có tối thiểu 8 ký tự, gồm ít nhất 1 chữ in hoa, 1 chữ thường, 1 chữ số và 1 ký tự đặc biệt.", Toast.LENGTH_LONG).show();
+            edtPassword.requestFocus();
+            return;
+        }
+
+        if (!isOwnerRole) {
+            String confirmPass = edtConfirmPassword.getText().toString().trim();
+            if (confirmPass.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập Xác nhận mật khẩu", Toast.LENGTH_SHORT).show();
+                edtConfirmPassword.requestFocus();
+                return;
+            }
+
+            if (!password.equals(confirmPass)) {
+                Toast.makeText(this, "Mật khẩu xác nhận không trùng khớp", Toast.LENGTH_SHORT).show();
+                edtConfirmPassword.requestFocus();
+                return;
+            }
+        }
+
         if (!cbTerms.isChecked()) {
             Toast.makeText(this, "Vui lòng đồng ý Điều khoản sử dụng và Chính sách bảo mật.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String name = edtFullName.getText().toString().trim();
-        String phone = edtPhoneNumber.getText().toString().trim();
-        String password = edtPassword.getText().toString().trim();
+        final String finalCccd = cccd;
+        final String finalAddress = address;
+        final String finalBusiness = business;
+        final String finalTax = tax;
 
-        if (name.isEmpty() || phone.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đầy đủ các thông tin bắt buộc.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (isOwnerRole) {
-            String cccd = edtCccd.getText().toString().trim();
-            String address = edtAddress.getText().toString().trim();
-            String business = edtBusinessName.getText().toString().trim();
-            String tax = edtTaxCode.getText().toString().trim();
-
-            if (cccd.isEmpty() || address.isEmpty() || business.isEmpty() || tax.isEmpty()) {
-                Toast.makeText(this, "Vui lòng điền đầy đủ thông tin doanh nghiệp / cá nhân chủ sân.", Toast.LENGTH_SHORT).show();
+        // Kiểm tra Số điện thoại đã tồn tại trên Firebase chưa
+        fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.checkPhoneExists(this, phone, exists -> {
+            if (exists) {
+                Toast.makeText(RegisterActivity.this, "Số điện thoại này đã được đăng ký tài khoản trên hệ thống!", Toast.LENGTH_SHORT).show();
+                edtPhoneNumber.requestFocus();
                 return;
             }
 
-            fpoly.duan1.sporthub_new.model.User ownerUser = new fpoly.duan1.sporthub_new.model.User(
-                    "", phone, name, password,
-                    fpoly.duan1.sporthub_new.model.User.ROLE_CHU_SAN,
-                    fpoly.duan1.sporthub_new.model.User.STATUS_PENDING,
-                    cccd, address, business, tax, System.currentTimeMillis()
-            );
-
-            fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.registerUser(this, ownerUser, new fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.OnUserActionListener() {
-                @Override
-                public void onSuccess(String message) {
-                    Toast.makeText(RegisterActivity.this, "Đã gửi yêu cầu đăng ký Chủ sân! Quản trị viên sẽ duyệt trong 24h.", Toast.LENGTH_LONG).show();
-                    finish();
-                }
-
-                @Override
-                public void onError(String error) {
-                    Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            String confirmPass = edtConfirmPassword.getText().toString().trim();
-            if (!password.equals(confirmPass)) {
-                Toast.makeText(this, "Mật khẩu xác nhận không khớp.", Toast.LENGTH_SHORT).show();
-                return;
+            fpoly.duan1.sporthub_new.model.User pendingUser;
+            if (isOwnerRole) {
+                pendingUser = new fpoly.duan1.sporthub_new.model.User(
+                        "", phone, name, password,
+                        fpoly.duan1.sporthub_new.model.User.ROLE_CHU_SAN,
+                        fpoly.duan1.sporthub_new.model.User.STATUS_PENDING,
+                        finalCccd, finalAddress, finalBusiness, finalTax, System.currentTimeMillis()
+                );
+            } else {
+                pendingUser = new fpoly.duan1.sporthub_new.model.User(
+                        "", phone, name, password,
+                        fpoly.duan1.sporthub_new.model.User.ROLE_KHACH_HANG,
+                        fpoly.duan1.sporthub_new.model.User.STATUS_ACTIVE,
+                        System.currentTimeMillis()
+                );
             }
 
-            fpoly.duan1.sporthub_new.model.User customerUser = new fpoly.duan1.sporthub_new.model.User(
-                    "", phone, name, password,
-                    fpoly.duan1.sporthub_new.model.User.ROLE_KHACH_HANG,
-                    fpoly.duan1.sporthub_new.model.User.STATUS_ACTIVE,
-                    System.currentTimeMillis()
-            );
+            // Sinh ngẫu nhiên mã OTP 6 chữ số
+            int randomOtpNum = 100000 + new java.util.Random().nextInt(900000);
+            String generatedOtp = String.valueOf(randomOtpNum);
 
-            fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.registerUser(this, customerUser, new fpoly.duan1.sporthub_new.helper.FirebaseUserHelper.OnUserActionListener() {
-                @Override
-                public void onSuccess(String message) {
-                    Toast.makeText(RegisterActivity.this, "Tạo tài khoản Khách hàng thành công!", Toast.LENGTH_LONG).show();
-                    finish();
-                }
+            Toast.makeText(RegisterActivity.this, "[SMS Mô phỏng] Mã xác thực OTP đăng ký của bạn là: " + generatedOtp, Toast.LENGTH_LONG).show();
 
-                @Override
-                public void onError(String error) {
-                    Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+            // Chuyển sang màn hình VerifyOtpActivity để người dùng nhập OTP hoàn tất đăng ký
+            android.content.Intent intent = new android.content.Intent(RegisterActivity.this, VerifyOtpActivity.class);
+            intent.putExtra("IS_REGISTRATION", true);
+            intent.putExtra("PHONE_NUMBER", phone);
+            intent.putExtra("OTP_CODE", generatedOtp);
+            intent.putExtra("REGISTER_USER_DATA", pendingUser);
+            startActivity(intent);
+            finish();
+        });
     }
 }

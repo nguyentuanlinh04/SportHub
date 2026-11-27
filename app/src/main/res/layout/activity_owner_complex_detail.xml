@@ -258,90 +258,10 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="8dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="6dp"
-                                    android:layout_weight="1"
-                                    android:background="#DEEAE0" />
-
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1.4"
-                                    android:background="#DEEAE0" />
-
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="6dp"
-                                    android:layout_weight="1"
-                                    android:background="#DEEAE0" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_marginTop="6dp"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginEnd="6dp"
-                                    android:layout_weight="1"
-                                    android:background="#DEEAE0" />
-
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1.4"
-                                    android:background="#DEEAE0" />
-
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginStart="6dp"
-                                    android:layout_weight="1"
-                                    android:background="#DEEAE0" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <!-- Center Dot Pin -->
-                        <View
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/bg_pin_circle_white" />
-                    </FrameLayout>
-
-                    <!-- Row 1: Tọa độ -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal">
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_pitch_field" />
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Tọa độ"
-                            android:textColor="@color/owner_text_sub"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tvComplexDetailCoordinates"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10,7291° B, 106,7313° Đ"
@@ -385,35 +305,13 @@
                     android:orientation="vertical"
                     android:padding="14dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvDetailPhotosTitle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Hình ảnh (3)"
-                            android:textColor="@color/owner_text_title"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/btnAddDetailPhoto"
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
-                            android:background="@drawable/bg_icon_square_add"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:gravity="center"
-                            android:text="+"
-                            android:textColor="#0A8B4D"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                        android:text="Hình ảnh sân (3)"
+                        android:textColor="@color/owner_text_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -427,68 +325,20 @@
                             android:layout_height="match_parent"
                             android:layout_marginEnd="6dp"
                             android:layout_weight="1"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="0dp">
+                            android:background="@drawable/bg_slot_available"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_football_pitch_thumb" />
 
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/bg_profile_pitch_banner" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="bottom"
-                                    android:background="#80000000"
-                                    android:gravity="center"
-                                    android:paddingVertical="3dp"
-                                    android:text="Ảnh sân"
-                                    android:textColor="@color/white"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
-                            </FrameLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <!-- Photo 2 -->
-                        <androidx.cardview.widget.CardView
+                        <ImageView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="3dp"
                             android:layout_weight="1"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="0dp">
+                            android:background="@drawable/bg_slot_available"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_football_pitch_thumb" />
 
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/bg_profile_pitch_banner" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="bottom"
-                                    android:background="#80000000"
-                                    android:gravity="center"
-                                    android:paddingVertical="3dp"
-                                    android:text="Ảnh sân"
-                                    android:textColor="@color/white"
-                                    android:textSize="10sp"
-                                    android:textStyle="bold" />
-                            </FrameLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <!-- Photo 3 -->
-                        <androidx.cardview.widget.CardView
+                        <ImageView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="6dp"
@@ -1444,27 +1294,12 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_price_box_peach"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingVertical="8dp">
+                            android:text="Sân 5\n280.000đ"
+                            android:textColor="#92400E"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sân 5"
-                                android:textColor="@color/owner_text_sub"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:text="310.000"
-                                android:textColor="@color/owner_text_title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="2dp"

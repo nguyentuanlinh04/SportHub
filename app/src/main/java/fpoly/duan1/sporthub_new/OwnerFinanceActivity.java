@@ -96,29 +96,13 @@ public class OwnerFinanceActivity extends AppCompatActivity {
             if (tvGoldHourFillRate != null) tvGoldHourFillRate.setText("0%");
             if (tvCompletedMatches != null) tvCompletedMatches.setText("0 trận");
         } else {
-            if (tvSub != null) tvSub.setText("Cụm sân Thăng Long · 5 sân ▾");
-            if (tvTotalRevenueMonth != null) tvTotalRevenueMonth.setText("148.650.000đ");
-            if (tvGoldHourFillRate != null) tvGoldHourFillRate.setText("96,2%");
-            if (tvCompletedMatches != null) tvCompletedMatches.setText("412 trận");
+            setChipSelected(chipFinanceRiverside);
+            tvChartTitle.setText("Doanh thu 7 ngày qua (Cụm Riverside)");
+            tvChartGrowth.setText("+22.0%");
+            setChartBars("13.5", "14.0", "13.0", "15.5", "17.0", "20.5", "16.5");
+            tvEfficiencyTitle.setText("Hiệu suất lấp đầy (Cụm Riverside)");
+            updateEfficiency(70, "70.5% (138 trận)", 75, "75.0% (80 trận)", 42, "42.0% (38 trận)");
         }
-    }
-
-    private void showComplexSwitcherDialog() {
-        java.util.List<String> optionsList = fpoly.duan1.sporthub_new.helper.OwnerComplexManager.getInstance().getAllComplexOptionsForSwitcher();
-        String[] options = optionsList.toArray(new String[0]);
-        new AlertDialog.Builder(this)
-                .setTitle("Chọn cụm sân xem thu chi")
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        currentComplexName = "Tất cả các sân";
-                    } else {
-                        String selected = options[which];
-                        currentComplexName = selected.replace("⚽ ", "").replaceAll(" \\(.*\\)", "").trim();
-                    }
-                    updateFinanceData();
-                    Toast.makeText(this, "Đã chuyển sang thu chi: " + currentComplexName, Toast.LENGTH_SHORT).show();
-                })
-                .show();
     }
 
     private void setupBottomNav() {

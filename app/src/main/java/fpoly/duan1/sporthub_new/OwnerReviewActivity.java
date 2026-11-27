@@ -41,68 +41,8 @@ public class OwnerReviewActivity extends AppCompatActivity {
     }
 
     private void setupActions() {
-        String passedComplex = getIntent().getStringExtra("COMPLEX_NAME");
-        if (passedComplex != null && !passedComplex.isEmpty()) {
-            currentComplexName = passedComplex;
-        }
-
-        updateReviewHeaderSubtitle();
-
-        TextView tvSub = findViewById(R.id.tvReviewHeaderSubtitle);
-        if (tvSub != null) {
-            tvSub.setOnClickListener(v -> showComplexSwitcherDialog());
-        }
-
-        View btnReplyKhang = findViewById(R.id.btnReplyKhang);
-        if (btnReplyKhang != null) {
-            btnReplyKhang.setOnClickListener(v -> showReplyDialog("Nguyễn Hoàng Khang"));
-        }
-
-        View btnBack = findViewById(R.id.btnBackReview);
-        if (btnBack != null) {
-            btnBack.setOnClickListener(v -> finish());
-        }
-
-        View badgeRole = findViewById(R.id.badgeRoleReview);
-        if (badgeRole != null) {
-            badgeRole.setOnClickListener(v -> {
-                Intent intent = new Intent(OwnerReviewActivity.this, OwnerProfileActivity.class);
-                startActivity(intent);
-            });
-        }
-    }
-
-    private void updateReviewHeaderSubtitle() {
-        TextView tvSub = findViewById(R.id.tvReviewHeaderSubtitle);
-        if (tvSub != null) {
-            if (currentComplexName.contains("Tất cả") || currentComplexName.contains("Toàn hệ thống")) {
-                tvSub.setText("Tất cả các sân · 3 cơ sở (9 sân) ▾");
-            } else if (currentComplexName.contains("Mai Dịch")) {
-                tvSub.setText("Cụm sân Mai Dịch · 4 sân ▾");
-            } else if (currentComplexName.contains("Riverside")) {
-                tvSub.setText("Cụm sân Riverside · 0 sân ▾");
-            } else {
-                tvSub.setText("Cụm sân Thăng Long · 5 sân ▾");
-            }
-        }
-    }
-
-    private void showComplexSwitcherDialog() {
-        java.util.List<String> optionsList = fpoly.duan1.sporthub_new.helper.OwnerComplexManager.getInstance().getAllComplexOptionsForSwitcher();
-        String[] options = optionsList.toArray(new String[0]);
-        new AlertDialog.Builder(this)
-                .setTitle("Chọn cụm sân xem đánh giá")
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        currentComplexName = "Tất cả các sân";
-                    } else {
-                        String selected = options[which];
-                        currentComplexName = selected.replace("⚽ ", "").replaceAll(" \\(.*\\)", "").trim();
-                    }
-                    updateReviewHeaderSubtitle();
-                    Toast.makeText(this, "Đã chuyển sang đánh giá: " + currentComplexName, Toast.LENGTH_SHORT).show();
-                })
-                .show();
+        findViewById(R.id.btnReplyKhang).setOnClickListener(v -> showReplyDialog("Nguyễn Hoàng Khang"));
+        findViewById(R.id.btnReplyTuanAnh).setOnClickListener(v -> showReplyDialog("Trần Tuấn Anh"));
     }
 
     private void showReplyDialog(String customerName) {

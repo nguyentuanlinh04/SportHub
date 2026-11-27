@@ -85,22 +85,50 @@ public class OwnerStaffActivity extends AppCompatActivity {
         }
     }
 
-    private void showComplexSwitcherDialog() {
-        java.util.List<String> optionsList = fpoly.duan1.sporthub_new.helper.OwnerComplexManager.getInstance().getAllComplexOptionsForSwitcher();
-        String[] options = optionsList.toArray(new String[0]);
-        new AlertDialog.Builder(this)
-                .setTitle("Chọn cụm sân xem nhân sự")
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        currentComplexName = "Tất cả các sân";
-                    } else {
-                        String selected = options[which];
-                        currentComplexName = selected.replace("⚽ ", "").replaceAll(" \\(.*\\)", "").trim();
-                    }
-                    updateStaffHeaderSubtitle();
-                    Toast.makeText(this, "Đã chuyển sang nhân sự: " + currentComplexName, Toast.LENGTH_SHORT).show();
-                })
-                .show();
+    /**
+     * Đồng bộ trạng thái đã xóa vào SharedPreferences và cập nhật số lượng nhân sự hiển thị
+     */
+    private void applyStaffVisibilityAndCounts() {
+        // Cụm Thăng Long
+        boolean isHungDeleted = prefs.getBoolean("deleted_hung", false);
+        boolean isThaoDeleted = prefs.getBoolean("deleted_thao", false);
+        boolean isLocDeleted = prefs.getBoolean("deleted_loc", false);
+
+        if (cardStaffHung != null) cardStaffHung.setVisibility(isHungDeleted ? View.GONE : View.VISIBLE);
+        if (cardStaffThao != null) cardStaffThao.setVisibility(isThaoDeleted ? View.GONE : View.VISIBLE);
+        if (cardStaffLoc != null) cardStaffLoc.setVisibility(isLocDeleted ? View.GONE : View.VISIBLE);
+
+        int countTL = (isHungDeleted ? 0 : 1) + (isThaoDeleted ? 0 : 1) + (isLocDeleted ? 0 : 1);
+        chipStaffThangLong.setText("Cụm Thăng Long (" + countTL + ")");
+
+        // Cụm Mai Dịch
+        boolean isNamDeleted = prefs.getBoolean("deleted_nam", false);
+        boolean isMaiDeleted = prefs.getBoolean("deleted_mai", false);
+
+        if (cardStaffNam != null) cardStaffNam.setVisibility(isNamDeleted ? View.GONE : View.VISIBLE);
+        if (cardStaffMai != null) cardStaffMai.setVisibility(isMaiDeleted ? View.GONE : View.VISIBLE);
+
+        int countMD = (isNamDeleted ? 0 : 1) + (isMaiDeleted ? 0 : 1);
+        chipStaffMaiDich.setText("Cụm Mai Dịch (" + countMD + ")");
+
+        // Cụm Riverside
+        boolean isTrongDeleted = prefs.getBoolean("deleted_trong", false);
+        boolean isTuanDeleted = prefs.getBoolean("deleted_tuan", false);
+
+        if (cardStaffTrong != null) cardStaffTrong.setVisibility(isTrongDeleted ? View.GONE : View.VISIBLE);
+        if (cardStaffTuan != null) cardStaffTuan.setVisibility(isTuanDeleted ? View.GONE : View.VISIBLE);
+
+        int countRS = (isTrongDeleted ? 0 : 1) + (isTuanDeleted ? 0 : 1);
+        chipStaffRiverside.setText("Cụm Riverside (" + countRS + ")");
+
+        // Cập nhật Subtitle trên Header
+        if (currentComplexIndex == 0) {
+            tvStaffHeaderSubtitle.setText("Cụm Sân Thăng Long · " + countTL + " nhân viên");
+        } else if (currentComplexIndex == 1) {
+            tvStaffHeaderSubtitle.setText("Cụm Sân Mai Dịch · " + countMD + " nhân viên");
+        } else {
+            tvStaffHeaderSubtitle.setText("Cụm Sân Riverside · " + countRS + " nhân viên");
+        }
     }
 
     private void setupStaffActions() {

@@ -40,17 +40,7 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
 
     private TextView tabOverview, tabPitchList, tabPriceTable;
     private View layoutOverviewContainer, layoutPitchListContainer, layoutPriceTableContainer;
-    private TextView tvComplexDetailTitle, tvComplexDetailSub, tvComplexDetailAddress, tvComplexDetailHours, tvComplexDetailCoordinates, tvComplexDetailHotline;
-    private View cardPitch11;
-    private String currentComplexName = "Cụm Sân Thăng Long";
-
-    private TextView tvDetailPhotosTitle;
-    private int customPhotosCount = 3;
-    private Uri tempCameraUri = null;
-
-    private ActivityResultLauncher<Uri> takePictureLauncher;
-    private ActivityResultLauncher<String> pickGalleryLauncher;
-    private ActivityResultLauncher<String> requestCameraPermissionLauncher;
+    private TextView tvComplexDetailTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -353,78 +343,6 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
             tvBadge.setText(coordsStr);
             Toast.makeText(this, "Đã tự động xác định tọa độ từ địa chỉ cơ sở!", Toast.LENGTH_SHORT).show();
         });
-
-        // Current GPS button
-        dialogView.findViewById(R.id.btnCurrentGps).setOnClickListener(v -> {
-            tempCoords[0] = 21.038245;
-            tempCoords[1] = 105.782789;
-            edtLat.setText(String.format(Locale.US, "%.6f", tempCoords[0]));
-            edtLng.setText(String.format(Locale.US, "%.6f", tempCoords[1]));
-            String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", tempCoords[0], tempCoords[1]);
-            tvBadge.setText(coordsStr);
-            Toast.makeText(this, "Đã lấy tọa độ GPS từ vị trí hiện tại của thiết bị!", Toast.LENGTH_SHORT).show();
-        });
-
-        // Interactive touch on map canvas
-        if (simulatedCanvas != null) {
-            simulatedCanvas.setOnClickListener(v -> {
-                tempCoords[0] += (Math.random() - 0.5) * 0.001;
-                tempCoords[1] += (Math.random() - 0.5) * 0.001;
-                edtLat.setText(String.format(Locale.US, "%.6f", tempCoords[0]));
-                edtLng.setText(String.format(Locale.US, "%.6f", tempCoords[1]));
-                String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", tempCoords[0], tempCoords[1]);
-                tvBadge.setText(coordsStr);
-                Toast.makeText(this, "Đã dịch chuyển tâm ghim trên bản đồ!", Toast.LENGTH_SHORT).show();
-            });
-        }
-
-        // Open Google Maps
-        dialogView.findViewById(R.id.btnOpenGoogleMaps).setOnClickListener(v -> {
-            try {
-                double lat = Double.parseDouble(edtLat.getText().toString().trim());
-                double lng = Double.parseDouble(edtLng.getText().toString().trim());
-                String label = currentComplexName;
-                Uri gmmIntentUri = Uri.parse("geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + Uri.encode(label) + ")");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                startActivity(mapIntent);
-            } catch (Exception e) {
-                Toast.makeText(this, "Không thể mở ứng dụng bản đồ hoặc tọa độ chưa hợp lệ.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Close button
-        dialogView.findViewById(R.id.btnClosePinMap).setOnClickListener(v -> dialog.dismiss());
-
-        // Confirm button
-        dialogView.findViewById(R.id.btnConfirmPinLocation).setOnClickListener(v -> {
-            double finalLat;
-            double finalLng;
-            try {
-                finalLat = Double.parseDouble(edtLat.getText().toString().trim());
-                finalLng = Double.parseDouble(edtLng.getText().toString().trim());
-            } catch (Exception ignored) {
-                finalLat = tempCoords[0];
-                finalLng = tempCoords[1];
-            }
-            String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", finalLat, finalLng);
-
-            // Update in OwnerComplexManager
-            OwnerComplexManager.getInstance().updateCoordinates(currentComplexName, finalLat, finalLng, coordsStr);
-
-            if (tvComplexDetailCoordinates != null) {
-                tvComplexDetailCoordinates.setText(coordsStr);
-            }
-
-            Toast.makeText(this, "Đã ghim vị trí mới cho \"" + currentComplexName + "\" thành công!", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
-        });
-
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.getWindow().setGravity(Gravity.BOTTOM);
-        }
-        dialog.show();
     }
 
     private void setupTabs() {

@@ -236,206 +236,25 @@ public class OwnerScheduleActivity extends AppCompatActivity {
         }
     }
 
-    private void showComplexSwitcherDialog() {
-        java.util.List<String> optionsList = fpoly.duan1.sporthub_new.helper.OwnerComplexManager.getInstance().getAllComplexOptionsForSwitcher();
-        String[] options = optionsList.toArray(new String[0]);
-        new AlertDialog.Builder(this)
-                .setTitle("Chọn cụm sân xem lịch")
-                .setItems(options, (dialog, which) -> {
-                    if (which == 0) {
-                        currentComplexName = "Tất cả các sân";
-                    } else {
-                        String selected = options[which];
-                        currentComplexName = selected.replace("⚽ ", "").replaceAll(" \\(.*\\)", "").trim();
-                    }
-                    updateHeaderSubtitle();
-                    loadScheduleForComplex(currentComplexName);
-                    Toast.makeText(this, "Đã chuyển sang lịch: " + currentComplexName, Toast.LENGTH_SHORT).show();
-                })
-                .show();
+    private void setChipSelected(TextView chip) {
+        chip.setBackgroundResource(R.drawable.bg_owner_chip_selected);
+        chip.setTextColor(Color.WHITE);
     }
 
-    /**
-     * Nạp dữ liệu lịch trình riêng biệt cho từng cụm sân
-     */
-    private void loadScheduleForComplex(String complexName) {
-        String key = normalizeComplexKey(complexName);
-        Map<Integer, SlotData> map = complexSchedules.get(key);
-        if (map == null) return;
-
-        // Cập nhật tên 4 cột sân
-        String[] pitchNames = getPitchNamesForComplex(complexName);
-        if (tvColPitch1 != null) tvColPitch1.setText(pitchNames[0]);
-        if (tvColPitch2 != null) tvColPitch2.setText(pitchNames[1]);
-        if (tvColPitch3 != null) tvColPitch3.setText(pitchNames[2]);
-        if (tvColPitch4 != null) tvColPitch4.setText(pitchNames[3]);
-
-        // Duyệt qua 7 khung giờ và 4 cột để render từng ô
-        for (int r = 0; r < 7; r++) {
-            String timeStr = timeSlots[r];
-            for (int c = 0; c < 4; c++) {
-                int slotId = gridSlotIds[r][c];
-                ViewGroup slot = findViewById(slotId);
-                if (slot != null) {
-                    SlotData data = map.get(slotId);
-                    String pitch = pitchNames[c];
-                    renderSlot(slot, data, pitch, timeStr);
-                }
-            }
-        }
-    }
-
-    /**
-     * Render trạng thái trực quan cho từng ô lịch trên bảng
-     */
-    private void renderSlot(ViewGroup slot, SlotData data, String pitchName, String timeStr) {
-        slot.removeAllViews();
-        slot.setPadding(0, 0, 0, 0);
-
-        if (data == null || "AVAILABLE".equals(data.type)) {
-            // Ô TRỐNG (Màu xanh lime) -> Bấm để tạo lịch
-            slot.setBackgroundResource(R.drawable.bg_slot_lime_available);
-            TextView tv = new TextView(this);
-            tv.setText("+");
-            tv.setTextColor(Color.parseColor("#244B05"));
-            tv.setTextSize(16);
-            tv.setTypeface(null, Typeface.BOLD);
-            tv.setGravity(Gravity.CENTER);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-            slot.addView(tv, lp);
-
-            slot.setOnClickListener(v -> showCreateScheduleDialog(pitchName, timeStr, slot));
-
-        } else if ("MAINTENANCE".equals(data.type)) {
-            // Ô BẢO TRÌ (Màu đào / cam) -> Bấm xem chi tiết bảo trì
-            slot.setBackgroundResource(R.drawable.bg_slot_peach_maintenance);
-            TextView tv = new TextView(this);
-            tv.setText(data.statusLabel != null && !data.statusLabel.isEmpty() ? data.statusLabel : "Bảo trì");
-            tv.setTextColor(Color.parseColor("#B45309"));
-            tv.setTextSize(10);
-            tv.setTypeface(null, Typeface.BOLD);
-            tv.setGravity(Gravity.CENTER);
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-            slot.addView(tv, lp);
-
-            slot.setOnClickListener(v -> showMaintenanceDialog(pitchName));
-
-        } else if ("BOOKED_LIVE".equals(data.type)) {
-            // Ô ĐANG ĐÁ (LIVE - Màu xanh đậm)
-            slot.setBackgroundResource(R.drawable.bg_slot_live);
-            LinearLayout layout = createBookedSlotContent(
-                    data.statusLabel != null ? data.statusLabel : "● LIVE", "#CCF638",
-                    data.team, Color.WHITE,
-                    data.sub != null ? data.sub : "", Color.parseColor("#D1FAE5")
-            );
-            slot.addView(layout);
-
-            slot.setOnClickListener(v -> showBookingDetailDialog(data, pitchName, timeStr, slot));
-
-        } else if ("BOOKED_FIXED".equals(data.type)) {
-            // Ô LỊCH CỐ ĐỊNH (Màu xanh lam nhạt)
-            slot.setBackgroundResource(R.drawable.bg_slot_custom_fixed);
-            LinearLayout layout = createBookedSlotContent(
-                    "Cố định", "#0369A1",
-                    data.team, Color.parseColor("#0F172A"),
-                    data.sub != null ? data.sub : "", Color.parseColor("#475569")
-            );
-            slot.addView(layout);
-
-            slot.setOnClickListener(v -> showBookingDetailDialog(data, pitchName, timeStr, slot));
-
-        } else {
-            // Ô ĐẶT LẺ THEO TRẬN (Màu xám nhạt)
-            slot.setBackgroundResource(R.drawable.bg_slot_custom_single);
-            LinearLayout layout = createBookedSlotContent(
-                    "Đặt lẻ", "#475569",
-                    data.team, Color.parseColor("#1E293B"),
-                    data.sub != null ? data.sub : "", Color.parseColor("#64748B")
-            );
-            slot.addView(layout);
-
-            slot.setOnClickListener(v -> showBookingDetailDialog(data, pitchName, timeStr, slot));
-        }
-    }
-
-    private LinearLayout createBookedSlotContent(String tag, String tagColor, String team, int teamColor, String sub, int subColor) {
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setGravity(Gravity.CENTER);
-        layout.setPadding(4, 4, 4, 4);
-        layout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-        TextView tvTag = new TextView(this);
-        tvTag.setText(tag);
-        tvTag.setTextColor(Color.parseColor(tagColor));
-        tvTag.setTextSize(9);
-        tvTag.setTypeface(null, Typeface.BOLD);
-        layout.addView(tvTag);
-
-        TextView tvTeam = new TextView(this);
-        tvTeam.setText(team);
-        tvTeam.setTextColor(teamColor);
-        tvTeam.setTextSize(10);
-        tvTeam.setMaxLines(2);
-        tvTeam.setEllipsize(TextUtils.TruncateAt.END);
-        tvTeam.setGravity(Gravity.CENTER);
-        tvTeam.setTypeface(null, Typeface.BOLD);
-        layout.addView(tvTeam);
-
-        if (sub != null && !sub.isEmpty()) {
-            TextView tvSub = new TextView(this);
-            tvSub.setText(sub);
-            tvSub.setTextColor(subColor);
-            tvSub.setTextSize(8.5f);
-            tvSub.setGravity(Gravity.CENTER);
-            layout.addView(tvSub);
-        }
-
-        return layout;
-    }
-
-    /**
-     * Bottom Sheet Dialog: Chi tiết lịch trận đấu & CHỨC NĂNG HỦY LỊCH TRỰC QUAN
-     */
-    private void showBookingDetailDialog(SlotData data, String pitch, String time, ViewGroup slot) {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_booking_detail, null);
-        dialog.setContentView(dialogView);
-
-        TextView tvTeam = dialogView.findViewById(R.id.tvDetailTeamName);
-        TextView tvStatus = dialogView.findViewById(R.id.tvDetailStatusBadge);
-        TextView tvPitch = dialogView.findViewById(R.id.tvDetailPitchSubtitle);
-        TextView tvTime = dialogView.findViewById(R.id.tvDetailTime);
-        TextView tvPhone = dialogView.findViewById(R.id.tvDetailPhone);
-        TextView tvFee = dialogView.findViewById(R.id.tvDetailFee);
-
-        if (tvTeam != null) tvTeam.setText(data.team);
-        if (tvStatus != null) tvStatus.setText(data.statusLabel != null ? data.statusLabel : "Đặt sân");
-        if (tvPitch != null) tvPitch.setText(pitch + " · " + currentComplexName);
-        if (tvTime != null) tvTime.setText(time);
-        if (tvPhone != null) tvPhone.setText(data.phone != null && !data.phone.isEmpty() ? data.phone : "0908 123 456");
-        if (tvFee != null) tvFee.setText(data.fee != null && !data.fee.isEmpty() ? data.fee : "240.000đ");
-
-        dialogView.findViewById(R.id.btnCloseBookingDetail).setOnClickListener(v -> dialog.dismiss());
-
-        // CHỨC NĂNG HỦY LỊCH ĐẶT SÂN
-        dialogView.findViewById(R.id.btnCancelBooking).setOnClickListener(v -> {
-            showCancelBookingReasonDialog(data, pitch, time, slot, dialog);
-        });
-
-        dialogView.findViewById(R.id.btnCheckinBooking).setOnClickListener(v -> {
-            Toast.makeText(this, "Đã check-in cho đội \"" + data.team + "\" vào sân thi đấu!", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
-        });
-
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.getWindow().setGravity(Gravity.BOTTOM);
+    private void setupPausedComplexHandling() {
+        // Nút Kích hoạt lại Cụm Riverside
+        View btnReactivate = findViewById(R.id.btnReactivateRiverside);
+        if (btnReactivate != null) {
+            btnReactivate.setOnClickListener(v -> {
+                new AlertDialog.Builder(this)
+                        .setTitle("Kích hoạt lại Cụm Sân Riverside?")
+                        .setMessage("Cụm sân Riverside đang tạm ngưng để bảo trì mặt cỏ nhân tạo (từ 15/11 - 25/11).\n\nBạn có chắc chắn muốn chuyển sang trạng thái ĐANG HOẠT ĐỘNG và mở lại quyền nhận đặt sân không?")
+                        .setPositiveButton("Kích hoạt ngay", (dialog, which) -> {
+                            Toast.makeText(this, "Đã kích hoạt lại Cụm Sân Riverside! Trạng thái: Đang hoạt động.", Toast.LENGTH_LONG).show();
+                        })
+                        .setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss())
+                        .show();
+            });
         }
         dialog.show();
     }

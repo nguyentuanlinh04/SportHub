@@ -3,17 +3,7 @@ package fpoly.duan1.sporthub_new;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -506,12 +496,9 @@ public class AddComplexActivity extends AppCompatActivity {
         }
         findViewById(R.id.btnCancelAddComplex).setOnClickListener(v -> finish());
 
-        View.OnClickListener openMapDialogListener = v -> showPinMapDialog();
-        findViewById(R.id.btnSelectMapLocation).setOnClickListener(openMapDialogListener);
-        View layoutMapPreview = findViewById(R.id.layoutMapPreviewContainer);
-        if (layoutMapPreview != null) {
-            layoutMapPreview.setOnClickListener(openMapDialogListener);
-        }
+        findViewById(R.id.btnSelectMapLocation).setOnClickListener(v -> {
+            Toast.makeText(this, "Đã ghim vị trí tọa độ cơ sở trên bản đồ!", Toast.LENGTH_SHORT).show();
+        });
 
         findViewById(R.id.btnSubmitCreateComplex).setOnClickListener(v -> {
             String name = edtComplexName.getText().toString().trim();

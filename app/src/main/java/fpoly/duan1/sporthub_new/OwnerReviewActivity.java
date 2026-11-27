@@ -88,23 +88,16 @@ public class OwnerReviewActivity extends AppCompatActivity {
     }
 
     private void showComplexSwitcherDialog() {
-        String[] options = {
-                "🌐 Tất cả các sân (Toàn hệ thống · 9 sân)",
-                "⚽ Cụm sân Thăng Long (5 sân con)",
-                "⚽ Cụm sân Mai Dịch (4 sân con)",
-                "⚽ Cụm sân Riverside (Tạm ngưng)"
-        };
+        java.util.List<String> optionsList = fpoly.duan1.sporthub_new.helper.OwnerComplexManager.getInstance().getAllComplexOptionsForSwitcher();
+        String[] options = optionsList.toArray(new String[0]);
         new AlertDialog.Builder(this)
                 .setTitle("Chọn cụm sân xem đánh giá")
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
                         currentComplexName = "Tất cả các sân";
-                    } else if (which == 1) {
-                        currentComplexName = "Cụm Sân Thăng Long";
-                    } else if (which == 2) {
-                        currentComplexName = "Cụm Sân Mai Dịch";
                     } else {
-                        currentComplexName = "Cụm Sân Riverside";
+                        String selected = options[which];
+                        currentComplexName = selected.replace("⚽ ", "").replaceAll(" \\(.*\\)", "").trim();
                     }
                     updateReviewHeaderSubtitle();
                     Toast.makeText(this, "Đã chuyển sang đánh giá: " + currentComplexName, Toast.LENGTH_SHORT).show();

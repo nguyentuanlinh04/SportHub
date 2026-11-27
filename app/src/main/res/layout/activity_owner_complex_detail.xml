@@ -392,6 +392,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvDetailPhotosTitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -401,9 +402,12 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/btnAddDetailPhoto"
                             android:layout_width="26dp"
                             android:layout_height="26dp"
                             android:background="@drawable/bg_icon_square_add"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:gravity="center"
                             android:text="+"
                             android:textColor="#0A8B4D"
@@ -584,6 +588,21 @@
                         android:textColor="@color/owner_text_title"
                         android:textSize="13sp" />
                 </LinearLayout>
+
+                <!-- Xóa cụm sân này -->
+                <Button
+                    android:id="@+id/btnDeleteCurrentComplex"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_staff_revoke_btn"
+                    android:text="🗑️ Xóa cụm sân này"
+                    android:textAllCaps="false"
+                    android:textColor="#DC2626"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
             </LinearLayout>
 
             <!-- ================= TAB 2: DANH SÁCH SÂN CON ================= -->

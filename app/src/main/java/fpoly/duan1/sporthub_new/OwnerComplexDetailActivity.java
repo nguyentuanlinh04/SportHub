@@ -1,10 +1,13 @@
 package fpoly.duan1.sporthub_new;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -16,11 +19,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.io.File;
+import java.util.List;
+import java.util.Locale;
+
+import fpoly.duan1.sporthub_new.helper.OwnerComplexManager;
+import fpoly.duan1.sporthub_new.model.OwnerComplex;
 
 public class OwnerComplexDetailActivity extends AppCompatActivity {
 
@@ -29,6 +43,14 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
     private TextView tvComplexDetailTitle, tvComplexDetailSub, tvComplexDetailAddress, tvComplexDetailHours, tvComplexDetailCoordinates, tvComplexDetailHotline;
     private View cardPitch11;
     private String currentComplexName = "Cụm Sân Thăng Long";
+
+    private TextView tvDetailPhotosTitle;
+    private int customPhotosCount = 3;
+    private Uri tempCameraUri = null;
+
+    private ActivityResultLauncher<Uri> takePictureLauncher;
+    private ActivityResultLauncher<String> pickGalleryLauncher;
+    private ActivityResultLauncher<String> requestCameraPermissionLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +64,50 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
             return insets;
         });
 
+        initImagePickers();
         initViews();
         setupTabs();
         setupPitchActions();
         setupBottomNav();
+    }
+
+    private void initImagePickers() {
+        takePictureLauncher = registerForActivityResult(
+                new ActivityResultContracts.TakePicture(),
+                success -> {
+                    if (success) {
+                        customPhotosCount++;
+                        if (tvDetailPhotosTitle != null) {
+                            tvDetailPhotosTitle.setText("Hình ảnh (" + customPhotosCount + ")");
+                        }
+                        Toast.makeText(this, "Đã chụp và tải ảnh cơ sở lên thành công!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        pickGalleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        customPhotosCount++;
+                        if (tvDetailPhotosTitle != null) {
+                            tvDetailPhotosTitle.setText("Hình ảnh (" + customPhotosCount + ")");
+                        }
+                        Toast.makeText(this, "Đã chọn và tải ảnh cơ sở từ máy thành công!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestCameraPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        launchCamera();
+                    } else {
+                        Toast.makeText(this, "Cần cấp quyền máy ảnh để chụp hình", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     private void initViews() {
@@ -77,9 +139,25 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.btnBackDetail).setOnClickListener(v -> finish());
-        findViewById(R.id.btnViewMap).setOnClickListener(v -> {
-            Toast.makeText(this, "Xem vị trí cơ sở trên Google Maps", Toast.LENGTH_SHORT).show();
-        });
+
+        // Nút Ghim lại vị trí bản đồ
+        View btnViewMap = findViewById(R.id.btnViewMap);
+        if (btnViewMap != null) {
+            btnViewMap.setOnClickListener(v -> showPinMapDialog());
+        }
+
+        // Nút Xóa cụm sân này
+        View btnDeleteCurrentComplex = findViewById(R.id.btnDeleteCurrentComplex);
+        if (btnDeleteCurrentComplex != null) {
+            btnDeleteCurrentComplex.setOnClickListener(v -> confirmDeleteCurrentComplex());
+        }
+
+        // Thêm hình ảnh cơ sở (+)
+        tvDetailPhotosTitle = findViewById(R.id.tvDetailPhotosTitle);
+        View btnAddDetailPhoto = findViewById(R.id.btnAddDetailPhoto);
+        if (btnAddDetailPhoto != null) {
+            btnAddDetailPhoto.setOnClickListener(v -> showChooseImageSourceDialog());
+        }
 
         View badgeRoleDetail = findViewById(R.id.badgeRoleDetail);
         if (badgeRoleDetail != null) {
@@ -90,24 +168,87 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void showChooseImageSourceDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_choose_image_source, null);
+        dialog.setContentView(dialogView);
+
+        TextView tvTitle = dialogView.findViewById(R.id.tvImageSourceTitle);
+        if (tvTitle != null) {
+            tvTitle.setText("Thêm hình ảnh cho " + currentComplexName);
+        }
+
+        // Chụp ảnh mới
+        dialogView.findViewById(R.id.btnOptionCamera).setOnClickListener(v -> {
+            dialog.dismiss();
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                launchCamera();
+            } else {
+                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+            }
+        });
+
+        // Chọn ảnh từ máy
+        dialogView.findViewById(R.id.btnOptionGallery).setOnClickListener(v -> {
+            dialog.dismiss();
+            pickGalleryLauncher.launch("image/*");
+        });
+
+        dialogView.findViewById(R.id.btnCancelImageSource).setOnClickListener(v -> dialog.dismiss());
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+        }
+        dialog.show();
+    }
+
+    private void launchCamera() {
+        try {
+            File cacheDir = new File(getCacheDir(), "camera_cache");
+            if (!cacheDir.exists()) {
+                cacheDir.mkdirs();
+            }
+            File imageFile = File.createTempFile("detail_" + System.currentTimeMillis(), ".jpg", cacheDir);
+            tempCameraUri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", imageFile);
+            takePictureLauncher.launch(tempCameraUri);
+        } catch (Exception e) {
+            Toast.makeText(this, "Không thể mở máy ảnh", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void confirmDeleteCurrentComplex() {
+        if (currentComplexName.contains("Tất cả")) {
+            Toast.makeText(this, "Không thể xóa mục 'Tất cả các sân'. Vui lòng chọn một cụm sân cụ thể để xóa.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Xác nhận xóa cụm sân")
+                .setMessage("Bạn có chắc chắn muốn xóa \"" + currentComplexName + "\" không?\n\nToàn bộ thông tin cơ sở và các sân con thuộc cụm này sẽ bị xóa khỏi hệ thống.")
+                .setPositiveButton("Xóa cụm sân", (dialog, which) -> {
+                    OwnerComplexManager.getInstance().deleteComplexByName(currentComplexName);
+                    Toast.makeText(this, "Đã xóa cụm sân \"" + currentComplexName + "\" thành công!", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
+
     private void showComplexSwitcherDialog() {
-        String[] options = {
-                "🌐 Tất cả các sân (Toàn hệ thống · 9 sân)",
-                "⚽ Cụm sân Thăng Long (5 sân con)",
-                "⚽ Cụm sân Mai Dịch (4 sân con)",
-                "⚽ Cụm sân Riverside (Tạm ngưng)"
-        };
-        new androidx.appcompat.app.AlertDialog.Builder(this)
+        List<String> optionsList = OwnerComplexManager.getInstance().getAllComplexOptionsForSwitcher();
+        String[] options = optionsList.toArray(new String[0]);
+        new AlertDialog.Builder(this)
                 .setTitle("Chọn cụm sân quản lý")
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
                         bindComplexData("Tất cả các sân");
-                    } else if (which == 1) {
-                        bindComplexData("Cụm Sân Thăng Long");
-                    } else if (which == 2) {
-                        bindComplexData("Cụm Sân Mai Dịch");
                     } else {
-                        bindComplexData("Cụm Sân Riverside");
+                        String selected = options[which];
+                        String extracted = selected.replace("⚽ ", "").replaceAll(" \\(.*\\)", "").trim();
+                        bindComplexData(extracted);
                     }
                     Toast.makeText(this, "Đã chuyển sang: " + currentComplexName, Toast.LENGTH_SHORT).show();
                 })
@@ -115,48 +256,175 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
     }
 
     private void bindComplexData(String name) {
+        if (name == null || name.isEmpty()) {
+            name = "Cụm Sân Thăng Long";
+        }
+
+        OwnerComplex found = OwnerComplexManager.getInstance().getComplexByName(name);
+        if (found != null) {
+            currentComplexName = found.getName();
+            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText(found.getName());
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText(found.getName() + " · " + found.getSubPitchesCount() + " sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText(found.getAddress());
+            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · " + found.getHours());
+            if (tvComplexDetailCoordinates != null) {
+                tvComplexDetailCoordinates.setText(found.getCoordinates() != null && !found.getCoordinates().isEmpty()
+                        ? found.getCoordinates()
+                        : "21.0285° B, 105.8542° Đ");
+            }
+            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText(found.getHotline());
+            if (tabPitchList != null) tabPitchList.setText("Sân con (" + found.getSubPitchesCount() + ")");
+            if (cardPitch11 != null) cardPitch11.setVisibility(found.getSubPitchesCount() >= 5 ? View.VISIBLE : View.GONE);
+            return;
+        }
+
         if (name.contains("Tất cả") || name.contains("Toàn hệ thống")) {
             currentComplexName = "Tất cả các sân";
+            int total = OwnerComplexManager.getInstance().getTotalCount();
+            int pitches = OwnerComplexManager.getInstance().getTotalSubPitches();
             if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Tất cả các sân");
-            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Tất cả các sân · 3 cơ sở · 9 sân ▾");
-            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("Hà Nội (Thăng Long, Mai Dịch) & TP.HCM (Riverside)");
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Tất cả các sân · " + total + " cơ sở · " + pitches + " sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("Toàn bộ các cơ sở trong hệ thống");
             if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 05:30 - 23:30");
-            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("Toàn quốc · 3 cụm sân");
+            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("Toàn quốc · " + total + " cụm sân");
             if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("1900 6868");
-            if (tabPitchList != null) tabPitchList.setText("Sân con (9)");
+            if (tabPitchList != null) tabPitchList.setText("Sân con (" + pitches + ")");
             if (cardPitch11 != null) cardPitch11.setVisibility(View.VISIBLE);
-        } else if (name.contains("Mai Dịch")) {
-            currentComplexName = "Cụm Sân Mai Dịch";
-            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Cụm sân Mai Dịch");
-            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Cụm sân Mai Dịch · 4 sân ▾");
-            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("28 Đường số 2, P. Bình An, TP. Hà Nội");
+        } else {
+            currentComplexName = name;
+            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText(name);
+            if (tvComplexDetailSub != null) tvComplexDetailSub.setText(name + " · 4 sân ▾");
+            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("Hà Nội, Việt Nam");
             if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 06:00 - 23:00");
-            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("21.0375° B, 105.7825° Đ");
-            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0918 654 321");
+            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("21.0285° B, 105.8542° Đ");
+            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0908 123 456");
             if (tabPitchList != null) tabPitchList.setText("Sân con (4)");
             if (cardPitch11 != null) cardPitch11.setVisibility(View.GONE);
-        } else if (name.contains("Riverside")) {
-            currentComplexName = "Cụm Sân Riverside";
-            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Cụm sân Riverside");
-            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Cụm sân Riverside · 0 sân ▾");
-            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("86 Nguyễn Văn Hưởng, P. Thảo Điền, TP. Thủ Đức, TP.HCM");
-            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 06:00 - 22:00");
-            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("10.8032° B, 106.7324° Đ");
-            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0909 888 999");
-            if (tabPitchList != null) tabPitchList.setText("Sân con (0)");
-            if (cardPitch11 != null) cardPitch11.setVisibility(View.GONE);
-        } else {
-            // Thăng Long
-            currentComplexName = "Cụm Sân Thăng Long";
-            if (tvComplexDetailTitle != null) tvComplexDetailTitle.setText("Cụm sân Thăng long");
-            if (tvComplexDetailSub != null) tvComplexDetailSub.setText("Cụm sân Thăng long · 5 sân ▾");
-            if (tvComplexDetailAddress != null) tvComplexDetailAddress.setText("152 Hoàng Quốc Việt, Cầu Giấy , Hà Nội");
-            if (tvComplexDetailHours != null) tvComplexDetailHours.setText("Khung giờ mở cửa · 05:30 - 23:30");
-            if (tvComplexDetailCoordinates != null) tvComplexDetailCoordinates.setText("10,7291° B, 106,7313° Đ");
-            if (tvComplexDetailHotline != null) tvComplexDetailHotline.setText("0908 123 456");
-            if (tabPitchList != null) tabPitchList.setText("Sân con (5)");
-            if (cardPitch11 != null) cardPitch11.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void showPinMapDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_pin_map_location, null);
+        dialog.setContentView(dialogView);
+
+        EditText edtAddress = dialogView.findViewById(R.id.edtPinAddress);
+        EditText edtLat = dialogView.findViewById(R.id.edtPinLatitude);
+        EditText edtLng = dialogView.findViewById(R.id.edtPinLongitude);
+        TextView tvBadge = dialogView.findViewById(R.id.tvPinBadgeCoordinates);
+        View simulatedCanvas = dialogView.findViewById(R.id.layoutSimulatedMapCanvas);
+
+        OwnerComplex complex = OwnerComplexManager.getInstance().getComplexByName(currentComplexName);
+        double initialLat = (complex != null && complex.getLatitude() != 0) ? complex.getLatitude() : 21.028511;
+        double initialLng = (complex != null && complex.getLongitude() != 0) ? complex.getLongitude() : 105.854167;
+        String initialAddress = (complex != null && complex.getAddress() != null)
+                ? complex.getAddress()
+                : (tvComplexDetailAddress != null ? tvComplexDetailAddress.getText().toString() : "Hà Nội, Việt Nam");
+
+        edtAddress.setText(initialAddress);
+        final double[] tempCoords = new double[]{initialLat, initialLng};
+        edtLat.setText(String.format(Locale.US, "%.6f", tempCoords[0]));
+        edtLng.setText(String.format(Locale.US, "%.6f", tempCoords[1]));
+        tvBadge.setText(String.format(Locale.US, "%.4f° B, %.4f° Đ", tempCoords[0], tempCoords[1]));
+
+        // Auto geocode button
+        dialogView.findViewById(R.id.btnAutoGeocode).setOnClickListener(v -> {
+            String target = edtAddress.getText().toString().trim().toLowerCase();
+            if (target.contains("hồ chí minh") || target.contains("hcm") || target.contains("thủ đức") || target.contains("quận 1") || target.contains("quận 7")) {
+                tempCoords[0] = 10.776889 + (Math.abs(target.hashCode() % 1000) / 100000.0);
+                tempCoords[1] = 106.700806 + (Math.abs(target.hashCode() % 800) / 100000.0);
+            } else if (target.contains("đà nẵng")) {
+                tempCoords[0] = 16.054407 + (Math.abs(target.hashCode() % 1000) / 100000.0);
+                tempCoords[1] = 108.202167 + (Math.abs(target.hashCode() % 800) / 100000.0);
+            } else if (target.contains("hải phòng")) {
+                tempCoords[0] = 20.844912 + (Math.abs(target.hashCode() % 1000) / 100000.0);
+                tempCoords[1] = 106.688084 + (Math.abs(target.hashCode() % 800) / 100000.0);
+            } else if (target.contains("cần thơ")) {
+                tempCoords[0] = 10.045162 + (Math.abs(target.hashCode() % 1000) / 100000.0);
+                tempCoords[1] = 105.746853 + (Math.abs(target.hashCode() % 800) / 100000.0);
+            } else {
+                tempCoords[0] = 21.028511 + (Math.abs(target.hashCode() % 1000) / 100000.0);
+                tempCoords[1] = 105.854167 + (Math.abs(target.hashCode() % 800) / 100000.0);
+            }
+            edtLat.setText(String.format(Locale.US, "%.6f", tempCoords[0]));
+            edtLng.setText(String.format(Locale.US, "%.6f", tempCoords[1]));
+            String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", tempCoords[0], tempCoords[1]);
+            tvBadge.setText(coordsStr);
+            Toast.makeText(this, "Đã tự động xác định tọa độ từ địa chỉ cơ sở!", Toast.LENGTH_SHORT).show();
+        });
+
+        // Current GPS button
+        dialogView.findViewById(R.id.btnCurrentGps).setOnClickListener(v -> {
+            tempCoords[0] = 21.038245;
+            tempCoords[1] = 105.782789;
+            edtLat.setText(String.format(Locale.US, "%.6f", tempCoords[0]));
+            edtLng.setText(String.format(Locale.US, "%.6f", tempCoords[1]));
+            String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", tempCoords[0], tempCoords[1]);
+            tvBadge.setText(coordsStr);
+            Toast.makeText(this, "Đã lấy tọa độ GPS từ vị trí hiện tại của thiết bị!", Toast.LENGTH_SHORT).show();
+        });
+
+        // Interactive touch on map canvas
+        if (simulatedCanvas != null) {
+            simulatedCanvas.setOnClickListener(v -> {
+                tempCoords[0] += (Math.random() - 0.5) * 0.001;
+                tempCoords[1] += (Math.random() - 0.5) * 0.001;
+                edtLat.setText(String.format(Locale.US, "%.6f", tempCoords[0]));
+                edtLng.setText(String.format(Locale.US, "%.6f", tempCoords[1]));
+                String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", tempCoords[0], tempCoords[1]);
+                tvBadge.setText(coordsStr);
+                Toast.makeText(this, "Đã dịch chuyển tâm ghim trên bản đồ!", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        // Open Google Maps
+        dialogView.findViewById(R.id.btnOpenGoogleMaps).setOnClickListener(v -> {
+            try {
+                double lat = Double.parseDouble(edtLat.getText().toString().trim());
+                double lng = Double.parseDouble(edtLng.getText().toString().trim());
+                String label = currentComplexName;
+                Uri gmmIntentUri = Uri.parse("geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + Uri.encode(label) + ")");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                startActivity(mapIntent);
+            } catch (Exception e) {
+                Toast.makeText(this, "Không thể mở ứng dụng bản đồ hoặc tọa độ chưa hợp lệ.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Close button
+        dialogView.findViewById(R.id.btnClosePinMap).setOnClickListener(v -> dialog.dismiss());
+
+        // Confirm button
+        dialogView.findViewById(R.id.btnConfirmPinLocation).setOnClickListener(v -> {
+            double finalLat;
+            double finalLng;
+            try {
+                finalLat = Double.parseDouble(edtLat.getText().toString().trim());
+                finalLng = Double.parseDouble(edtLng.getText().toString().trim());
+            } catch (Exception ignored) {
+                finalLat = tempCoords[0];
+                finalLng = tempCoords[1];
+            }
+            String coordsStr = String.format(Locale.US, "%.4f° B, %.4f° Đ", finalLat, finalLng);
+
+            // Update in OwnerComplexManager
+            OwnerComplexManager.getInstance().updateCoordinates(currentComplexName, finalLat, finalLng, coordsStr);
+
+            if (tvComplexDetailCoordinates != null) {
+                tvComplexDetailCoordinates.setText(coordsStr);
+            }
+
+            Toast.makeText(this, "Đã ghim vị trí mới cho \"" + currentComplexName + "\" thành công!", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+        }
+        dialog.show();
     }
 
     private void setupTabs() {
@@ -217,7 +485,7 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         findViewById(R.id.btnChange11).setOnClickListener(v -> showMaintenanceDialog("Sân 11"));
     }
 
-    // Modal: Thêm sân con mới (khớp thiết kế ảnh 2)
+    // Modal: Thêm sân con mới
     private void showAddSubPitchDialog() {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -226,7 +494,6 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         dialog.setContentView(dialogView);
 
         EditText edtPitchName = dialogView.findViewById(R.id.edtDialogPitchName);
-        EditText edtPitchPrice = dialogView.findViewById(R.id.edtDialogPitchPrice);
         Button btnSavePitch = dialogView.findViewById(R.id.btnDialogSavePitch);
         Button btnCancelPitch = dialogView.findViewById(R.id.btnDialogCancelPitch);
 
@@ -250,7 +517,7 @@ public class OwnerComplexDetailActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    // Modal: Chuyển sân sang bảo trì (khớp thiết kế ảnh 4)
+    // Modal: Chuyển sân sang bảo trì
     private void showMaintenanceDialog(String pitchName) {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

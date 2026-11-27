@@ -373,9 +373,12 @@
 
                 <!-- Map Preview Container -->
                 <FrameLayout
+                    android:id="@+id/layoutMapPreviewContainer"
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="@drawable/bg_map_preview">
 
                     <!-- Road Blocks Simulation -->
@@ -458,6 +461,7 @@
                             app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/tvPinStatusBadge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
@@ -656,17 +660,76 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="JPG, PNG · Tối đa 5 MB · Nên dùng ảnh ngang"
+                        android:text="JPG, PNG · Chụp ảnh hoặc chọn từ máy"
                         android:textColor="#64748B"
                         android:textSize="11sp" />
                 </LinearLayout>
+
+                <!-- Avatar Preview Card (Shown after photo chosen) -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAvatarPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="6dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imgAvatarPreview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                        <!-- Change button overlay -->
+                        <LinearLayout
+                            android:id="@+id/btnChangeAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:background="#99000000"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:paddingVertical="7dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📸 Đổi / Chụp lại ảnh đại diện"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Delete button -->
+                        <TextView
+                            android:id="@+id/btnRemoveAvatar"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/bg_profile_circle_btn"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="✕"
+                            android:textColor="#DC2626"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+                </androidx.cardview.widget.CardView>
 
                 <!-- Add Facility Photos Box -->
                 <LinearLayout
                     android:id="@+id/layoutUploadFacility"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/bg_add_photo_box"
                     android:clickable="true"
                     android:focusable="true"
@@ -706,6 +769,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvFacilityPhotosCountHint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -714,6 +778,22 @@
                             android:textSize="11sp" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <!-- Horizontal scroll container for facility photos -->
+                <HorizontalScrollView
+                    android:id="@+id/scrollFacilityPhotos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="none"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/containerFacilityPhotos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
             </LinearLayout>
 
             <!-- CARD 5: TIỆN ÍCH TẠI CƠ SỞ -->

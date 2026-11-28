@@ -99,9 +99,15 @@ public class PaymentConfirmationActivity extends AppCompatActivity {
         btnPayNow.setOnClickListener(v -> {
             if (selectedPaymentOption == 0) {
                 Intent intent = new Intent(PaymentConfirmationActivity.this, PaymentDepositActivity.class);
+                intent.putExtra("IS_FULL_PAYMENT", false);
+                startActivity(intent);
+            } else if (selectedPaymentOption == 1) {
+                Intent intent = new Intent(PaymentConfirmationActivity.this, PaymentDepositActivity.class);
+                intent.putExtra("IS_FULL_PAYMENT", true);
                 startActivity(intent);
             } else {
-                showSuccessDialog();
+                Intent intent = new Intent(PaymentConfirmationActivity.this, CashPaymentActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainEditProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:fillViewport="true"
+    tools:context=".EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="52dp"
+        android:paddingBottom="24dp">
+
+        <!-- Top Header Back Button -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_btn"
+            android:contentDescription="Back Button"
+            android:padding="8dp"
+            android:src="@drawable/ic_back" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Chỉnh sửa hồ sơ"
+            android:textColor="@color/text_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Chỉnh sửa hồ sơ" />
+
+        <!-- Avatar Circle with Camera Edit Badge -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="84dp"
+                android:layout_height="84dp">
+
+                <TextView
+                    android:id="@+id/tvAvatarCircle"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_profile_avatar_bg"
+                    android:gravity="center"
+                    android:text="M"
+                    android:textColor="#C8F27D"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    tools:text="M" />
+
+                <!-- Camera Edit Icon Badge -->
+                <FrameLayout
+                    android:id="@+id/btnChangeAvatar"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/bg_btn_action_green"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Change Avatar"
+                        android:src="@drawable/ic_camera_edit" />
+                </FrameLayout>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Đổi ảnh đại diện"
+                android:textColor="@color/primary_green"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Đổi ảnh đại diện" />
+        </LinearLayout>
+
+        <!-- Field 1: Họ và tên -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="6dp"
+            android:text="Họ và tên"
+            android:textColor="@color/text_title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Họ và tên" />
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_card_pitch"
+            android:hint="Nhập họ và tên"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="16dp"
+            android:text="Minh"
+            android:textColor="@color/text_title"
+            android:textColorHint="#9CA3AF"
+            android:textSize="15sp"
+            tools:text="Minh" />
+
+        <!-- Field 2: Số điện thoại -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="6dp"
+            android:text="Số điện thoại"
+            android:textColor="@color/text_title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Số điện thoại" />
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_card_pitch"
+            android:hint="Nhập số điện thoại"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:paddingHorizontal="16dp"
+            android:text="+84 912 345 678"
+            android:textColor="@color/text_title"
+            android:textColorHint="#9CA3AF"
+            android:textSize="15sp"
+            tools:text="+84 912 345 678" />
+
+        <!-- Field 3: Khu vực / Vị trí -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="6dp"
+            android:text="Khu vực / Vị trí"
+            android:textColor="@color/text_title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Khu vực / Vị trí" />
+
+        <EditText
+            android:id="@+id/etLocationAddress"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_card_pitch"
+            android:hint="Nhập khu vực, quận huyện"
+            android:importantForAutofill="no"
+            android:inputType="textPostalAddress"
+            android:paddingHorizontal="16dp"
+            android:text="Cầu Giấy, Hà Nội"
+            android:textColor="@color/text_title"
+            android:textColorHint="#9CA3AF"
+            android:textSize="15sp"
+            tools:text="Cầu Giấy, Hà Nội" />
+
+        <!-- Field 4: Email liên hệ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="6dp"
+            android:text="Email liên hệ"
+            android:textColor="@color/text_title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Email liên hệ" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_card_pitch"
+            android:hint="Nhập email liên hệ"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="16dp"
+            android:text="minh.nguyen@gmail.com"
+            android:textColor="@color/text_title"
+            android:textColorHint="#9CA3AF"
+            android:textSize="15sp"
+            tools:text="minh.nguyen@gmail.com" />
+
+        <!-- Main Button: Lưu thay đổi -->
+        <TextView
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_btn_action_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Lưu thay đổi"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Lưu thay đổi" />
+
+        <!-- Secondary Button: Hủy -->
+        <TextView
+            android:id="@+id/btnCancelProfile"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_btn_edit_profile"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Hủy"
+            android:textColor="@color/text_title"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Hủy" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

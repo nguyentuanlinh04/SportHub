@@ -20,14 +20,16 @@ import java.util.Locale;
 public class PaymentDepositActivity extends AppCompatActivity {
 
     private ImageButton btnBack;
+    private TextView tvHeaderTitle;
     private TextView tvPitchSubPitch, tvOrderCodeName, tvFullDateTime;
-    private TextView tvDepositAmount, tvRemainingAmount;
+    private TextView tvDepositNoteLabel, tvDepositAmount, tvRemainingAmount;
     private TextView tvTabBank, tvTabEWallet, tvTabQR;
     private TextView tvTimer;
     private TextView btnIHavePaid, btnCancelPayment;
 
     private CountDownTimer countDownTimer;
     private int selectedTab = 2; // 0: Bank, 1: E-Wallet, 2: QR (default)
+    private boolean isFullPayment = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class PaymentDepositActivity extends AppCompatActivity {
         });
 
         initViews();
+        extractIntentData();
         setupMethodTabs();
         startCountdownTimer();
         setupListeners();
@@ -49,10 +52,13 @@ public class PaymentDepositActivity extends AppCompatActivity {
 
     private void initViews() {
         btnBack = findViewById(R.id.btnBack);
+        tvHeaderTitle = findViewById(R.id.tvHeaderTitle);
+
         tvPitchSubPitch = findViewById(R.id.tvPitchSubPitch);
         tvOrderCodeName = findViewById(R.id.tvOrderCodeName);
         tvFullDateTime = findViewById(R.id.tvFullDateTime);
 
+        tvDepositNoteLabel = findViewById(R.id.tvDepositNoteLabel);
         tvDepositAmount = findViewById(R.id.tvDepositAmount);
         tvRemainingAmount = findViewById(R.id.tvRemainingAmount);
 
@@ -63,6 +69,25 @@ public class PaymentDepositActivity extends AppCompatActivity {
         tvTimer = findViewById(R.id.tvTimer);
         btnIHavePaid = findViewById(R.id.btnIHavePaid);
         btnCancelPayment = findViewById(R.id.btnCancelPayment);
+    }
+
+    private void extractIntentData() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            isFullPayment = intent.getBooleanExtra("IS_FULL_PAYMENT", false);
+        }
+
+        if (isFullPayment) {
+            tvHeaderTitle.setText("Thanh toán toàn phần");
+            tvDepositNoteLabel.setText("Thanh toán 100% · Tổng 850.000đ");
+            tvDepositAmount.setText("850.000đ");
+            tvRemainingAmount.setText("0đ");
+        } else {
+            tvHeaderTitle.setText("Thanh toán cọc");
+            tvDepositNoteLabel.setText("Cọc 30% · Tổng 850.000đ");
+            tvDepositAmount.setText("255.000đ");
+            tvRemainingAmount.setText("595.000đ");
+        }
     }
 
     private void setupMethodTabs() {
@@ -122,8 +147,8 @@ public class PaymentDepositActivity extends AppCompatActivity {
 
     private void showSuccessDialog() {
         new AlertDialog.Builder(this)
-                .setTitle("Thanh toán cọc thành công! 🎉")
-                .setMessage("Cảm ơn bạn! Hệ thống đã ghi nhận khoản cọc 255.000đ.\nĐơn đặt sân của bạn đã được xác nhận giữ chỗ thành công.")
+                .setTitle("Thanh toán thành công! 🎉")
+                .setMessage("Cảm ơn bạn! Hệ thống đã ghi nhận khoản thanh toán.\nĐơn đặt sân của bạn đã được xác nhận giữ chỗ thành công.")
                 .setCancelable(false)
                 .setPositiveButton("Về trang chủ", (dialog, which) -> {
                     Intent intent = new Intent(PaymentDepositActivity.this, MenuActivity.class);

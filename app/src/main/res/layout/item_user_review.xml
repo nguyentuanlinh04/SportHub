@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_card_pitch"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvPitchName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cụm sân Thắng Long"
+        android:textColor="@color/text_title"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Cụm sân Thắng Long" />
+
+    <TextView
+        android:id="@+id/tvMatchDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="SH-1101-0120 · 01/11/2026 · Sân 5-A"
+        android:textColor="@color/text_sub"
+        android:textSize="12sp"
+        tools:text="SH-1101-0120 · 01/11/2026 · Sân 5-A" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="10dp"
+        android:background="#EAEFE9" />
+
+    <!-- Star Rating -->
+    <TextView
+        android:id="@+id/tvStarRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="★ ★ ★ ★ ★"
+        android:textColor="#D97706"
+        android:textSize="16sp"
+        tools:text="★ ★ ★ ★ ★" />
+
+    <!-- Scores Breakdown -->
+    <TextView
+        android:id="@+id/tvScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Mặt cỏ 5/5 · Ánh sáng 5/5 · Phục vụ 5/5"
+        android:textColor="@color/text_sub"
+        android:textSize="12sp"
+        tools:text="Mặt cỏ 5/5 · Ánh sáng 5/5 · Phục vụ 5/5" />
+
+    <!-- Highlight Tag Badge -->
+    <TextView
+        android:id="@+id/tvTagBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_skill_badge_green"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:text="Mặt cỏ tốt · Đèn sáng"
+        android:textColor="#0A6A3A"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:text="Mặt cỏ tốt · Đèn sáng" />
+
+    <!-- Comment Quote -->
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="“Sân đẹp, mặt cỏ êm và đèn sáng. Nhân viên nhiệt tình, đội mình sẽ quay lại!”"
+        android:textColor="@color/text_title"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="“Sân đẹp, mặt cỏ êm và đèn sáng. Nhân viên nhiệt tình, đội mình sẽ quay lại!”" />
+
+    <!-- Created Date -->
+    <TextView
+        android:id="@+id/tvCreatedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Đã đăng ngày 01/11/2026"
+        android:textColor="#9CA3AF"
+        android:textSize="11sp"
+        tools:text="Đã đăng ngày 01/11/2026" />
+
+</LinearLayout>

@@ -14,11 +14,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import fpoly.duan1.sporthub_new.ChangePasswordActivity;
+import fpoly.duan1.sporthub_new.EditProfileActivity;
 import fpoly.duan1.sporthub_new.FavoritePitchesActivity;
 import fpoly.duan1.sporthub_new.LoginActivity;
 import fpoly.duan1.sporthub_new.MenuActivity;
+import fpoly.duan1.sporthub_new.MyReviewsActivity;
 import fpoly.duan1.sporthub_new.R;
 import fpoly.duan1.sporthub_new.utils.FavoriteManager;
+import fpoly.duan1.sporthub_new.utils.UserProfileManager;
 
 public class ProfileFragment extends Fragment {
 
@@ -44,6 +47,7 @@ public class ProfileFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateFavoriteCount();
+        loadUserProfile();
     }
 
     private void initViews(View view) {
@@ -68,9 +72,24 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    private void loadUserProfile() {
+        if (!isAdded()) return;
+        UserProfileManager manager = UserProfileManager.getInstance();
+        String name = manager.getFullName(requireContext());
+        String phone = manager.getPhoneNumber(requireContext());
+        String address = manager.getAddress(requireContext());
+
+        if (tvUserName != null) tvUserName.setText(name);
+        if (tvUserPhone != null) tvUserPhone.setText(phone);
+        if (tvUserAddress != null) tvUserAddress.setText(address);
+        if (tvProfileAvatar != null && !name.isEmpty()) {
+            tvProfileAvatar.setText(String.valueOf(name.charAt(0)).toUpperCase());
+        }
+    }
+
     private void setupListeners() {
         btnEditProfile.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Mở màn hình Sửa hồ sơ", Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(requireContext(), EditProfileActivity.class))
         );
 
         llFavoritePitches.setOnClickListener(v ->
@@ -84,7 +103,7 @@ public class ProfileFragment extends Fragment {
         });
 
         llMyReviews.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Mở màn hình Đánh giá của tôi", Toast.LENGTH_SHORT).show()
+                startActivity(new Intent(requireContext(), MyReviewsActivity.class))
         );
 
         llChangePassword.setOnClickListener(v ->
